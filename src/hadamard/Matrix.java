@@ -13,35 +13,48 @@ public class Matrix {
         this.columns = new BitSet[this.dimension];
         this.columns[0] = BitSet.valueOf(BigInteger.valueOf(2).pow(this.dimension)
                 .subtract(BigInteger.ONE).toByteArray());
+        for(int i = 1; i < dimension; i++)
+            this.columns[i] = new BitSet();
+    }
+
+    public int getDimension() {
+        return dimension;
+    }
+
+    public BitSet[] getColumns() {
+        return columns;
+    }
+
+    public void setColumn(BitSet column, int index) {
+        this.columns[index] = column;
+    }
+
+    public void setElement(int columnIndex, int rowIndex, boolean value) {
+        if(value)
+            this.columns[columnIndex].set(rowIndex);
+        else
+            this.columns[columnIndex].clear(rowIndex);
     }
 
     public Matrix transpose() {
         Matrix A = new Matrix(dimension);
-        BitSet[] columns1 = this.columns;
-        for (int i = 0; i < columns1.length; i++) {
-            BitSet set = columns1[i];
+        BitSet[] columns1 = this.getColumns();
 
-            for (int index = 0; index < this.dimension; index++) {
-                boolean value = set.get(index);
-                for (BitSet newSet : A.columns ) {
-                    if (value) {
-                        newSet.set(index);
-                    } else {
-                        newSet.set(index, 0);
-                    }
-                }
-            }
-        }
+        for (int columnIndex = 0; columnIndex < dimension; columnIndex++)
+            for (int rowIndex = 0; rowIndex < dimension; rowIndex++)
+                A.setElement(rowIndex, columnIndex, columns1[columnIndex].get(rowIndex));
+
         return A;
     }
 
     public boolean equals(Matrix B) {
         Matrix A = this;
-        if (A.dimension != B.dimension) throw new RuntimeException("Illegal matrix dimensions.");
-        BitSet[] columns1 = A.columns;
+        if (A.getDimension() != B.getDimension()) throw new RuntimeException("Illegal matrix dimensions.");
+        BitSet[] columns1 = A.getColumns();
+        BitSet[] columns2 = B.getColumns();
         for (int i = 0, columns1Length = columns1.length; i < columns1Length; i++) {
             BitSet aColumn = columns1[i];
-            BitSet bColumn = columns1[i];
+            BitSet bColumn = columns2[i];
 
             if (!aColumn.equals(bColumn)) return false;
         }
@@ -61,7 +74,7 @@ public class Matrix {
                         boolean firstMatrixValue = A.columns[firstMatrixColumnIndex].get(firstMatrixRowIndex);
                         boolean secondMatrixValue = B.columns[secondMatrixColumnIndex].get(secondMatrixRowIndex);
                         int existingValue = C[secondMatrixColumnIndex][firstMatrixRowIndex];
-                        C[secondMatrixColumnIndex][firstMatrixRowIndex] = this.calculateSum(firstMatrixValue, secondMatrixValue);
+                        C[secondMatrixColumnIndex][firstMatrixRowIndex] = existingValue + this.calculateSum(firstMatrixValue, secondMatrixValue);
                     }
                 }
             }
@@ -73,7 +86,6 @@ public class Matrix {
         if (firstMatrixValue == secondMatrixValue  ) {
             return 1;
         }
-
         return -1;
     }
 }
