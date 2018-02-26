@@ -5,7 +5,7 @@ public class Helpers {
         if(matrix.length == 0)
             throw new RuntimeException("Illegal matrix dimensions.");
         if(matrix.length != matrix[0].length)
-            throw new RuntimeException("Illegal matrix dimensions.");
+            return false;
 
         int identityValue = matrix[0][0];
 
