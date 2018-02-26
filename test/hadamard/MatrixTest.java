@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.BitSet;
 
 public class MatrixTest {
@@ -60,6 +61,8 @@ public class MatrixTest {
 
         int[][] result = testMatrix1.times(testMatrix2);
 
-        int a = 1;
+        int expectedResult[][] = {{2,-2,4,-2}, {-2,2,0,2}, {2, -2, 0, -2}, {4, -4, 2, -4}};
+
+        Assert.assertTrue("Should be true.", Arrays.deepEquals(expectedResult, result));
     }
 }

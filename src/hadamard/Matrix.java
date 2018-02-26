@@ -67,18 +67,14 @@ public class Matrix {
         if (A.dimension != B.dimension) throw new RuntimeException("Illegal matrix dimensions.");
         int[][] C = new int[this.dimension][this.dimension];
 
-        for (int firstMatrixRowIndex = 0; firstMatrixRowIndex < A.dimension; firstMatrixRowIndex++){
-            for (int firstMatrixColumnIndex = 0; firstMatrixColumnIndex < A.dimension; firstMatrixColumnIndex++) {
-                for (int secondMatrixColumnIndex = 0; secondMatrixColumnIndex < B.dimension; secondMatrixColumnIndex++){
-                    for (int secondMatrixRowIndex = 0; secondMatrixRowIndex < B.dimension; secondMatrixRowIndex++){
-                        boolean firstMatrixValue = A.columns[firstMatrixColumnIndex].get(firstMatrixRowIndex);
-                        boolean secondMatrixValue = B.columns[secondMatrixColumnIndex].get(secondMatrixRowIndex);
-                        int existingValue = C[secondMatrixColumnIndex][firstMatrixRowIndex];
-                        C[secondMatrixColumnIndex][firstMatrixRowIndex] = existingValue + this.calculateSum(firstMatrixValue, secondMatrixValue);
-                    }
+        for (int rowIndex = 0; rowIndex < A.dimension; rowIndex++)
+            for (int columnIndex = 0; columnIndex < A.getDimension(); columnIndex++)
+                for (int index = 0; index < A.getDimension(); index++){
+                        boolean firstMatrixValue = A.getColumns()[index].get(rowIndex);
+                        boolean secondMatrixValue = B.getColumns()[columnIndex].get(index);
+                        C[columnIndex][rowIndex] += calculateSum(firstMatrixValue, secondMatrixValue);
                 }
-            }
-        }
+                
         return C;
     }
 
