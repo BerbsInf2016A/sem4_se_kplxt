@@ -7,6 +7,7 @@ public class Matrix {
     private final int dimension;
     // 1 = 1 and 0 = -1
     private final BitSet[] columns;
+    private int nextUnsetColumnIndex;
 
     public Matrix(int dimension) {
         this.dimension = dimension;
@@ -15,6 +16,14 @@ public class Matrix {
                 .subtract(BigInteger.ONE).toByteArray());
         for(int i = 1; i < dimension; i++)
             this.columns[i] = new BitSet();
+    }
+
+    public Matrix(Matrix source) {
+        this.dimension = source.dimension;
+        this.columns = new BitSet[this.dimension];
+        for(int i = 0; i < this.dimension; i++){
+            this.columns[i] = (BitSet) source.columns[i].clone();
+        }
     }
 
     public int getDimension() {
@@ -27,6 +36,11 @@ public class Matrix {
 
     public void setColumn(BitSet column, int index) {
         this.columns[index] = column;
+        if (index == this.dimension - 1) {
+            this.nextUnsetColumnIndex = -1;
+        } else {
+            this.nextUnsetColumnIndex = index + 1;
+        }
     }
 
     public void setElement(int columnIndex, int rowIndex, boolean value) {
@@ -83,5 +97,9 @@ public class Matrix {
             return 1;
         }
         return -1;
+    }
+
+    public int getNextUnsetColumnIndex() {
+        return nextUnsetColumnIndex;
     }
 }
