@@ -12,12 +12,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+// TODO: Change all classes to use the dimension in the configuration.
+
 public class Algorithm {
     public void run(int dimension){
+        Configuration.instance.dimension = dimension;
         Matrix startMatrix = this.generateStartMatrix(dimension);
         List<Matrix> firstFieldCombinations = this.generateCombinations(startMatrix, 1);
         this.startParallelSearch(firstFieldCombinations);
     }
+    // TODO Split start into number ranges instead of predefined matrices. This will be better for bigger dimensions. Reasons for the change: Removing duplicate code and the current version will not work with big dimensions.
 
     private void startParallelSearch(List<Matrix> firstFieldCombinations) {
         try {
@@ -69,12 +73,14 @@ public class Algorithm {
             Matrix transpose = matrix.transpose();
             int[][] result = matrix.times(transpose);
             if (Helpers.isIdentity(result)){
-                int z = 0;
+                Configuration.instance.debugCounter.incrementAndGet();
+                System.out.println("Found for dimension: " + Configuration.instance.dimension);
+                System.out.println(matrix.getDebugStringRepresentation());
+                return true;
             }
         } else {
-            for (long i = 0; i < Math.pow(2, matrix.getDimension() - 1); i++) {
-                BigInteger value = BigInteger.valueOf(i);
-                BitSet combination = BitSet.valueOf(value.toByteArray());
+            for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(matrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
+                BitSet combination = Helpers.convertTo(i);
                 combination.set(matrix.getDimension() - 1);
                 if ((combination.cardinality()) == (matrix.getDimension() / 2)){
                     Matrix newMatrix = new Matrix(matrix);
@@ -101,9 +107,8 @@ public class Algorithm {
 
     private List<Matrix> generateCombinations(Matrix startMatrix, int targetColumnIndex) {
         ArrayList<Matrix> matrices = new ArrayList<>();
-        for (long i = 0; i < Math.pow(2, startMatrix.getDimension() - 1); i++) {
-            BigInteger value = BigInteger.valueOf(i);
-            BitSet combination = BitSet.valueOf(value.toByteArray());
+        for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(startMatrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
+            BitSet combination = Helpers.convertTo(i);
             if ((combination.cardinality() + 1) == (startMatrix.getDimension() / 2)){
                 Matrix newMatrix = new Matrix(startMatrix);
                 combination.set(startMatrix.getDimension() - 1);

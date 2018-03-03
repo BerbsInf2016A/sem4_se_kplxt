@@ -12,8 +12,14 @@ public class Matrix {
     public Matrix(int dimension) {
         this.dimension = dimension;
         this.columns = new BitSet[this.dimension];
-        this.columns[0] = BitSet.valueOf(BigInteger.valueOf(2).pow(this.dimension)
-                .subtract(BigInteger.ONE).toByteArray());
+        // Attention: It is possible to get a byte[] for a BigInteger and to create
+        // a BitSet from a byte[]. But one uses little Endian and one uses big endian.
+        // So we cannot use it.
+        // See https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html#toByteArray() --> Big endian
+        // https://docs.oracle.com/javase/7/docs/api/java/util/BitSet.html#valueOf(byte[]) --> Little endian
+        BigInteger bigintValue = BigInteger.valueOf(2).pow(this.dimension)
+                .subtract(BigInteger.ONE);
+        this.columns[0] = Helpers.convertTo(bigintValue);
         for(int i = 1; i < dimension; i++)
             this.columns[i] = new BitSet();
     }
@@ -101,5 +107,23 @@ public class Matrix {
 
     public int getNextUnsetColumnIndex() {
         return nextUnsetColumnIndex;
+    }
+
+    public String getDebugStringRepresentation(){
+        String separator = System.getProperty("line.separator");
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < Configuration.instance.dimension; row++){
+            for (int column = 0; column < Configuration.instance.dimension; column++) {
+                if (column == 0) {
+                    String value = this.columns[column].get(row) ? " 1" : "-1";
+                    sb.append(value);
+                } else {
+                    String value = this.columns[column].get(row) ? " 1" : "-1";
+                    sb.append(" ").append(value);
+                }
+            }
+            sb.append(separator);
+        }
+        return sb.toString();
     }
 }
