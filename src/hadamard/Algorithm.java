@@ -15,55 +15,65 @@ import java.util.concurrent.TimeUnit;
 // TODO: Change all classes to use the dimension in the configuration.
 
 public class Algorithm {
-    public void run(int dimension){
-        Configuration.instance.dimension = dimension;
-        Matrix startMatrix = this.generateStartMatrix(dimension);
-        List<Matrix> firstFieldCombinations = this.generateCombinations(startMatrix, 1);
-        this.startParallelSearch(firstFieldCombinations);
+    public void run(){
+        Matrix startMatrix = this.generateStartMatrix(Configuration.instance.dimension);
+        this.startParallelSearch(Configuration.instance.dimension, startMatrix);
     }
-    // TODO Split start into number ranges instead of predefined matrices. This will be better for bigger dimensions. Reasons for the change: Removing duplicate code and the current version will not work with big dimensions.
 
-    private void startParallelSearch(List<Matrix> firstFieldCombinations) {
+    private void startParallelSearch(int dimension, Matrix startMatrix) {
         try {
-        final List<Callable<Boolean>> partitions = new ArrayList<>();
-        final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
+            final List<Callable<Boolean>> partitions = new ArrayList<>();
+            final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
 
-        int sliceSize = firstFieldCombinations.size() / Configuration.instance.maximumNumberOfThreads;
-        if (firstFieldCombinations.size() < Configuration.instance.maximumNumberOfThreads) {
-            for (Matrix matrix : firstFieldCombinations ) {
-                partitions.add(() -> startSolving(Arrays.asList(matrix) ));
+            BigInteger threads = BigInteger.valueOf(Configuration.instance.maximumNumberOfThreads);
+
+            BigInteger maxValue = BigInteger.valueOf(2).pow(dimension - 1);
+            BigInteger sliceSize = maxValue.divide(threads);
+
+            for (BigInteger i = BigInteger.ZERO; i.compareTo(maxValue) != 1; i = i.add(sliceSize)) {
+                final BigInteger from = i;
+                BigInteger to = i.add(sliceSize);
+                if (to.compareTo(maxValue) == 1)
+                    to = maxValue;
+                final BigInteger end = to;
+                partitions.add(() -> startSolving(startMatrix, from, end));
             }
-        } else {
-            for (int i = 0; i <= firstFieldCombinations.size(); i += sliceSize) {
-                int to = i + sliceSize;
-                if (to > firstFieldCombinations.size())
-                    to = firstFieldCombinations.size();
-                final int end = to;
-                List<Matrix> sublist = firstFieldCombinations.subList(i, end);
-                partitions.add(() -> startSolving(sublist));
-            }
-        }
 
 
-        final List<Future<Boolean>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
-        // Shutdown will not kill the spawned threads, but shutdownNow will set a flag which can be queried in the running
-        // threads to end the execution.
-        //executorPool.shutdown();
-        executorPool.shutdownNow();
 
-        for (final Future<Boolean> result : resultFromParts)
-            result.get();
+            final List<Future<Boolean>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
+            // Shutdown will not kill the spawned threads, but shutdownNow will set a flag which can be queried in the running
+            // threads to end the execution.
+            //executorPool.shutdown();
+            executorPool.shutdownNow();
+
+            for (final Future<Boolean> result : resultFromParts)
+                result.get();
 
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private Boolean startSolving(List<Matrix> sublist) {
-        for (Matrix matrix : sublist ) {
-            solve(matrix);
+    private Boolean startSolving(Matrix startMatrix, BigInteger from, BigInteger end) {
+        if (Configuration.instance.printDebugMessages) {
+            System.out.println("Searching in the range from " + from + " to " + end);
         }
-        return true;
+        for (BigInteger i = from; i.compareTo(end) != 1; i = i.add(BigInteger.ONE)) {
+            BitSet combination = Helpers.convertTo(i);
+            combination.set(startMatrix.getDimension() - 1);
+            if ((combination.cardinality()) == (startMatrix.getDimension() / 2)){
+                Matrix newMatrix = new Matrix(startMatrix);
+                if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, 1)) {
+                    continue;
+                }
+                newMatrix.setColumn(combination, 1);
+                if (this.solve(newMatrix)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean solve(Matrix matrix) {
@@ -74,8 +84,10 @@ public class Algorithm {
             int[][] result = matrix.times(transpose);
             if (Helpers.isIdentity(result)){
                 Configuration.instance.debugCounter.incrementAndGet();
-                System.out.println("Found for dimension: " + Configuration.instance.dimension);
-                System.out.println(matrix.getDebugStringRepresentation());
+                if (Configuration.instance.printDebugMessages) {
+                    System.out.println("Found for dimension: " + Configuration.instance.dimension);
+                    System.out.println(matrix.getDebugStringRepresentation());
+                }
                 return true;
             }
         } else {
@@ -103,20 +115,6 @@ public class Algorithm {
             if (!Helpers.isOrthogonal(column, combination, targetColumnIndex)) return false;
         }
         return true;
-    }
-
-    private List<Matrix> generateCombinations(Matrix startMatrix, int targetColumnIndex) {
-        ArrayList<Matrix> matrices = new ArrayList<>();
-        for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(startMatrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
-            BitSet combination = Helpers.convertTo(i);
-            if ((combination.cardinality() + 1) == (startMatrix.getDimension() / 2)){
-                Matrix newMatrix = new Matrix(startMatrix);
-                combination.set(startMatrix.getDimension() - 1);
-                newMatrix.setColumn(combination, targetColumnIndex);
-                matrices.add(newMatrix);
-            }
-        }
-        return matrices;
     }
 
     private Matrix generateStartMatrix(int dimension) {

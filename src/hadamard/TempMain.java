@@ -3,8 +3,9 @@ package hadamard;
 public class TempMain {
     public static void main(String args[]) {
         long startTime = System.currentTimeMillis();
+        Configuration.instance.dimension = 4;
         Algorithm algo = new Algorithm();
-        algo.run(16);
+        algo.run();
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println(Configuration.instance.debugCounter.get());
