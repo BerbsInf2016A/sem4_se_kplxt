@@ -1,5 +1,5 @@
 package implementation;
-
+// TODO Can be removed if not needed anymore.
 public class CombinationCounter {
     public static void main(String[] args) {
         System.out.println("Count: " + getCountOfPossibleColumns(8));
