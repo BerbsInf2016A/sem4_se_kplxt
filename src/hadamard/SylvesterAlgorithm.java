@@ -46,18 +46,12 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             result = result.generateNextSizeMatrix();
         }
 
-        boolean isResultAHadamardMatrix = Helpers.isIdentity(result.times(result.transpose()));
-
-        if (isResultAHadamardMatrix) {
-            Configuration.instance.debugCounter.incrementAndGet();
-            if (Configuration.instance.printDebugMessages) {
-                System.out.println("Found for dimension: " + Configuration.instance.dimension);
-                System.out.println(result.getDebugStringRepresentation());
-            }
-            SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
-            return true;
+        Configuration.instance.debugCounter.incrementAndGet();
+        if (Configuration.instance.printDebugMessages) {
+            System.out.println("Found for dimension: " + Configuration.instance.dimension);
+            System.out.println(result.getDebugStringRepresentation());
         }
-
-        return false;
+        SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
+        return true;
     }
 }
