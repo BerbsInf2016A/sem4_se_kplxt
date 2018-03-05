@@ -69,4 +69,16 @@ public class Helpers {
         }
         return sum == 0;
     }
+
+    public static BitSet concatenateSets(BitSet set1, BitSet set2, int dimension) {
+        BitSet newSet = new BitSet();
+
+        for (int i=0; i< dimension; i++)
+            newSet.set(i, set1.get(i));
+
+        for (int i= dimension; i< 2* dimension; i++)
+            newSet.set(i, set2.get(i - dimension));
+
+        return newSet;
+    }
 }
