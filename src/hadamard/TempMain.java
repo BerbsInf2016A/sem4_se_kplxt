@@ -4,8 +4,9 @@ public class TempMain {
     public static void main(String args[]) throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
-        Configuration.instance.dimension = 28;
-        BruteForceAlgorithm algo = new BruteForceAlgorithm();
+        Configuration.instance.dimension = 2048;
+        //BruteForceAlgorithm algo = new BruteForceAlgorithm();
+        SylvesterAlgorithm algo = new SylvesterAlgorithm();
 
         try {
             ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
@@ -13,7 +14,6 @@ public class TempMain {
         } catch (RuntimeException ex){
             // Probably cancelled by us.
             if (ThreadDataAggregator.resultFound.get()) {
-
                 Thread.sleep(300);
             } else {
                 ex.printStackTrace();

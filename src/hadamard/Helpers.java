@@ -71,10 +71,7 @@ public class Helpers {
     }
 
     public static BitSet concatenateSets(BitSet set1, BitSet set2, int dimension) {
-        BitSet newSet = new BitSet();
-
-        for (int i=0; i< dimension; i++)
-            newSet.set(i, set1.get(i));
+        BitSet newSet = (BitSet) set1.clone();
 
         for (int i= dimension; i< 2* dimension; i++)
             newSet.set(i, set2.get(i - dimension));
