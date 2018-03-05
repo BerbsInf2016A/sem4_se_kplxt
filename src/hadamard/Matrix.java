@@ -22,6 +22,7 @@ public class Matrix {
         this.columns[0] = Helpers.convertTo(bigintValue);
         for(int i = 1; i < dimension; i++)
             this.columns[i] = new BitSet();
+        this.nextUnsetColumnIndex = 1;
     }
 
     public Matrix(Matrix source) {
@@ -30,6 +31,7 @@ public class Matrix {
         for(int i = 0; i < this.dimension; i++){
             this.columns[i] = (BitSet) source.columns[i].clone();
         }
+        this.nextUnsetColumnIndex = source.nextUnsetColumnIndex;
     }
 
     public int getDimension() {
@@ -118,6 +120,28 @@ public class Matrix {
                     String value = this.columns[column].get(row) ? " 1" : "-1";
                     sb.append(value);
                 } else {
+                    String value = this.columns[column].get(row) ? " 1" : "-1";
+                    sb.append(" ").append(value);
+                }
+            }
+            sb.append(separator);
+        }
+        return sb.toString();
+    }
+
+    public String getUIDebugStringRepresentation(){
+        String separator = System.getProperty("line.separator");
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < this.dimension; row++){
+            for (int column = 0; column < this.dimension; column++) {
+                if (column == 0) {
+                    String value = this.columns[column].get(row) ? " 1" : "-1";
+                    sb.append(value);
+                } else {
+                    if((column >= nextUnsetColumnIndex && nextUnsetColumnIndex != -1) ){
+                        sb.append(" ").append("-");
+                        continue;
+                    }
                     String value = this.columns[column].get(row) ? " 1" : "-1";
                     sb.append(" ").append(value);
                 }
