@@ -2,6 +2,7 @@ package hadamard;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -46,6 +47,12 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             result = result.generateNextSizeMatrix();
         }
 
+        Configuration.instance.debugCounter.incrementAndGet();
+        if (Configuration.instance.printDebugMessages) {
+            System.out.println("Found for dimension: " + Configuration.instance.dimension);
+            System.out.println(result.getDebugStringRepresentation());
+        }
+
         boolean isResultAHadamardMatrix = Helpers.isIdentity(result.times(result.transpose()));
 
         if (isResultAHadamardMatrix) {
@@ -59,5 +66,43 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         }
 
         return false;
+    }
+
+    public SylvesterMatrix generateNextSizeMatrix(SylvesterMatrix source) {
+        SylvesterMatrix result = new SylvesterMatrix(source.getDimension() * 2);
+
+        for(int i=0; i<source.getDimension(); i++) {
+            BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i], source.getColumns()[i], source.getDimension());
+            result.setColumn(newColumn, i);
+        }
+
+        for(int i=source.getDimension(); i<result.getDimension(); i++) {
+            BitSet invertedColumn = (BitSet) source.getColumns()[i - source.getDimension()].clone();
+            invertedColumn.flip(0, source.getDimension());
+            BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i - source.getDimension()], invertedColumn, source.getDimension());
+            result.setColumn(newColumn, i);
+        }
+
+        return result;
+    }
+
+    private class ConcatenatedColumn {
+        BitSet column;
+        int columnIndex;
+        boolean needsToBeFliped;
+        int dimension;
+
+        public ConcatenatedColumn(int columnIndex, boolean needsToBeFliped, int dimension) {
+            this.columnIndex = columnIndex;
+            this.needsToBeFliped = needsToBeFliped;
+        }
+
+        public void generateColumn(BitSet oldMatrixColumn) {
+            if(needsToBeFliped) {
+                BitSet invertedColumn = (BitSet) oldMatrixColumn.clone();
+                invertedColumn.flip(0, this.dimension);
+                this.column = Helpers.concatenateSets(oldMatrixColumn, invertedColumn, this.dimension);
+            }
+        }
     }
 }
