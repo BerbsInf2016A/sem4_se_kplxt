@@ -4,7 +4,8 @@ public class TempMain {
     public static void main(String args[]) throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
-        Configuration.instance.dimension = 8096;
+        //Thread.sleep(5000);
+        Configuration.instance.dimension = 32768;
         //BruteForceAlgorithm algo = new BruteForceAlgorithm();
         SylvesterAlgorithm algo = new SylvesterAlgorithm();
 
@@ -22,7 +23,7 @@ public class TempMain {
 
 
         System.out.println(ThreadDataAggregator.resultThreadName + " found:");
-        System.out.println(ThreadDataAggregator.resultMatrix.getUIDebugStringRepresentation());
+        //System.out.println(ThreadDataAggregator.resultMatrix.getUIDebugStringRepresentation());
 
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
