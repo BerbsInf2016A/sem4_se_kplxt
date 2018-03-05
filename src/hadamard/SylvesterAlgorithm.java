@@ -27,8 +27,14 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         SylvesterMatrix result = new SylvesterMatrix(startValue);
         for(int i=0; i<Math.log(dimension)/Math.log(2); i++) {
             result = this.generateNextSizeMatrix(result);
+            System.out.println("Dimension: " + result.getDimension());
         }
 
+        Configuration.instance.debugCounter.incrementAndGet();
+        if (Configuration.instance.printDebugMessages) {
+            System.out.println("Found for dimension: " + Configuration.instance.dimension);
+            System.out.println(result.getDebugStringRepresentation());
+        }
         SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
         return true;
 
@@ -62,20 +68,20 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         try {
             final List<Callable<List<ConcatenatedColumn>>> partitions = new ArrayList<>();
             final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
-            BigInteger threads = BigInteger.valueOf(Configuration.instance.maximumNumberOfThreads);
+            final int threads = Configuration.instance.maximumNumberOfThreads;
 
-            int rangeDivisor = source.getDimension()/Configuration.instance.maximumNumberOfThreads;
-            int moduloRange = source.getDimension() % Configuration.instance.maximumNumberOfThreads;
+            int rangeDivisor = resultMatrix.getDimension()/threads;
+            int moduloRange = resultMatrix.getDimension() % threads;
             int startValue = 0;
 
-            if(source.getDimension() > Configuration.instance.maximumNumberOfThreads)
-                for(int i=0; i<Configuration.instance.maximumNumberOfThreads; i++) {
+            if(resultMatrix.getDimension() >= threads)
+                for(int i=0; i<threads; i++) {
                     final int startRange = startValue;
                     partitions.add(() -> calculateRangeColumns(startRange, rangeDivisor + startRange, source));
                     startValue += rangeDivisor;
                 }
 
-            if(startValue != source.getDimension()) {
+            if(startValue != resultMatrix.getDimension()) {
                 final int startRange = startValue;
                 partitions.add(() -> calculateRangeColumns(startRange, moduloRange + startRange, source));
             }

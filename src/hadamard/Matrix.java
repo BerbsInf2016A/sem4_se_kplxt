@@ -100,6 +100,32 @@ public class Matrix {
         return C;
     }
 
+    public boolean isIdentity(){
+        Matrix transposedMatrix = this.transpose();
+
+        int matrix[][] = new int[this.getDimension()][this.getDimension()];
+
+        boolean flag = true;
+
+        for (int rowIndex = 0; rowIndex < this.dimension; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < this.getDimension(); columnIndex++) {
+                for (int index = 0; index < this.getDimension(); index++) {
+                    boolean firstMatrixValue = this.getColumns()[index].get(rowIndex);
+                    boolean secondMatrixValue = transposedMatrix.getColumns()[columnIndex].get(index);
+                    matrix[columnIndex][rowIndex] += calculateSum(firstMatrixValue, secondMatrixValue);
+                }
+                if ((rowIndex == columnIndex && matrix[rowIndex][columnIndex] != matrix[0][0]) || (rowIndex != columnIndex && matrix[rowIndex][columnIndex] != 0)) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(!flag)
+                return false;
+        }
+
+        return true;
+    }
+
     private int calculateSum(boolean firstMatrixValue, boolean secondMatrixValue) {
         if (firstMatrixValue == secondMatrixValue  ) {
             return 1;

@@ -65,4 +65,75 @@ public class MatrixTest {
 
         Assert.assertTrue("Should be true.", Arrays.deepEquals(expectedResult, result));
     }
+
+    @Test
+    public void MatrixTest_IsIdentityTrue() {
+        BitSet firstColumn = new BitSet();
+        firstColumn.set(0);
+        firstColumn.set(1);
+        firstColumn.set(2);
+        firstColumn.set(3);
+
+        BitSet secondColumn = new BitSet();
+        secondColumn.set(0);
+        secondColumn.clear(1);
+        secondColumn.set(2);
+        secondColumn.clear(3);
+
+        BitSet thirdColumn = new BitSet();
+        thirdColumn.set(0);
+        thirdColumn.set(1);
+        thirdColumn.clear(2);
+        thirdColumn.clear(3);
+
+        BitSet fourthColumn = new BitSet();
+        fourthColumn.set(0);
+        fourthColumn.clear(1);
+        fourthColumn.clear(2);
+        fourthColumn.set(3);
+
+        Matrix testMatrix = new Matrix(4);
+        testMatrix.setColumn(firstColumn, 0);
+        testMatrix.setColumn(secondColumn, 1);
+        testMatrix.setColumn(thirdColumn, 2);
+        testMatrix.setColumn(fourthColumn, 3);
+
+        Assert.assertTrue("Should be true.", testMatrix.isIdentity());
+    }
+
+
+    @Test
+    public void MatrixTest_IsIdentityFalse() {
+        BitSet firstColumn = new BitSet();
+        firstColumn.set(0);
+        firstColumn.set(1);
+        firstColumn.set(2);
+        firstColumn.clear(3);
+
+        BitSet secondColumn = new BitSet();
+        secondColumn.set(0);
+        secondColumn.clear(1);
+        secondColumn.set(2);
+        secondColumn.clear(3);
+
+        BitSet thirdColumn = new BitSet();
+        thirdColumn.set(0);
+        thirdColumn.clear(1);
+        thirdColumn.clear(2);
+        thirdColumn.set(3);
+
+        BitSet fourthColumn = new BitSet();
+        fourthColumn.set(0);
+        fourthColumn.clear(1);
+        fourthColumn.clear(2);
+        fourthColumn.set(3);
+
+        Matrix testMatrix = new Matrix(4);
+        testMatrix.setColumn(firstColumn, 0);
+        testMatrix.setColumn(secondColumn, 1);
+        testMatrix.setColumn(thirdColumn, 2);
+        testMatrix.setColumn(fourthColumn, 3);
+
+        Assert.assertFalse("Should be false.", testMatrix.isIdentity());
+    }
 }
