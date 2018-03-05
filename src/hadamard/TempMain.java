@@ -4,7 +4,7 @@ public class TempMain {
     public static void main(String args[]) throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
-        Configuration.instance.dimension = 2048;
+        Configuration.instance.dimension = 8096;
         //BruteForceAlgorithm algo = new BruteForceAlgorithm();
         SylvesterAlgorithm algo = new SylvesterAlgorithm();
 

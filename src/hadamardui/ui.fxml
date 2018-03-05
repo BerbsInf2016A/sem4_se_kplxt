@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hadamardui.HadamardController">
    <children>
       <TabPane layoutY="34.0" prefHeight="368.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
@@ -18,6 +19,13 @@
       <TextField layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" />
       <Button layoutX="178.0" layoutY="2.0" mnemonicParsing="false" text="Start" />
       <Button layoutX="235.0" layoutY="2.0" mnemonicParsing="false" text="Cancel" />
-      <ChoiceBox layoutX="300.0" layoutY="2.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="strategyChoiceBox" onAction="#choiceMade" layoutX="300.0" layoutY="2.0" prefWidth="150.0"  value="Sylvester">
+       <items>
+           <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Sylvester" />
+               <String fx:value="Backtracking" />
+           </FXCollections>
+       </items>
+      </ChoiceBox>
    </children>
 </AnchorPane>

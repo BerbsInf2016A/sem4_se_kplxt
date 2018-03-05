@@ -18,6 +18,13 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
         this.startParallelSearch(Configuration.instance.dimension, startMatrix);
     }
 
+    @Override
+    public boolean canExecutorForDimension(int dimension) {
+        if (dimension > 0 )
+            return true;
+        return false;
+    }
+
     private void startParallelSearch(int dimension, Matrix startMatrix) {
         try {
             final List<Callable<Boolean>> partitions = new ArrayList<>();

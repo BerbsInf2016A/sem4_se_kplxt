@@ -4,8 +4,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public enum Configuration {
     instance;
-    //final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
-    final int maximumNumberOfThreads = 1;
+    final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
+    //final int maximumNumberOfThreads = 1;
 
     public final long maxTimeOutInSeconds = 900;
     public int dimension = 2;
