@@ -12,4 +12,6 @@ public enum Configuration {
     public boolean printDebugMessages = true;
 
     public AtomicInteger debugCounter = new AtomicInteger();
+
+    public boolean simulateSteps = true;
 }

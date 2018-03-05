@@ -1,9 +1,7 @@
 package hadamard;
 
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -11,8 +9,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
-// TODO: Change all classes to use the dimension in the configuration.
 
 public class Algorithm {
     public void run(){

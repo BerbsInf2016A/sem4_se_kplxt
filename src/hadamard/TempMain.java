@@ -3,7 +3,7 @@ package hadamard;
 public class TempMain {
     public static void main(String args[]) {
         long startTime = System.currentTimeMillis();
-        Configuration.instance.dimension = 4;
+        Configuration.instance.dimension = 32;
         Algorithm algo = new Algorithm();
         algo.run();
         long stopTime = System.currentTimeMillis();
