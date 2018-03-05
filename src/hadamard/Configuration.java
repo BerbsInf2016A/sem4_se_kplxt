@@ -14,4 +14,8 @@ public enum Configuration {
     public AtomicInteger debugCounter = new AtomicInteger();
 
     public boolean simulateSteps = true;
+
+    public boolean abortAfterFirstResult = true;
+
+    public int simulationStepDelayInMS = 0;
 }

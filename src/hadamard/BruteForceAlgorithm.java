@@ -4,17 +4,16 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 
 // TODO: Change all classes to use the dimension in the configuration.
 
 public class BruteForceAlgorithm implements IHadamardStrategy {
+    private static ThreadDataAggregator threadDataAggreagtor;
+
     public void run(ThreadDataAggregator threadDataAggregator){
+        this.threadDataAggreagtor = threadDataAggregator;
         Matrix startMatrix = this.generateStartMatrix(Configuration.instance.dimension);
         this.startParallelSearch(Configuration.instance.dimension, startMatrix);
     }
@@ -38,8 +37,6 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
                 partitions.add(() -> startSolving(startMatrix, from, end));
             }
 
-
-
             final List<Future<Boolean>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
             // Shutdown will not kill the spawned threads, but shutdownNow will set a flag which can be queried in the running
             // threads to end the execution.
@@ -54,7 +51,7 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
         }
     }
 
-    private Boolean startSolving(Matrix startMatrix, BigInteger from, BigInteger end) {
+    private Boolean startSolving(Matrix startMatrix, BigInteger from, BigInteger end) throws InterruptedException {
         if (Configuration.instance.printDebugMessages) {
             System.out.println("Searching in the range from " + from + " to " + end);
         }
@@ -63,6 +60,9 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
             combination.set(startMatrix.getDimension() - 1);
             if ((combination.cardinality()) == (startMatrix.getDimension() / 2)){
                 Matrix newMatrix = new Matrix(startMatrix);
+                if (Configuration.instance.simulateSteps) {
+                    BruteForceAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
+                }
                 if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, 1)) {
                     continue;
                 }
@@ -75,26 +75,32 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
         return false;
     }
 
-    private boolean solve(Matrix matrix) {
-        int nextColumnIndex = matrix.getNextUnsetColumnIndex();
+    private boolean solve(Matrix sourceMatrix) throws InterruptedException {
+        this.precheckConditions();
+        this.simulateStep();
+        int nextColumnIndex = sourceMatrix.getNextUnsetColumnIndex();
         if (nextColumnIndex == - 1){
             // Validate
-            Matrix transpose = matrix.transpose();
-            int[][] result = matrix.times(transpose);
+            Matrix transpose = sourceMatrix.transpose();
+            int[][] result = sourceMatrix.times(transpose);
             if (Helpers.isIdentity(result)){
                 Configuration.instance.debugCounter.incrementAndGet();
                 if (Configuration.instance.printDebugMessages) {
                     System.out.println("Found for dimension: " + Configuration.instance.dimension);
-                    System.out.println(matrix.getDebugStringRepresentation());
+                    System.out.println(sourceMatrix.getDebugStringRepresentation());
                 }
+                threadDataAggreagtor.setResult(Thread.currentThread().getName(), sourceMatrix);
                 return true;
             }
         } else {
-            for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(matrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
+            for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(sourceMatrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
                 BitSet combination = Helpers.convertTo(i);
-                combination.set(matrix.getDimension() - 1);
-                if ((combination.cardinality()) == (matrix.getDimension() / 2)){
-                    Matrix newMatrix = new Matrix(matrix);
+                combination.set(sourceMatrix.getDimension() - 1);
+                if ((combination.cardinality()) == (sourceMatrix.getDimension() / 2)){
+                    Matrix newMatrix = new Matrix(sourceMatrix);
+                    if (Configuration.instance.simulateSteps) {
+                        BruteForceAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
+                    }
                     if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, nextColumnIndex)) {
                         continue;
                     }
@@ -106,6 +112,22 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
             }
         }
         return false;
+    }
+
+    private void simulateStep() throws InterruptedException {
+        if (Configuration.instance.simulateSteps) {
+            Thread.sleep(Configuration.instance.simulationStepDelayInMS);
+        }
+    }
+
+    private void precheckConditions() {
+        if (threadDataAggreagtor.abortAllThreads.get()) {
+            Thread.currentThread().interrupt();
+        }
+        if (Thread.currentThread().isInterrupted()){
+            System.out.println(Thread.currentThread().toString() + " has been interrupted!");
+            throw new CancellationException("Thread has been requested to stop");
+        }
     }
 
     private boolean checkOrthogonalityWithExistingColumns(BitSet[] columns, BitSet combination, int targetColumnIndex) {
