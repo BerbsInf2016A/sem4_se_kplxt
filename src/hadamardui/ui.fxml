@@ -6,22 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hadamardui.HadamardController">
    <children>
-      <TabPane layoutX="125.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="34.0" prefHeight="368.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Untitled Tab 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-          <Tab text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
+          <Tab text="Untitled Tab 1" />
+          <Tab text="Untitled Tab 2" />
         </tabs>
       </TabPane>
+      <Label layoutX="8.0" layoutY="6.0" text="Dimension:" />
+      <TextField layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" />
+      <Button layoutX="178.0" layoutY="2.0" mnemonicParsing="false" text="Start" />
+      <Button layoutX="235.0" layoutY="2.0" mnemonicParsing="false" text="Cancel" />
+      <ChoiceBox layoutX="300.0" layoutY="2.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
