@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 // TODO: Change all classes to use the dimension in the configuration.
 
-public class Algorithm {
-    public void run(){
+public class BruteForceAlgorithm implements IHadamardStrategy {
+    public void run(ThreadDataAggregator threadDataAggregator){
         Matrix startMatrix = this.generateStartMatrix(Configuration.instance.dimension);
         this.startParallelSearch(Configuration.instance.dimension, startMatrix);
     }
