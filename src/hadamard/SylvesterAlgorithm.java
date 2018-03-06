@@ -25,8 +25,10 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
     private Boolean startSolving(boolean startValue, int dimension) {
         SylvesterMatrix result = new SylvesterMatrix(startValue);
+        threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
         for(int i=0; i<Math.log(dimension)/Math.log(2); i++) {
             result = this.generateNextSizeMatrix(result);
+            threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
             System.out.println("Dimension: " + result.getDimension());
         }
 

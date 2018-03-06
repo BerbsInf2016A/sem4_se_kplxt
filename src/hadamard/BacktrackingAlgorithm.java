@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 // TODO: Change all classes to use the dimension in the configuration.
 
-public class BruteForceAlgorithm implements IHadamardStrategy {
+public class BacktrackingAlgorithm implements IHadamardStrategy {
     private static ThreadDataAggregator threadDataAggreagtor;
 
     public void run(ThreadDataAggregator threadDataAggregator){
@@ -35,14 +35,24 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
             BigInteger maxValue = BigInteger.valueOf(2).pow(dimension - 1);
             BigInteger sliceSize = maxValue.divide(threads);
 
-            for (BigInteger i = BigInteger.ZERO; i.compareTo(maxValue) != 1; i = i.add(sliceSize)) {
-                final BigInteger from = i;
-                BigInteger to = i.add(sliceSize);
-                if (to.compareTo(maxValue) == 1)
-                    to = maxValue;
-                final BigInteger end = to;
-                partitions.add(() -> startSolving(startMatrix, from, end));
+            if (sliceSize.compareTo(threads) != 1){
+                for(BigInteger i = BigInteger.ZERO; i.compareTo(maxValue) != 1; i = i.add(BigInteger.ONE)){
+                    final BigInteger from = i;
+                    final BigInteger end = i;
+                    partitions.add(() -> startSolving(startMatrix, from, end));
+                }
+            } else {
+                for (BigInteger i = BigInteger.ZERO; i.compareTo(maxValue) != 1; i = i.add(sliceSize)) {
+                    final BigInteger from = i;
+                    BigInteger to = i.add(sliceSize);
+                    if (to.compareTo(maxValue) == 1)
+                        to = maxValue;
+                    final BigInteger end = to;
+                    partitions.add(() -> startSolving(startMatrix, from, end));
+                }
             }
+
+
 
             final List<Future<Boolean>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
             // Shutdown will not kill the spawned threads, but shutdownNow will set a flag which can be queried in the running
@@ -68,7 +78,7 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
             if ((combination.cardinality()) == (startMatrix.getDimension() / 2)){
                 Matrix newMatrix = new Matrix(startMatrix);
                 if (Configuration.instance.simulateSteps) {
-                    BruteForceAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
+                    BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
                 }
                 if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, 1)) {
                     continue;
@@ -106,7 +116,7 @@ public class BruteForceAlgorithm implements IHadamardStrategy {
                 if ((combination.cardinality()) == (sourceMatrix.getDimension() / 2)){
                     Matrix newMatrix = new Matrix(sourceMatrix);
                     if (Configuration.instance.simulateSteps) {
-                        BruteForceAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
+                        BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
                     }
                     if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, nextColumnIndex)) {
                         continue;

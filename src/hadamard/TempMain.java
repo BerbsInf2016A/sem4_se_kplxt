@@ -6,7 +6,7 @@ public class TempMain {
 
         //Thread.sleep(5000);
         Configuration.instance.dimension = 32768;
-        //BruteForceAlgorithm algo = new BruteForceAlgorithm();
+        //BacktrackingAlgorithm algo = new BacktrackingAlgorithm();
         SylvesterAlgorithm algo = new SylvesterAlgorithm();
 
         try {

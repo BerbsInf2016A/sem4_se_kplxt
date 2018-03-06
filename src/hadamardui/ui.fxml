@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.collections.FXCollections?>
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hadamardui.HadamardController">
    <children>
-      <TabPane layoutY="34.0" prefHeight="368.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutY="34.0" prefHeight="368.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Untitled Tab 1" />
-          <Tab text="Untitled Tab 2" />
         </tabs>
       </TabPane>
       <Label layoutX="8.0" layoutY="6.0" text="Dimension:" />
-      <TextField layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" />
-      <Button layoutX="178.0" layoutY="2.0" mnemonicParsing="false" text="Start" />
+      <TextField fx:id="dimension" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" />
+      <Button fx:id="startButton" layoutX="178.0" layoutY="2.0" mnemonicParsing="false" onAction="#startButtonClicked" text="Start" />
       <Button layoutX="235.0" layoutY="2.0" mnemonicParsing="false" text="Cancel" />
-      <ChoiceBox fx:id="strategyChoiceBox" onAction="#choiceMade" layoutX="300.0" layoutY="2.0" prefWidth="150.0"  value="Sylvester">
+      <ChoiceBox fx:id="strategyChoiceBox" layoutX="300.0" layoutY="2.0" onAction="#choiceMade" prefWidth="150.0" value="Sylvester">
        <items>
            <FXCollections fx:factory="observableArrayList">
                <String fx:value="Sylvester" />
