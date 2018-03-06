@@ -1,6 +1,7 @@
 package hadamard;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,14 +25,31 @@ public class ThreadDataAggregator {
         }
     }
 
+    public void updateMatrixColumn(String threadName, int columnIndex, BitSet column){
+        for (IMatrixChangedListener listener : this.listeners ) {
+            listener.matrixColumnChanged(threadName, columnIndex, column);
+        }
+    }
+
 
     public void setResult(String threadName, Matrix matrix) {
+        if (Configuration.instance.printDebugMessages) {
+            System.out.println(threadName + " setting result");
+        }
         resultFound.set(true);
         if (Configuration.instance.abortAfterFirstResult){
             abortAllThreads.set(true);
         }
         resultThreadName = threadName;
         resultMatrix = matrix;
+
+        this.notifyResultFound(threadName, matrix);
+    }
+
+    private void notifyResultFound(String threadName, Matrix matrix) {
+        for (IMatrixChangedListener listener : this.listeners ) {
+            listener.resultFound(threadName, matrix);
+        }
     }
 
 

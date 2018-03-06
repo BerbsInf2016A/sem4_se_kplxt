@@ -18,5 +18,5 @@ public enum Configuration {
 
     public boolean abortAfterFirstResult = true;
 
-    public int simulationStepDelayInMS = 0;
+    public int simulationStepDelayInMS = 500;
 }

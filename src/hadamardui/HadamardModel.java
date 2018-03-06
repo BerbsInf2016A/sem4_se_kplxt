@@ -96,12 +96,17 @@ public class HadamardModel implements IMatrixChangedListener{
 
     @Override
     public void matrixChanged(String threadName, Matrix changedMatrix) {
-        Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs));
+        Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs, false));
 
     }
 
     @Override
     public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
+        Platform.runLater(new UpdateUIMatrixColumnTask(threadName, columnIndex, column, this.tabs));
+    }
 
+    @Override
+    public void resultFound(String threadName, Matrix changedMatrix) {
+        Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs, true));
     }
 }

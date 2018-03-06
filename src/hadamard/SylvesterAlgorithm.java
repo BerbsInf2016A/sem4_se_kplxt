@@ -9,27 +9,33 @@ import java.util.concurrent.*;
 public class SylvesterAlgorithm implements IHadamardStrategy {
     private static ThreadDataAggregator threadDataAggregator;
 
-    public void run(ThreadDataAggregator threadDataAggregator){
+    public void run(ThreadDataAggregator threadDataAggregator)  {
         SylvesterAlgorithm.threadDataAggregator = threadDataAggregator;
-        this.startParallelMatrixGeneration(Configuration.instance.dimension);
+        try {
+            this.startParallelMatrixGeneration(Configuration.instance.dimension);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean canExecutorForDimension(int dimension) {
         return dimension > 0 && ((dimension & (dimension - 1)) == 0);
     }
 
-    private void startParallelMatrixGeneration(int dimension) {
+    private void startParallelMatrixGeneration(int dimension) throws InterruptedException {
         startSolving(true, dimension);
         startSolving(false, dimension);
     }
 
-    private Boolean startSolving(boolean startValue, int dimension) {
+    private Boolean startSolving(boolean startValue, int dimension) throws InterruptedException {
         SylvesterMatrix result = new SylvesterMatrix(startValue);
         threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
         for(int i=0; i<Math.log(dimension)/Math.log(2); i++) {
+            if (Configuration.instance.simulateSteps) {
+                Thread.sleep(Configuration.instance.simulationStepDelayInMS);
+            }
             result = this.generateNextSizeMatrix(result);
             threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
-            System.out.println("Dimension: " + result.getDimension());
         }
 
         Configuration.instance.debugCounter.incrementAndGet();

@@ -1,24 +1,22 @@
 package hadamardui;
 
-import hadamard.Matrix;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
 
+import java.util.BitSet;
 import java.util.Optional;
 
-public class UpdateUIMatrixTask implements Runnable {
-
-
+public class UpdateUIMatrixColumnTask implements Runnable {
     private final String threadName;
-    private final Matrix changedMatrix;
-    private ObservableList<Tab> tabs;
-    private boolean matrixIsResult;
+    private final int columnIndex;
+    private final BitSet column;
+    private final ObservableList<Tab> tabs;
 
-    public UpdateUIMatrixTask(String threadName, Matrix changedMatrix, ObservableList<Tab> tabs, boolean matrixIsResult) {
+    public UpdateUIMatrixColumnTask(String threadName, int columnIndex, BitSet column, ObservableList<Tab> tabs) {
         this.threadName = threadName;
-        this.changedMatrix = changedMatrix;
+        this.columnIndex = columnIndex;
+        this.column = column;
         this.tabs = tabs;
-        this.matrixIsResult = matrixIsResult;
     }
 
     @Override
@@ -28,9 +26,7 @@ public class UpdateUIMatrixTask implements Runnable {
         // tab exists -> update
         if (optionalExistingTab.isPresent()){
             Tab tab = optionalExistingTab.get();
-            tab.setContent(UIHelpers.generateMatrix(this.changedMatrix));
-            if (this.matrixIsResult)
-                tab.setStyle("-fx-border-color:green;");
+            UIHelpers.updateTabContent(tab, columnIndex, column);
 
 
         } else {

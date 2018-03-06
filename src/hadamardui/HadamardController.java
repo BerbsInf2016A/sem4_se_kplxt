@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HadamardController  implements Initializable {
+
+    private Thread solverThread;
     @FXML
     private ChoiceBox strategyChoiceBox;
     @FXML
@@ -35,7 +37,12 @@ public class HadamardController  implements Initializable {
         if (this.dataAggregator == null)
             this.dataAggregator = new ThreadDataAggregator();
         else this.dataAggregator.reset();
-        this.model.execute(this.dataAggregator);
+
+        this.tabPane.getTabs().clear();
+        StaticThreadExecutorHelper.setAggregator(this.dataAggregator);
+        StaticThreadExecutorHelper.setModel(this.model);
+        this.solverThread = new Thread(StaticThreadExecutorHelper::execute);
+        solverThread.start();
     }
 
     @FXML

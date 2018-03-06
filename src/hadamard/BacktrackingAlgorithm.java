@@ -72,16 +72,22 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
         if (Configuration.instance.printDebugMessages) {
             System.out.println("Searching in the range from " + from + " to " + end);
         }
+        if (Configuration.instance.simulateSteps) {
+            BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), startMatrix);
+        }
         for (BigInteger i = from; i.compareTo(end) != 1; i = i.add(BigInteger.ONE)) {
             BitSet combination = Helpers.convertTo(i);
             combination.set(startMatrix.getDimension() - 1);
             if ((combination.cardinality()) == (startMatrix.getDimension() / 2)){
                 Matrix newMatrix = new Matrix(startMatrix);
                 if (Configuration.instance.simulateSteps) {
-                    BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
+                    BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), 1, combination);
                 }
                 if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, 1)) {
                     continue;
+                }
+                if (Configuration.instance.simulateSteps) {
+                    BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
                 }
                 newMatrix.setColumn(combination, 1);
                 if (this.solve(newMatrix)) {
@@ -116,7 +122,8 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
                 if ((combination.cardinality()) == (sourceMatrix.getDimension() / 2)){
                     Matrix newMatrix = new Matrix(sourceMatrix);
                     if (Configuration.instance.simulateSteps) {
-                        BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
+                        BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), sourceMatrix.getNextUnsetColumnIndex(), combination);
+                        //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
                     }
                     if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, nextColumnIndex)) {
                         continue;
