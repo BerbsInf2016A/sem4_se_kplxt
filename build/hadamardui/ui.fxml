@@ -2,17 +2,14 @@
 
 <?import javafx.collections.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.collections.FXCollections?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hadamardui.HadamardController">
    <children>
-      <TabPane fx:id="tabPane" layoutY="34.0" prefHeight="368.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-        </tabs>
+      <TabPane fx:id="tabPane" layoutY="34.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="45.0">
+          <tabs>
+          </tabs>
       </TabPane>
       <Label layoutX="8.0" layoutY="6.0" text="Dimension:" />
       <TextField fx:id="dimension" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" />

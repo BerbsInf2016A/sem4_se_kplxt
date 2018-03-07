@@ -6,6 +6,8 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.*;
 
+import static javafx.scene.input.KeyCode.T;
+
 
 // TODO: Change all classes to use the dimension in the configuration.
 
@@ -69,6 +71,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
     }
 
     private Boolean startSolving(Matrix startMatrix, BigInteger from, BigInteger end) throws InterruptedException {
+        this.precheckConditions();
         if (Configuration.instance.printDebugMessages) {
             System.out.println("Searching in the range from " + from + " to " + end);
         }
@@ -78,10 +81,11 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
         for (BigInteger i = from; i.compareTo(end) != 1; i = i.add(BigInteger.ONE)) {
             BitSet combination = Helpers.convertTo(i);
             combination.set(startMatrix.getDimension() - 1);
+            this.simulateStep(Thread.currentThread().getName(), startMatrix, combination, 1 );
             if ((combination.cardinality()) == (startMatrix.getDimension() / 2)){
                 Matrix newMatrix = new Matrix(startMatrix);
                 if (Configuration.instance.simulateSteps) {
-                    BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), 1, combination);
+                    //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), 1, combination);
                 }
                 if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, 1)) {
                     continue;
@@ -100,7 +104,6 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
 
     private boolean solve(Matrix sourceMatrix) throws InterruptedException {
         this.precheckConditions();
-        this.simulateStep();
         int nextColumnIndex = sourceMatrix.getNextUnsetColumnIndex();
         if (nextColumnIndex == - 1){
             // Validate
@@ -121,10 +124,8 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
                 combination.set(sourceMatrix.getDimension() - 1);
                 if ((combination.cardinality()) == (sourceMatrix.getDimension() / 2)){
                     Matrix newMatrix = new Matrix(sourceMatrix);
-                    if (Configuration.instance.simulateSteps) {
-                        BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), sourceMatrix.getNextUnsetColumnIndex(), combination);
-                        //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
-                    }
+                    this.simulateStep(Thread.currentThread().getName(), newMatrix, combination, nextColumnIndex);
+
                     if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, nextColumnIndex)) {
                         continue;
                     }
@@ -138,9 +139,13 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
         return false;
     }
 
-    private void simulateStep() throws InterruptedException {
+    private void simulateStep(String name, Matrix newMatrix, BitSet combination, int nextColumnIndex) throws InterruptedException {
         if (Configuration.instance.simulateSteps) {
             Thread.sleep(Configuration.instance.simulationStepDelayInMS);
+            Matrix reportMatrix = new Matrix(newMatrix);
+            reportMatrix.setColumn(combination, nextColumnIndex);
+            //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), sourceMatrix.getNextUnsetColumnIndex(), combination);
+            BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(name, reportMatrix);
         }
     }
 

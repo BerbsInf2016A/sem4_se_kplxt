@@ -2,6 +2,7 @@ package hadamardui;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
 
 import java.util.BitSet;
 import java.util.Optional;
@@ -26,7 +27,13 @@ public class UpdateUIMatrixColumnTask implements Runnable {
         // tab exists -> update
         if (optionalExistingTab.isPresent()){
             Tab tab = optionalExistingTab.get();
-            UIHelpers.updateTabContent(tab, columnIndex, column);
+            if (tab.getContent() != null){
+                GridPane content = (GridPane) tab.getContent();
+                UIHelpers.updateTabContent(content, columnIndex, column);
+            } else {
+                int g = 0;
+            }
+
 
 
         } else {

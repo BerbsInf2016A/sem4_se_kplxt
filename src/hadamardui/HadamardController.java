@@ -1,6 +1,7 @@
 package hadamardui;
 
 import hadamard.ThreadDataAggregator;
+import javafx.beans.binding.DoubleBinding;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,6 +82,8 @@ public class HadamardController  implements Initializable {
         });
 
 
+        UIHelpers.tabPaneWidthProperty = this.tabPane.widthProperty();
+        UIHelpers.tabPaneHeightProperty = this.tabPane.heightProperty();
 
     }
     private void handleChangeModelTab(ListChangeListener.Change<? extends Tab> change, TabPane tabPane) {
