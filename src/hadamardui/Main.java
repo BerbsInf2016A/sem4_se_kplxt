@@ -12,6 +12,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 

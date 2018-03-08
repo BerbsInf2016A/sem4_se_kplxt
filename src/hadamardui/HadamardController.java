@@ -82,8 +82,8 @@ public class HadamardController  implements Initializable {
         });
 
 
-        UIHelpers.tabPaneWidthProperty = this.tabPane.widthProperty();
-        UIHelpers.tabPaneHeightProperty = this.tabPane.heightProperty();
+        UIConfiguration.tabPaneWidthProperty = this.tabPane.widthProperty();
+        UIConfiguration.tabPaneHeightProperty = this.tabPane.heightProperty();
 
     }
     private void handleChangeModelTab(ListChangeListener.Change<? extends Tab> change, TabPane tabPane) {

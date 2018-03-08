@@ -2,8 +2,6 @@ package hadamardui;
 
 import hadamard.Configuration;
 import hadamard.Matrix;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.GridPane;
@@ -13,14 +11,13 @@ import javafx.scene.shape.StrokeType;
 
 import java.util.BitSet;
 
-
+import static hadamardui.UIConfiguration.*;
 
 
 public class UIHelpers {
 
 
-    public static ReadOnlyDoubleProperty tabPaneWidthProperty;
-    public static ReadOnlyDoubleProperty tabPaneHeightProperty;
+
 
     public static GridPane generateMatrix(Matrix changedMatrix) {
         GridPane root = new GridPane();
@@ -73,8 +70,8 @@ public class UIHelpers {
 
     public static Canvas generateMatrixMatrixCanvas(Matrix changedMatrix) {
         Canvas canvas = new Canvas();
-        canvas.widthProperty().bind(tabPaneWidthProperty);
-        canvas.heightProperty().bind(tabPaneHeightProperty);
+        canvas.widthProperty().bind(UIConfiguration.tabPaneWidthProperty);
+        canvas.heightProperty().bind(UIConfiguration.tabPaneHeightProperty);
 
         GraphicsContext graphicContext = canvas.getGraphicsContext2D();
 
@@ -84,10 +81,10 @@ public class UIHelpers {
             for (int column = 0; column < dimension; column++){
 
                 Rectangle rec = new Rectangle();
-                rec.widthProperty().bind(canvas.widthProperty().divide(dimension + 0.8));
-                rec.heightProperty().bind(canvas.heightProperty().divide(dimension + 1.1));
-                rec.xProperty().bind(rec.widthProperty().multiply(column + 0.2));
-                rec.yProperty().bind(rec.heightProperty().multiply(row + 0.2));
+                rec.widthProperty().bind(canvas.widthProperty().divide(dimension + rectangleWidthPropertyAdditionalDimensionDivider));
+                rec.heightProperty().bind(canvas.heightProperty().divide(dimension + rectangleHeightPropertyAdditionalDimensionDivider));
+                rec.xProperty().bind(rec.widthProperty().multiply(column + rectangleXPropertyAdditionalColumnMultiplier));
+                rec.yProperty().bind(rec.heightProperty().multiply(row + rectangleYPropertyAdditionalRowMultiplier));
 
                 CellValue value = getCellValue(row, column, changedMatrix);
                 switch (value) {

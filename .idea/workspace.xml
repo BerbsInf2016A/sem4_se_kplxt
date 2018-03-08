@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4cc1f6a8-739a-43a3-aa78-c5838b2f0f78" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/hadamardui/ui.fxml" afterPath="$PROJECT_DIR$/build/hadamardui/ui.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" afterPath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamard/Configuration.java" afterPath="$PROJECT_DIR$/src/hadamard/Configuration.java" />
       <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
+      <change beforePath="$PROJECT_DIR$/src/hadamardui/Main.java" afterPath="$PROJECT_DIR$/src/hadamardui/Main.java" />
       <change beforePath="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" afterPath="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" afterPath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" afterPath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/ui.fxml" afterPath="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,15 +28,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HadamardController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HadamardController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="372">
+              <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3200#3201#0" expanded="true" />
-                <element signature="e#3248#3249#0" expanded="true" />
+                <element signature="e#3212#3213#0" expanded="true" />
+                <element signature="e#3260#3261#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,22 +44,22 @@
       </file>
       <file leaf-file-name="ui.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="193" lean-forward="true" selection-start-line="9" selection-start-column="193" selection-end-line="9" selection-end-column="193" />
+              <caret line="9" column="193" lean-forward="false" selection-start-line="9" selection-start-column="193" selection-end-line="9" selection-end-column="193" />
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="UIHelpers.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UIHelpers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/UIHelpers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="86" column="86" lean-forward="false" selection-start-line="86" selection-start-column="86" selection-end-line="86" selection-end-column="86" />
+            <state relative-caret-position="357">
+              <caret line="85" column="95" lean-forward="false" selection-start-line="85" selection-start-column="95" selection-end-line="85" selection-end-column="95" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,23 +67,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ObservableListBase.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/collections/ObservableListBase.java">
+      <file leaf-file-name="UIConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/UIConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="73" lean-forward="false" selection-start-line="10" selection-start-column="73" selection-end-line="10" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListChangeListener.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/collections/ListChangeListener.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
               <folding>
-                <element signature="e#7413#7414#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#577#578#0" expanded="true" />
+                <element signature="e#605#606#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,7 +94,7 @@
       <file leaf-file-name="UpdateUIMatrixTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
+            <state relative-caret-position="493">
               <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="64" />
               <folding />
             </state>
@@ -107,8 +104,8 @@
       <file leaf-file-name="TempMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamard/TempMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="30" selection-end-column="40" />
+            <state relative-caret-position="459">
+              <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="30" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -117,7 +114,7 @@
       <file leaf-file-name="BacktrackingAlgorithm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
+            <state relative-caret-position="1139">
               <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="e#7836#7837#0" expanded="true" />
@@ -130,8 +127,8 @@
       <file leaf-file-name="Helpers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamard/Helpers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="34" column="2" lean-forward="true" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+            <state relative-caret-position="578">
+              <caret line="34" column="2" lean-forward="false" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -195,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/hadamardui/Controller.java" />
         <option value="$PROJECT_DIR$/test/hadamard/SylvesterMatrixTest.java" />
         <option value="$PROJECT_DIR$/src/hadamard/TempMain.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/Main.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/Strategy.java" />
         <option value="$PROJECT_DIR$/src/hadamard/BruteForceAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateUITask.java" />
@@ -206,13 +202,15 @@
         <option value="$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java" />
         <option value="$PROJECT_DIR$/src/hadamard/SylvesterAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
         <option value="$PROJECT_DIR$/src/hadamard/Configuration.java" />
         <option value="$PROJECT_DIR$/src/hadamard/Helpers.java" />
         <option value="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/Main.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/UIConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
       </list>
     </option>
   </component>
@@ -309,9 +307,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -351,7 +347,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -628,7 +626,8 @@
       <workItem from="1520250924217" duration="5913000" />
       <workItem from="1520350485341" duration="10371000" />
       <workItem from="1520365049606" duration="8541000" />
-      <workItem from="1520448709334" duration="9237000" />
+      <workItem from="1520448709334" duration="9616000" />
+      <workItem from="1520511815524" duration="891000" />
     </task>
     <servers />
   </component>
@@ -665,7 +664,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72342000" />
+    <option name="totallyTimeSpent" value="73612000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -690,13 +689,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28064516" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2739872" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2771855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -708,6 +705,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -867,7 +866,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class" />
     <entry file="file://$PROJECT_DIR$/test/hadamard/MatrixTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1071,18 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="59" lean-forward="false" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -1106,13 +1092,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="606" column="0" lean-forward="false" selection-start-line="606" selection-start-column="0" selection-end-line="606" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/collections/ListChangeListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="2516">
           <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
           <folding>
             <element signature="e#7413#7414#0" expanded="true" />
@@ -1122,21 +1107,21 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/collections/ObservableListBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="3230">
           <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="193" lean-forward="true" selection-start-line="9" selection-start-column="193" selection-end-line="9" selection-end-column="193" />
+          <caret line="9" column="193" lean-forward="false" selection-start-line="9" selection-start-column="193" selection-end-line="9" selection-end-column="193" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
@@ -1149,8 +1134,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/Helpers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="34" column="2" lean-forward="true" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+        <state relative-caret-position="578">
+          <caret line="34" column="2" lean-forward="false" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1159,35 +1144,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/TempMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="30" selection-end-column="40" />
+        <state relative-caret-position="459">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="30" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
+        <state relative-caret-position="493">
           <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3200#3201#0" expanded="true" />
-            <element signature="e#3248#3249#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
+        <state relative-caret-position="1139">
           <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
             <element signature="e#7836#7837#0" expanded="true" />
@@ -1196,12 +1169,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/UIHelpers.java">
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="86" column="86" lean-forward="false" selection-start-line="86" selection-start-column="86" selection-end-line="86" selection-end-column="86" />
+        <state relative-caret-position="238">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/UIHelpers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="85" column="95" lean-forward="false" selection-start-line="85" selection-start-column="95" selection-end-line="85" selection-end-column="95" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/UIConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="73" lean-forward="false" selection-start-line="10" selection-start-column="73" selection-end-line="10" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3212#3213#0" expanded="true" />
+            <element signature="e#3260#3261#0" expanded="true" />
           </folding>
         </state>
       </provider>
