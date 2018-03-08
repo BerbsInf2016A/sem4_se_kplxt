@@ -17,6 +17,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        executorPool.shutdownNow();
     }
 
     public boolean canExecutorForDimension(int dimension) {
