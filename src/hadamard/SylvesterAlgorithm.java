@@ -1,6 +1,5 @@
 package hadamard;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.concurrent.*;
 
 public class SylvesterAlgorithm implements IHadamardStrategy {
     private static ThreadDataAggregator threadDataAggregator;
+    private final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
 
     public void run(ThreadDataAggregator threadDataAggregator)  {
         SylvesterAlgorithm.threadDataAggregator = threadDataAggregator;
@@ -45,29 +45,6 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         }
         SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
         return true;
-
-        /**Configuration.instance.debugCounter.incrementAndGet();
-        if (Configuration.instance.printDebugMessages) {
-            System.out.println("Found for dimension: " + Configuration.instance.dimension);
-            System.out.println(result.getDebugStringRepresentation());
-        }
-         SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
-        return true;
-         */
-
-        /**boolean isResultAHadamardMatrix = Helpers.isIdentity(result.times(result.transpose()));
-        if (isResultAHadamardMatrix) {
-            Configuration.instance.debugCounter.incrementAndGet();
-            if (Configuration.instance.printDebugMessages) {
-                System.out.println("Found for dimension: " + Configuration.instance.dimension);
-                System.out.println(result.getDebugStringRepresentation());
-            }
-            SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
-            return true;
-        }
-
-        return false;
-         */
     }
 
     public SylvesterMatrix generateNextSizeMatrix(SylvesterMatrix source) {
@@ -75,7 +52,6 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
         try {
             final List<Callable<List<ConcatenatedColumn>>> partitions = new ArrayList<>();
-            final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
             final int threads = Configuration.instance.maximumNumberOfThreads;
 
             int rangeDivisor = resultMatrix.getDimension()/threads;
@@ -95,15 +71,10 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             }
 
             final List<Future<List<ConcatenatedColumn>>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
-            // Shutdown will not kill the spawned threads, but shutdownNow will set a flag which can be queried in the running
-            // threads to end the execution.
-            //executorPool.shutdown();
-            executorPool.shutdownNow();
 
             for (final Future<List<ConcatenatedColumn>> result : resultFromParts)
                 for(ConcatenatedColumn column : result.get())
                     resultMatrix.setColumn(column.getColumn(), column.getColumnIndex());
-
 
         } catch (Exception e) {
             e.printStackTrace();
