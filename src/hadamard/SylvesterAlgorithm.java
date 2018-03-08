@@ -7,9 +7,10 @@ import java.util.concurrent.*;
 
 public class SylvesterAlgorithm implements IHadamardStrategy {
     private static ThreadDataAggregator threadDataAggregator;
-    private final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
+    protected ExecutorService executorPool;
 
     public void run(ThreadDataAggregator threadDataAggregator)  {
+        executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         SylvesterAlgorithm.threadDataAggregator = threadDataAggregator;
         try {
             this.startParallelMatrixGeneration(Configuration.instance.dimension);
