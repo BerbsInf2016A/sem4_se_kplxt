@@ -2,6 +2,7 @@ package hadamardui;
 
 import hadamard.Configuration;
 import hadamard.Matrix;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.GridPane;
@@ -149,5 +150,32 @@ public class UIHelpers {
         boolean value = column.get(rowIndex);
         if (value) return CellValue.Positive;
         return CellValue.Negative;
+    }
+
+    public static Canvas updateTabCanvasContent(Node content, int columnIndex, BitSet column) {
+        Canvas canvas = (Canvas) content;
+        GraphicsContext graphicContext = canvas.getGraphicsContext2D();
+        int dimension = column.length();
+        for (int row = 0; row < dimension; row++){
+            Rectangle rec = new Rectangle();
+            rec.widthProperty().bind(canvas.widthProperty().divide(dimension + rectangleWidthPropertyAdditionalDimensionDivider));
+            rec.heightProperty().bind(canvas.heightProperty().divide(dimension + rectangleHeightPropertyAdditionalDimensionDivider));
+            rec.xProperty().bind(rec.widthProperty().multiply(columnIndex + rectangleXPropertyAdditionalColumnMultiplier));
+            rec.yProperty().bind(rec.heightProperty().multiply(row + rectangleYPropertyAdditionalRowMultiplier));
+
+            CellValue value = getCellValue(row, column);
+            switch (value) {
+                case Positive:
+                    drawRectangle(graphicContext, rec, Color.BLACK);
+                    break;
+                case Negative:
+                    drawRectangle(graphicContext, rec, Color.WHITE);
+                    break;
+                case Unset:
+                    drawRectangle(graphicContext, rec, Color.PINK);
+                    break;
+            }
+        }
+        return canvas;
     }
 }

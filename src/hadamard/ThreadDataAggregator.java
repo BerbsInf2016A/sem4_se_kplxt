@@ -8,8 +8,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ThreadDataAggregator {
 
-    private static ConcurrentHashMap<String,Matrix> currentThreadMatrixState
-            = new ConcurrentHashMap<>(Configuration.instance.maximumNumberOfThreads);
     public static AtomicBoolean resultFound = new AtomicBoolean();
     public static AtomicBoolean abortAllThreads = new AtomicBoolean();
     public static String resultThreadName = "";
@@ -18,8 +16,8 @@ public class ThreadDataAggregator {
     private List<IMatrixChangedListener> listeners;
 
     public void updateMatrix(String threadName, Matrix matrix) {
-        currentThreadMatrixState.put(threadName, matrix);
-        System.out.println(matrix.getUIDebugStringRepresentation());
+        if (Configuration.instance.printDebugMessages)
+            System.out.println(matrix.getUIDebugStringRepresentation());
         for (IMatrixChangedListener listener : this.listeners ) {
             listener.matrixChanged(threadName, matrix);
         }
@@ -58,8 +56,6 @@ public class ThreadDataAggregator {
         ThreadDataAggregator.resultFound.set(false);
         ThreadDataAggregator.resultThreadName = "";
         ThreadDataAggregator.resultMatrix = null;
-        ThreadDataAggregator.currentThreadMatrixState =
-                new ConcurrentHashMap<>(Configuration.instance.maximumNumberOfThreads);
     }
 
     public ThreadDataAggregator(){

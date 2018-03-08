@@ -10,7 +10,7 @@ public enum Configuration {
     public final long maxTimeOutInSeconds = 900;
     public int dimension = 2;
 
-    public boolean printDebugMessages = true;
+    public boolean printDebugMessages = false;
 
     public AtomicInteger debugCounter = new AtomicInteger();
 

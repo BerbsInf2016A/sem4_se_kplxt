@@ -144,8 +144,8 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             Thread.sleep(Configuration.instance.simulationStepDelayInMS);
             Matrix reportMatrix = new Matrix(newMatrix);
             reportMatrix.setColumn(combination, nextColumnIndex);
-            //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), sourceMatrix.getNextUnsetColumnIndex(), combination);
-            BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(name, reportMatrix);
+            BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), nextColumnIndex, combination);
+            //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(name, reportMatrix);
         }
     }
 

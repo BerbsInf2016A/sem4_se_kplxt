@@ -86,6 +86,7 @@ public class HadamardController  implements Initializable {
         UIConfiguration.tabPaneHeightProperty = this.tabPane.heightProperty();
 
     }
+    // TODO: Do we need the other cases? 
     private void handleChangeModelTab(ListChangeListener.Change<? extends Tab> change, TabPane tabPane) {
         if (change.wasUpdated()) {
             int g = 2;

@@ -37,7 +37,7 @@ public class UpdateUIMatrixTask implements Runnable {
             tab.setContent(canvas);
             long stopTime = System.currentTimeMillis();
             long elapsedTime = stopTime - startTime;
-            System.out.println("new:" + elapsedTime);
+            System.out.println("old:" + elapsedTime);
 
 
 
@@ -48,6 +48,9 @@ public class UpdateUIMatrixTask implements Runnable {
         } else {
             Tab newTab = new Tab();
             newTab.setText(threadName);
+            //TODO Needed for canvas:
+            Canvas canvas = UIHelpers.generateMatrixMatrixCanvas(changedMatrix);
+            newTab.setContent(canvas);
             this.tabs.add(newTab);
         }
     }
