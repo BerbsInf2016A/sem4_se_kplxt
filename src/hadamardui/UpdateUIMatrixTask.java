@@ -29,18 +29,11 @@ public class UpdateUIMatrixTask implements Runnable {
                 .findFirst();
         // tab exists -> update
         if (optionalExistingTab.isPresent()){
-            // TODO Remove debug statments
+
             Tab tab = optionalExistingTab.get();
-            long startTime = System.currentTimeMillis();
-            //tab.setContent(UIHelpers.generateMatrix(this.changedMatrix));
             Canvas canvas = UIHelpers.generateMatrixMatrixCanvas(changedMatrix);
             tab.setContent(canvas);
-            long stopTime = System.currentTimeMillis();
-            long elapsedTime = stopTime - startTime;
-            System.out.println("old:" + elapsedTime);
-
-
-
+            // TODO Move style out
             if (this.matrixIsResult)
                 tab.setStyle("-fx-border-color:green;");
 

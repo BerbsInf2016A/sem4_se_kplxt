@@ -9,9 +9,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
-        primaryStage.setTitle("Hello World");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(getClass().getResource("ui.fxml").openStream());
+        primaryStage.setTitle("Hadamard");
         primaryStage.setScene(new Scene(root));
+        HadamardController controller = fxmlLoader.getController();
+        primaryStage.setOnCloseRequest(controller.windowIsClosedEventHandler);
         primaryStage.setMaximized(true);
         primaryStage.show();
     }

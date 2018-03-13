@@ -28,8 +28,6 @@ public class UpdateUIMatrixColumnTask implements Runnable {
         if (optionalExistingTab.isPresent()){
             Tab tab = optionalExistingTab.get();
             if (tab.getContent() != null){
-                //GridPane content = (GridPane) tab.getContent();
-                //UIHelpers.updateTabContent(content, columnIndex, column);
 
                 tab.setContent(UIHelpers.updateTabCanvasContent(tab.getContent(), columnIndex, column));
             } else {

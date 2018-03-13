@@ -1,9 +1,11 @@
 package hadamardui;
 
+import hadamard.Configuration;
 import hadamard.ThreadDataAggregator;
 import javafx.beans.binding.DoubleBinding;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +35,8 @@ public class HadamardController  implements Initializable {
     private HadamardModel model;
     private ThreadDataAggregator dataAggregator;
 
+    public final EventHandler<WindowEvent> windowIsClosedEventHandler;
+
 
     @FXML
     void startButtonClicked(ActionEvent event) {
@@ -44,6 +49,23 @@ public class HadamardController  implements Initializable {
         StaticThreadExecutorHelper.setModel(this.model);
         this.solverThread = new Thread(StaticThreadExecutorHelper::execute);
         solverThread.start();
+    }
+
+    @FXML
+    void cancelButtonClicked(ActionEvent event) {
+        if (this.dataAggregator == null)
+            this.dataAggregator.abortAllThreads.set(true);
+
+        this.stopSolverThread();
+
+
+        this.model.getTabs().clear();
+        this.tabPane.getTabs().clear();
+    }
+
+    private void stopSolverThread() {
+        if (this.solverThread.isAlive())
+            this.solverThread.interrupt();
     }
 
     @FXML
@@ -105,6 +127,12 @@ public class HadamardController  implements Initializable {
 
     public HadamardController(){
         this.model = new HadamardModel();
+        this.windowIsClosedEventHandler = event -> this.close();
+    }
+
+    private void close() {
+        this.stopSolverThread();
+        System.exit(0);
     }
 
 }
