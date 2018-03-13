@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4cc1f6a8-739a-43a3-aa78-c5838b2f0f78" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/hadamardui/ui.fxml" afterPath="$PROJECT_DIR$/build/hadamardui/ui.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" afterPath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/Main.java" afterPath="$PROJECT_DIR$/src/hadamardui/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/UIConfiguration.java" afterPath="$PROJECT_DIR$/src/hadamardui/UIConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" afterPath="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/ui.fxml" afterPath="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
+      <change beforePath="$PROJECT_DIR$/scenicView.properties" afterPath="$PROJECT_DIR$/scenicView.properties" />
+      <change beforePath="$PROJECT_DIR$/src/hadamard/ThreadState.java" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -127,8 +121,8 @@
       <file leaf-file-name="BacktrackingAlgorithm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1795">
-              <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="11" />
+            <state relative-caret-position="279">
+              <caret line="150" column="5" lean-forward="true" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -225,7 +219,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -634,7 +628,7 @@
       <workItem from="1520365049606" duration="8541000" />
       <workItem from="1520448709334" duration="9616000" />
       <workItem from="1520511815524" duration="2907000" />
-      <workItem from="1520958012983" duration="12117000" />
+      <workItem from="1520958012983" duration="12229000" />
     </task>
     <servers />
   </component>
@@ -671,7 +665,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89978000" />
+    <option name="totallyTimeSpent" value="90090000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -683,7 +677,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1126,8 +1120,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1795">
-          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="11" />
+        <state relative-caret-position="279">
+          <caret line="150" column="5" lean-forward="true" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
