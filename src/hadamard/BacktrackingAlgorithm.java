@@ -84,14 +84,8 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             this.simulateStep(Thread.currentThread().getName(), startMatrix, combination, 1 );
             if ((combination.cardinality()) == (startMatrix.getDimension() / 2)){
                 Matrix newMatrix = new Matrix(startMatrix);
-                if (Configuration.instance.simulateSteps) {
-                    //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), 1, combination);
-                }
                 if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, 1)) {
                     continue;
-                }
-                if (Configuration.instance.simulateSteps) {
-                    BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), newMatrix);
                 }
                 newMatrix.setColumn(combination, 1);
                 if (this.solve(newMatrix)) {
@@ -110,7 +104,6 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             Matrix transpose = sourceMatrix.transpose();
             int[][] result = sourceMatrix.times(transpose);
             if (Helpers.isIdentity(result)){
-                Configuration.instance.debugCounter.incrementAndGet();
                 if (Configuration.instance.printDebugMessages) {
                     System.out.println("Found for dimension: " + Configuration.instance.dimension);
                     System.out.println(sourceMatrix.getDebugStringRepresentation());
@@ -145,7 +138,6 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             Matrix reportMatrix = new Matrix(newMatrix);
             reportMatrix.setColumn(combination, nextColumnIndex);
             BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), nextColumnIndex, combination);
-            //BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(name, reportMatrix);
         }
     }
 

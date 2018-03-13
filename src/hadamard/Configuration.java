@@ -1,18 +1,15 @@
 package hadamard;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public enum Configuration {
     instance;
     final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
     //final int maximumNumberOfThreads = 1;
 
-    public final long maxTimeOutInSeconds = 900;
+    public final long maxTimeOutInSeconds = Integer.MAX_VALUE;
     public int dimension = 2;
 
     public boolean printDebugMessages = false;
-
-    public AtomicInteger debugCounter = new AtomicInteger();
 
     public boolean simulateSteps = true;
 

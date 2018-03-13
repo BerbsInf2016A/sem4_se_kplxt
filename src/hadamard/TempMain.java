@@ -27,7 +27,6 @@ public class TempMain {
 
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
-        System.out.println(Configuration.instance.debugCounter.get());
         System.out.println(elapsedTime);
     }
 }
