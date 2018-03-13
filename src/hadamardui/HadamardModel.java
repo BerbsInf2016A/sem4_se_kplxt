@@ -24,6 +24,7 @@ public class HadamardModel implements IMatrixChangedListener{
 
     private final SimpleBooleanProperty canExecute = new SimpleBooleanProperty(this, "canExecute");
     private final SimpleStringProperty dimension = new SimpleStringProperty(this, "dimension");
+
     private List<Tab> list = new ArrayList<Tab>();
 
     public ObservableList<Tab> getTabs() {
@@ -97,7 +98,6 @@ public class HadamardModel implements IMatrixChangedListener{
     @Override
     public void matrixChanged(String threadName, Matrix changedMatrix) {
         Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs, false));
-
     }
 
     @Override

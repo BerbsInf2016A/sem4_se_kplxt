@@ -113,9 +113,10 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(sourceMatrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
                 BitSet combination = Helpers.convertTo(i);
                 combination.set(sourceMatrix.getDimension() - 1);
+                Matrix newMatrix = new Matrix(sourceMatrix);
+                this.simulateStep(Thread.currentThread().getName(), newMatrix, combination, nextColumnIndex);
                 if ((combination.cardinality()) == (sourceMatrix.getDimension() / 2)){
-                    Matrix newMatrix = new Matrix(sourceMatrix);
-                    this.simulateStep(Thread.currentThread().getName(), newMatrix, combination, nextColumnIndex);
+
 
                     if (!this.checkOrthogonalityWithExistingColumns(newMatrix.getColumns(), combination, nextColumnIndex)) {
                         continue;

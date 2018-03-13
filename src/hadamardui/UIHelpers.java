@@ -33,7 +33,7 @@ public class UIHelpers {
     public static Canvas generateMatrixMatrixCanvas(Matrix changedMatrix) {
         Canvas canvas = new Canvas();
         canvas.widthProperty().bind(UIConfiguration.tabPaneWidthProperty);
-        canvas.heightProperty().bind(UIConfiguration.tabPaneHeightProperty);
+        canvas.heightProperty().bind(UIConfiguration.tabPaneHeightProperty.multiply(0.95));
 
         GraphicsContext graphicContext = canvas.getGraphicsContext2D();
 
@@ -43,10 +43,14 @@ public class UIHelpers {
             for (int column = 0; column < dimension; column++){
 
                 Rectangle rec = new Rectangle();
-                rec.widthProperty().bind(canvas.widthProperty().divide(dimension + rectangleWidthPropertyAdditionalDimensionDivider));
-                rec.heightProperty().bind(canvas.heightProperty().divide(dimension + rectangleHeightPropertyAdditionalDimensionDivider));
-                rec.xProperty().bind(rec.widthProperty().multiply(column + rectangleXPropertyAdditionalColumnMultiplier));
-                rec.yProperty().bind(rec.heightProperty().multiply(row + rectangleYPropertyAdditionalRowMultiplier));
+
+
+
+                rec.widthProperty().bind(canvas.widthProperty().divide(dimension ));
+                rec.heightProperty().bind(canvas.heightProperty().divide(dimension ));
+                rec.xProperty().bind(rec.widthProperty().multiply(column ));
+                rec.yProperty().bind(rec.heightProperty().multiply(row ));
+
 
                 CellValue value = getCellValue(row, column, changedMatrix);
                 switch (value) {
@@ -88,10 +92,12 @@ public class UIHelpers {
         int dimension = column.length();
         for (int row = 0; row < dimension; row++){
             Rectangle rec = new Rectangle();
-            rec.widthProperty().bind(canvas.widthProperty().divide(dimension + rectangleWidthPropertyAdditionalDimensionDivider));
-            rec.heightProperty().bind(canvas.heightProperty().divide(dimension + rectangleHeightPropertyAdditionalDimensionDivider));
-            rec.xProperty().bind(rec.widthProperty().multiply(columnIndex + rectangleXPropertyAdditionalColumnMultiplier));
-            rec.yProperty().bind(rec.heightProperty().multiply(row + rectangleYPropertyAdditionalRowMultiplier));
+
+            rec.widthProperty().bind(canvas.widthProperty().divide(dimension ));
+            rec.heightProperty().bind(canvas.heightProperty().divide(dimension ));
+            rec.xProperty().bind(rec.widthProperty().multiply(columnIndex ));
+            rec.yProperty().bind(rec.heightProperty().multiply(row ));
+
 
             CellValue value = getCellValue(row, column);
             switch (value) {

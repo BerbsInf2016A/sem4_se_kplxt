@@ -8,7 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -47,6 +49,27 @@ public class HadamardController  implements Initializable {
         this.tabPane.getTabs().clear();
         StaticThreadExecutorHelper.setAggregator(this.dataAggregator);
         StaticThreadExecutorHelper.setModel(this.model);
+
+        // We do not need to check for invalid values. If the value would be invalid, the button would be disabled.
+        int dimension = Integer.parseInt(model.dimensionProperty().get());
+
+        String choice = strategyChoiceBox.getValue().toString();
+        if (choice.equalsIgnoreCase("backtracking") && dimension > 32){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Hadamard");
+            alert.setHeaderText("Attention");
+            alert.setContentText("Initial rendering for this dimension can take some time!");
+            alert.showAndWait().ifPresent(rs -> {});
+        }
+        if (choice.equalsIgnoreCase("sylvester") && dimension > 32){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Hadamard");
+            alert.setHeaderText("Attention");
+            alert.setContentText("Rendering for greater dimensions can take some time!");
+            alert.showAndWait().ifPresent(rs -> {});
+        }
+
+
         this.solverThread = new Thread(StaticThreadExecutorHelper::execute);
         solverThread.start();
     }
@@ -64,8 +87,10 @@ public class HadamardController  implements Initializable {
     }
 
     private void stopSolverThread() {
-        if (this.solverThread.isAlive())
-            this.solverThread.interrupt();
+        if (this.solverThread != null) {
+            if (this.solverThread.isAlive())
+                this.solverThread.interrupt();
+        }
     }
 
     @FXML
