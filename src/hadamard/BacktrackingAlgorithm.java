@@ -6,16 +6,14 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.*;
 
-import static javafx.scene.input.KeyCode.T;
-
 
 // TODO: Change all classes to use the dimension in the configuration.
 
 public class BacktrackingAlgorithm implements IHadamardStrategy {
-    private static ThreadDataAggregator threadDataAggreagtor;
+    private static ThreadDataAggregator threadDataAggregator;
 
     public void run(ThreadDataAggregator threadDataAggregator){
-        this.threadDataAggreagtor = threadDataAggregator;
+        this.threadDataAggregator = threadDataAggregator;
         Matrix startMatrix = this.generateStartMatrix(Configuration.instance.dimension);
         this.startParallelSearch(Configuration.instance.dimension, startMatrix);
     }
@@ -76,7 +74,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             System.out.println("Searching in the range from " + from + " to " + end);
         }
         if (Configuration.instance.simulateSteps) {
-            BacktrackingAlgorithm.threadDataAggreagtor.updateMatrix(Thread.currentThread().getName(), startMatrix);
+            BacktrackingAlgorithm.threadDataAggregator.updateMatrix(Thread.currentThread().getName(), startMatrix);
         }
         for (BigInteger i = from; i.compareTo(end) != 1; i = i.add(BigInteger.ONE)) {
             BitSet combination = Helpers.convertTo(i);
@@ -108,7 +106,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
                     System.out.println("Found for dimension: " + Configuration.instance.dimension);
                     System.out.println(sourceMatrix.getDebugStringRepresentation());
                 }
-                threadDataAggreagtor.setResult(Thread.currentThread().getName(), sourceMatrix);
+                threadDataAggregator.setResult(Thread.currentThread().getName(), sourceMatrix);
                 return true;
             }
         } else {
@@ -137,12 +135,12 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             Thread.sleep(Configuration.instance.simulationStepDelayInMS);
             Matrix reportMatrix = new Matrix(newMatrix);
             reportMatrix.setColumn(combination, nextColumnIndex);
-            BacktrackingAlgorithm.threadDataAggreagtor.updateMatrixColumn(Thread.currentThread().getName(), nextColumnIndex, combination);
+            BacktrackingAlgorithm.threadDataAggregator.updateMatrixColumn(Thread.currentThread().getName(), nextColumnIndex, combination);
         }
     }
 
     private void precheckConditions() {
-        if (threadDataAggreagtor.abortAllThreads.get()) {
+        if (threadDataAggregator.abortAllThreads.get()) {
             Thread.currentThread().interrupt();
         }
         if (Thread.currentThread().isInterrupted()){
