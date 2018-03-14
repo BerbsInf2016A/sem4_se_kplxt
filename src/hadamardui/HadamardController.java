@@ -10,13 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
@@ -35,7 +29,11 @@ public class HadamardController  implements Initializable, IFoundResultListener 
     @FXML
     private TabPane tabPane;
 
+    @FXML
+    private CheckBox simulateCheckBox;
+
     private final SimpleBooleanProperty isRunning = new SimpleBooleanProperty(this, "isRunning");
+    private final SimpleBooleanProperty simulateSteps = new SimpleBooleanProperty(this, "simulateSteps");
 
 
     private HadamardModel model;
@@ -47,6 +45,8 @@ public class HadamardController  implements Initializable, IFoundResultListener 
     @FXML
     void startButtonClicked(ActionEvent event) {
         this.isRunning.set(true);
+        Configuration.instance.simulateSteps = this.simulateSteps.get();
+
         if (this.dataAggregator == null)
             this.dataAggregator = new ThreadDataAggregator();
         else this.dataAggregator.reset();
@@ -120,6 +120,8 @@ public class HadamardController  implements Initializable, IFoundResultListener 
             model.updateContext();
         });
         this.startButton.disableProperty().bind( Bindings.or( model.canExecuteProperty().not(), this.isRunning));
+        this.simulateCheckBox.disableProperty().bind(this.isRunning);
+        this.simulateCheckBox.selectedProperty().bindBidirectional(this.simulateSteps);
 
 
 

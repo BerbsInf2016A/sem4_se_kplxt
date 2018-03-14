@@ -23,5 +23,6 @@
            </FXCollections>
        </items>
       </ChoiceBox>
+      <CheckBox  fx:id="simulateCheckBox" layoutX="470.0" layoutY="6.0" mnemonicParsing="false" text="Simulate steps" />
    </children>
 </AnchorPane>

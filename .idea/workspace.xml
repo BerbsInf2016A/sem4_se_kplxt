@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cc1f6a8-739a-43a3-aa78-c5838b2f0f78" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/hadamard/TempMain.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/temp_toremove.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/hadamardui/ui.fxml" afterPath="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,35 +29,24 @@
       <file leaf-file-name="HadamardController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="158" column="32" lean-forward="true" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
+            <state relative-caret-position="228">
+              <caret line="123" column="85" lean-forward="false" selection-start-line="123" selection-start-column="85" selection-end-line="123" selection-end-column="85" />
               <folding>
-                <element signature="e#5617#5618#0" expanded="true" />
-                <element signature="e#5658#5659#0" expanded="true" />
+                <element signature="e#5777#5778#0" expanded="true" />
+                <element signature="e#5818#5819#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HadamardModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1289#1290#0" expanded="true" />
-                <element signature="e#1321#1322#0" expanded="true" />
-              </folding>
-            </state>
+      <file leaf-file-name="ui.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IFoundResultListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/hadamardui/IFoundResultListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+            <state relative-caret-position="425">
+              <caret line="25" column="116" lean-forward="false" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
               <folding />
             </state>
           </provider>
@@ -134,11 +120,11 @@
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateTabNameTask.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateThreadStateTask.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
         <option value="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/IFoundResultListener.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
       </list>
     </option>
   </component>
@@ -558,7 +544,7 @@
       <workItem from="1520448709334" duration="9616000" />
       <workItem from="1520511815524" duration="2907000" />
       <workItem from="1520958012983" duration="12229000" />
-      <workItem from="1521013532921" duration="1162000" />
+      <workItem from="1521013532921" duration="2053000" />
     </task>
     <servers />
   </component>
@@ -595,7 +581,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91252000" />
+    <option name="totallyTimeSpent" value="92143000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,12 +659,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/hadamardui/HadamardController.java</url>
-          <line>116</line>
+          <line>47</line>
           <properties />
-          <option name="timeStamp" value="150" />
+          <option name="timeStamp" value="151" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="151" />
+      <option name="time" value="152" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -981,28 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="158" column="32" lean-forward="true" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
-          <folding>
-            <element signature="e#5617#5618#0" expanded="true" />
-            <element signature="e#5658#5659#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
@@ -1019,6 +983,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="123" column="85" lean-forward="false" selection-start-line="123" selection-start-column="85" selection-end-line="123" selection-end-column="85" />
+          <folding>
+            <element signature="e#5777#5778#0" expanded="true" />
+            <element signature="e#5818#5819#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="116" lean-forward="false" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
           <folding />
         </state>
       </provider>
