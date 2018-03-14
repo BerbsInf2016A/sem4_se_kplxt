@@ -2,7 +2,9 @@ package hadamardui;
 
 import hadamard.Configuration;
 import hadamard.ThreadDataAggregator;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,7 +22,7 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HadamardController  implements Initializable {
+public class HadamardController  implements Initializable, IFoundResultListener {
 
     private Thread solverThread;
     @FXML
@@ -33,6 +35,8 @@ public class HadamardController  implements Initializable {
     @FXML
     private TabPane tabPane;
 
+    private final SimpleBooleanProperty isRunning = new SimpleBooleanProperty(this, "isRunning");
+
 
     private HadamardModel model;
     private ThreadDataAggregator dataAggregator;
@@ -42,6 +46,7 @@ public class HadamardController  implements Initializable {
 
     @FXML
     void startButtonClicked(ActionEvent event) {
+        this.isRunning.set(true);
         if (this.dataAggregator == null)
             this.dataAggregator = new ThreadDataAggregator();
         else this.dataAggregator.reset();
@@ -69,9 +74,9 @@ public class HadamardController  implements Initializable {
             alert.showAndWait().ifPresent(rs -> {});
         }
 
-
         this.solverThread = new Thread(StaticThreadExecutorHelper::execute);
         solverThread.start();
+
     }
 
     @FXML
@@ -90,6 +95,7 @@ public class HadamardController  implements Initializable {
         if (this.solverThread != null) {
             if (this.solverThread.isAlive())
                 this.solverThread.interrupt();
+            this.isRunning.set(false);
         }
     }
 
@@ -113,7 +119,7 @@ public class HadamardController  implements Initializable {
         this.dimension.textProperty().addListener((observable, oldValue, newValue) -> {
             model.updateContext();
         });
-        this.startButton.disableProperty().bind(model.canExecuteProperty().not());
+        this.startButton.disableProperty().bind( Bindings.or( model.canExecuteProperty().not(), this.isRunning));
 
 
 
@@ -152,7 +158,9 @@ public class HadamardController  implements Initializable {
 
     public HadamardController(){
         this.model = new HadamardModel();
+        model.addListener(this);
         this.windowIsClosedEventHandler = event -> this.close();
+        this.isRunning.set(false);
     }
 
     private void close() {
@@ -160,4 +168,8 @@ public class HadamardController  implements Initializable {
         System.exit(0);
     }
 
+    @Override
+    public void resultFound() {
+        this.isRunning.set(false);
+    }
 }

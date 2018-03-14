@@ -36,6 +36,8 @@ public class HadamardModel implements IMatrixChangedListener{
     private Strategy strategy;
     private HadamardContext context;
 
+    private List<IFoundResultListener> listeners;
+
 
     public SimpleStringProperty dimensionProperty() {
         return dimension;
@@ -58,6 +60,17 @@ public class HadamardModel implements IMatrixChangedListener{
         this.dimension.set("2");
         this.strategy = Strategy.Backtracking;
         this.updateContext();
+        this.listeners = new ArrayList<>();
+    }
+
+    public void addListener(IFoundResultListener listener){
+        if (!this.listeners.contains(listener))
+            this.listeners.add(listener);
+    }
+
+    public void removeListener(IFoundResultListener listener){
+        if (this.listeners.contains(listener))
+            this.listeners.remove(listener);
     }
 
     public void updateContext() {
@@ -108,5 +121,8 @@ public class HadamardModel implements IMatrixChangedListener{
     @Override
     public void resultFound(String threadName, Matrix changedMatrix) {
         Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs, true));
+        for (IFoundResultListener listener : this.listeners ) {
+            listener.resultFound();
+        }
     }
 }
