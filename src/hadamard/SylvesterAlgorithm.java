@@ -26,7 +26,8 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
     private void startParallelMatrixGeneration(int dimension) throws InterruptedException {
         startSolving(true, dimension);
-        startSolving(false, dimension);
+        // TODO: Remove later
+        //startSolving(false, dimension);
     }
 
     private Boolean startSolving(boolean startValue, int dimension) throws InterruptedException {
@@ -44,11 +45,13 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             System.out.println("Found for dimension: " + Configuration.instance.dimension);
             System.out.println(result.getDebugStringRepresentation());
         }
+
         SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
         return true;
     }
 
     public SylvesterMatrix generateNextSizeMatrix(SylvesterMatrix source) {
+        this.precheckConditions();
         SylvesterMatrix resultMatrix = new SylvesterMatrix(source.getDimension() * 2);
 
         try {
@@ -85,6 +88,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     }
 
     private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, SylvesterMatrix source) {
+        this.precheckConditions();
         List<ConcatenatedColumn> concatenatedColumns = new ArrayList<>();
         for(int i=startRange; i<endRange; i++) {
             if(i < source.getDimension()) {
@@ -98,6 +102,16 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             }
         }
         return concatenatedColumns;
+    }
+
+    private void precheckConditions() {
+        if (threadDataAggregator.abortAllThreads.get()) {
+            Thread.currentThread().interrupt();
+        }
+        if (Thread.currentThread().isInterrupted()){
+            System.out.println(Thread.currentThread().toString() + " has been interrupted!");
+            throw new CancellationException("Thread has been requested to stop");
+        }
     }
 
     private class ConcatenatedColumn {

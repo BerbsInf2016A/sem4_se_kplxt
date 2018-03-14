@@ -8,14 +8,15 @@ import java.util.concurrent.Executors;
 
 public class SylvesterAlgorithmTest {
     private class TestSylvesterAlgorithm extends SylvesterAlgorithm {
-        private void createExecuterPool() {
+        private void createExecutorPool() {
             executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         }
     }
+
     @Test
     public void SylvesterAlgorithmTest_CanExecutorForDimension() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(32));
         Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(64));
@@ -33,7 +34,7 @@ public class SylvesterAlgorithmTest {
     @Test
     public void SylvesterMatrix_Two() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
 
@@ -57,7 +58,7 @@ public class SylvesterAlgorithmTest {
     @Test
     public void SylvesterMatrix_Four() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
 
@@ -101,7 +102,7 @@ public class SylvesterAlgorithmTest {
     @Test
     public void SylvesterMatrix_EightIsHadamardWithStartValue1() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
 
@@ -114,7 +115,7 @@ public class SylvesterAlgorithmTest {
     @Test
     public void SylvesterMatrix_EightIsHadamardWithStartValueMinus1() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(false);
 
@@ -127,7 +128,7 @@ public class SylvesterAlgorithmTest {
     @Test
     public void SylvesterMatrix_SixteenIsHadamardWithStartValue1() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
 
@@ -140,7 +141,7 @@ public class SylvesterAlgorithmTest {
     @Test
     public void SylvesterMatrix_512IsHadamardWithStartValueMinus1() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecuterPool();
+        testSylvesterAlgorithm.createExecutorPool();
 
         SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
 

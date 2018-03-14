@@ -20,9 +20,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
 
     @Override
     public boolean canExecutorForDimension(int dimension) {
-        if (dimension > 0 )
-            return true;
-        return false;
+        return dimension > 0 && ( dimension == 1 || dimension == 2 || dimension % 4 == 0);
     }
 
     private void startParallelSearch(int dimension, Matrix startMatrix) {
