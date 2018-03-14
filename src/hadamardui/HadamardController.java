@@ -3,7 +3,6 @@ package hadamardui;
 import hadamard.Configuration;
 import hadamard.ThreadDataAggregator;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -14,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HadamardController  implements Initializable, IFoundResultListener {
@@ -171,7 +171,13 @@ public class HadamardController  implements Initializable, IFoundResultListener 
     }
 
     @Override
-    public void resultFound() {
+    public void resultFound(String threadName) {
         this.isRunning.set(false);
+        Optional<Tab> optionalExistingTab = this.tabPane.getTabs().stream().filter(t -> t.getText().equalsIgnoreCase(threadName))
+                .findFirst();
+        if (optionalExistingTab.isPresent()){
+            SingleSelectionModel<Tab> selectionModel = this.tabPane.getSelectionModel();
+            selectionModel.select(optionalExistingTab.get());
+        }
     }
 }

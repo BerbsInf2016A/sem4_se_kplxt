@@ -37,9 +37,10 @@ public class UpdateUIMatrixColumnTask implements Runnable {
 
 
         } else {
-            Tab newTab = new Tab();
-            newTab.setText(threadName);
-            this.tabs.add(newTab);
+            //TODO: This should not be needed anymore and is a good source for a bug -> e.g. tabs get created after cancel has been pressed.
+            //Tab newTab = new Tab();
+            //newTab.setText(threadName);
+            //this.tabs.add(newTab);
         }
     }
 }

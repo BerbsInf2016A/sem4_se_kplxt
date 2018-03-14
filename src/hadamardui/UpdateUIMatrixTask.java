@@ -35,7 +35,9 @@ public class UpdateUIMatrixTask implements Runnable {
             tab.setContent(canvas);
             // TODO Move style out
             if (this.matrixIsResult)
-                tab.setStyle("-fx-border-color:green;");
+                tab.setStyle("-fx-border-color:green; -fx-background-color: green;  -fx-font-weight: bold;");
+
+
 
 
         } else {

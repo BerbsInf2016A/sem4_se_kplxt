@@ -1,5 +1,5 @@
 package hadamardui;
 
 public interface IFoundResultListener {
-    void resultFound();
+    void resultFound(String threadName);
 }

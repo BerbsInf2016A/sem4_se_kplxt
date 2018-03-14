@@ -122,7 +122,7 @@ public class HadamardModel implements IMatrixChangedListener{
     public void resultFound(String threadName, Matrix changedMatrix) {
         Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs, true));
         for (IFoundResultListener listener : this.listeners ) {
-            listener.resultFound();
+            listener.resultFound(threadName);
         }
     }
 }

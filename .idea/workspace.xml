@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cc1f6a8-739a-43a3-aa78-c5838b2f0f78" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" afterPath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
+      <change beforePath="$PROJECT_DIR$/src/hadamard/Configuration.java" afterPath="$PROJECT_DIR$/src/hadamard/Configuration.java" />
       <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamardui/ui.fxml" afterPath="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" afterPath="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" />
+      <change beforePath="$PROJECT_DIR$/src/hadamardui/IFoundResultListener.java" afterPath="$PROJECT_DIR$/src/hadamardui/IFoundResultListener.java" />
+      <change beforePath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" afterPath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" />
+      <change beforePath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" afterPath="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,17 +34,14 @@
       <file leaf-file-name="HadamardController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="123" column="85" lean-forward="false" selection-start-line="123" selection-start-column="85" selection-end-line="123" selection-end-column="85" />
-              <folding>
-                <element signature="e#5777#5778#0" expanded="true" />
-                <element signature="e#5818#5819#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="525">
+              <caret line="176" column="29" lean-forward="false" selection-start-line="176" selection-start-column="29" selection-end-line="176" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ui.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ui.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder">
             <state />
@@ -47,6 +49,80 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
               <caret line="25" column="116" lean-forward="false" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateUIMatrixTask.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="30" column="45" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="30" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HadamardModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="124" column="41" lean-forward="true" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1289#1290#0" expanded="true" />
+                <element signature="e#1321#1322#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFoundResultListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/IFoundResultListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThreadDataAggregator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BacktrackingAlgorithm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateUIMatrixColumnTask.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -109,22 +185,22 @@
         <option value="$PROJECT_DIR$/src/hadamard/Helpers.java" />
         <option value="$PROJECT_DIR$/src/hadamard/SylvesterAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/hadamard/TempMain.java" />
-        <option value="$PROJECT_DIR$/src/hadamard/Configuration.java" />
         <option value="$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java" />
         <option value="$PROJECT_DIR$/src/hadamard/ThreadState.java" />
         <option value="$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions" />
         <option value="$PROJECT_DIR$/src/hadamardui/Main.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UIConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateTabNameTask.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UpdateThreadStateTask.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/UIHelpers.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/IFoundResultListener.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
+        <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
-        <option value="$PROJECT_DIR$/src/hadamardui/ui.fxml" />
+        <option value="$PROJECT_DIR$/src/hadamard/Configuration.java" />
+        <option value="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
+        <option value="$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java" />
       </list>
     </option>
   </component>
@@ -544,7 +620,7 @@
       <workItem from="1520448709334" duration="9616000" />
       <workItem from="1520511815524" duration="2907000" />
       <workItem from="1520958012983" duration="12229000" />
-      <workItem from="1521013532921" duration="2053000" />
+      <workItem from="1521013532921" duration="4042000" />
     </task>
     <servers />
   </component>
@@ -581,7 +657,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92143000" />
+    <option name="totallyTimeSpent" value="94132000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -859,14 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/SylvesterMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -907,14 +975,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/ThreadState.java" />
-    <entry file="file://$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/StaticThreadExecutorHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -924,22 +984,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateTabNameTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="41" column="5" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="96" lean-forward="false" selection-start-line="27" selection-start-column="96" selection-end-line="27" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateThreadStateTask.java" />
     <entry file="file://$PROJECT_DIR$/src/hadamardui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -959,10 +1003,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1783">
-          <caret line="149" column="5" lean-forward="false" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
+        <state relative-caret-position="425">
+          <caret line="25" column="116" lean-forward="false" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
           <folding />
         </state>
       </provider>
@@ -970,7 +1017,7 @@
     <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
-          <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+          <caret line="124" column="41" lean-forward="true" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1289#1290#0" expanded="true" />
@@ -989,22 +1036,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamardui/HadamardController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="123" column="85" lean-forward="false" selection-start-line="123" selection-start-column="85" selection-end-line="123" selection-end-column="85" />
-          <folding>
-            <element signature="e#5777#5778#0" expanded="true" />
-            <element signature="e#5818#5819#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="525">
+          <caret line="176" column="29" lean-forward="false" selection-start-line="176" selection-start-column="29" selection-end-line="176" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamardui/ui.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="116" lean-forward="false" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
+        <state relative-caret-position="289">
+          <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="30" column="45" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="30" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamardui/UpdateUIMatrixColumnTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
           <folding />
         </state>
       </provider>

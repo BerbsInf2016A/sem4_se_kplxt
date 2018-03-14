@@ -111,6 +111,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             }
         } else {
             for (BigInteger i = BigInteger.ZERO; i.compareTo( BigInteger.valueOf(2).pow(sourceMatrix.getDimension() - 1)) < 0; i = i.add(BigInteger.ONE)) {
+                this.precheckConditions();
                 BitSet combination = Helpers.convertTo(i);
                 combination.set(sourceMatrix.getDimension() - 1);
                 Matrix newMatrix = new Matrix(sourceMatrix);
@@ -136,7 +137,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             Thread.sleep(Configuration.instance.simulationStepDelayInMS);
             Matrix reportMatrix = new Matrix(newMatrix);
             reportMatrix.setColumn(combination, nextColumnIndex);
-            BacktrackingAlgorithm.threadDataAggregator.updateMatrixColumn(Thread.currentThread().getName(), nextColumnIndex, combination);
+            BacktrackingAlgorithm.threadDataAggregator.updateMatrixColumn(name, nextColumnIndex, combination);
         }
     }
 
