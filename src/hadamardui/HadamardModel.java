@@ -147,7 +147,7 @@ public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateCha
         try {
             int value = Integer.parseInt(this.dimension.get());
             if (value > 0 && value <= UIConfiguration.MaxDimension) {
-                this.canExecute.set(context.canExceuteForDimension(value));
+                this.canExecute.set(context.canExecuteForDimension(value));
             } else {
                 this.canExecute.set(false);
             }
