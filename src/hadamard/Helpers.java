@@ -70,13 +70,18 @@ public class Helpers {
         return sum == 0;
     }
 
+    /**
+     * Concatenates two BitSets to one.
+     * The two Sets need to be equal in length.
+     *
+     * @param set1 The first BitSet.
+     * @param set2 The second BitSet.
+     * @param dimension The dimension of one BitSet.
+     * @return The concatenated BitSet.
+     */
     public static BitSet concatenateSets(BitSet set1, BitSet set2, int dimension) {
         BitSet newSet = (BitSet) set1.clone();
-/*
-        for (int i = set2.nextSetBit(0); i != -1; i = set2.nextSetBit(i + 1)) {
-            newSet.set(i + dimension);
-        }
-        */
+
         for (int i= dimension; i< 2* dimension; i++)
             newSet.set(i, set2.get(i - dimension));
 
