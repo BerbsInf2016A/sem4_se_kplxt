@@ -99,7 +99,7 @@ public class HadamardController implements Initializable, IFoundResultListener {
 
         this.model.getTabs().clear();
         this.tabPane.getTabs().clear();
-        this.model.applicationStateProperty().set("Waiting");
+        this.model.algorithmStateProperty().set("Waiting");
     }
 
     private void stopSolverThread() {
@@ -157,8 +157,8 @@ public class HadamardController implements Initializable, IFoundResultListener {
             }
         });
 
-        this.algorithmState.textProperty().bind(model.applicationStateProperty());
-        this.model.applicationStateProperty().set("Waiting");
+        this.algorithmState.textProperty().bind(model.algorithmStateProperty());
+        this.model.algorithmStateProperty().set("Waiting");
 
         UIConfiguration.tabPaneWidthProperty = this.tabPane.widthProperty();
         UIConfiguration.tabPaneHeightProperty = this.tabPane.heightProperty();
