@@ -3,13 +3,13 @@ package hadamard;
 
 public enum Configuration {
     instance;
-    final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
-    //final int maximumNumberOfThreads = 1;
+    //final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
+    final int maximumNumberOfThreads = 48;
 
     public final long maxTimeOutInSeconds = Integer.MAX_VALUE;
     public int dimension = 2;
 
-    public boolean printDebugMessages = false;
+    public boolean printDebugMessages = true;
 
     public boolean simulateSteps = true;
 

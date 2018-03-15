@@ -24,6 +24,11 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
     }
 
     private void startParallelSearch(int dimension, Matrix startMatrix) {
+
+        if (dimension == 1){
+            threadDataAggregator.setResult(Thread.currentThread().getName(), new Matrix(dimension));
+            return;
+        }
         try {
             final List<Callable<Boolean>> partitions = new ArrayList<>();
             final ExecutorService executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
@@ -144,8 +149,12 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             Thread.currentThread().interrupt();
         }
         if (Thread.currentThread().isInterrupted()){
-            System.out.println(Thread.currentThread().toString() + " has been interrupted!");
+            System.out.println(Thread.currentThread().getName() + " has been interrupted!");
             throw new CancellationException("Thread has been requested to stop");
+        }
+        if (threadDataAggregator.threadAlreadyFoundResult(Thread.currentThread().getName())){
+            Thread.currentThread().interrupt();
+            throw new CancellationException("Thread has been requested to stop, because it already found a result");
         }
     }
 

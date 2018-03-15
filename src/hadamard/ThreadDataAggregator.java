@@ -1,7 +1,9 @@
 package hadamard;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -10,8 +12,7 @@ public class ThreadDataAggregator {
 
     public static AtomicBoolean resultFound = new AtomicBoolean();
     public static AtomicBoolean abortAllThreads = new AtomicBoolean();
-    public static String resultThreadName = "";
-    public static Matrix resultMatrix = null;
+    public static List<String> threadsWithResults = Collections.synchronizedList(new ArrayList());
 
     private List<IMatrixChangedListener> listeners;
 
@@ -36,8 +37,8 @@ public class ThreadDataAggregator {
         }
         resultFound.set(true);
 
-        resultThreadName = threadName;
-        resultMatrix = matrix;
+        if (!threadsWithResults.contains(threadName))
+            threadsWithResults.add(threadName);
 
         this.notifyResultFound(threadName, matrix);
         if (Configuration.instance.abortAfterFirstResult){
@@ -51,12 +52,14 @@ public class ThreadDataAggregator {
         }
     }
 
+    public boolean threadAlreadyFoundResult(String threadName){
+        return threadsWithResults.contains(threadName);
+    }
 
     public void reset() {
         ThreadDataAggregator.abortAllThreads.set(false);
         ThreadDataAggregator.resultFound.set(false);
-        ThreadDataAggregator.resultThreadName = "";
-        ThreadDataAggregator.resultMatrix = null;
+        ThreadDataAggregator.threadsWithResults = Collections.synchronizedList(new ArrayList());
     }
 
     public ThreadDataAggregator(){
