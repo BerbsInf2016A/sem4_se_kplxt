@@ -32,13 +32,12 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
     private Boolean startSolving(boolean startValue, int dimension) throws InterruptedException {
         SylvesterMatrix result = new SylvesterMatrix(startValue);
-        threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
         for(int i=0; i<Math.log(dimension)/Math.log(2); i++) {
             if (Configuration.instance.simulateSteps) {
+                threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
                 Thread.sleep(Configuration.instance.simulationStepDelayInMS);
             }
             result = this.generateNextSizeMatrix(result);
-            threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
         }
 
         if (Configuration.instance.printDebugMessages) {
@@ -88,9 +87,9 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     }
 
     private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, SylvesterMatrix source) {
-        this.precheckConditions();
         List<ConcatenatedColumn> concatenatedColumns = new ArrayList<>();
         for(int i=startRange; i<endRange; i++) {
+            this.precheckConditions();
             if(i < source.getDimension()) {
                 BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i], source.getColumns()[i], source.getDimension());
                 concatenatedColumns.add(new ConcatenatedColumn(newColumn, i));
