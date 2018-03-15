@@ -24,7 +24,7 @@ public enum Configuration {
     /**
      * Boolean flag indicating if the Debug Messages should be printed out.
      */
-    public boolean printDebugMessages = true;
+    public boolean printDebugMessages = false;
 
     /**
      * Boolean flag indicating if the calculation steps should be simulated.
