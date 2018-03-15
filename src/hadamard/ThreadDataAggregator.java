@@ -45,6 +45,9 @@ public class ThreadDataAggregator {
             abortAllThreads.set(true);
         }
     }
+    public void setApplicationState(ApplicationState state){
+        
+    }
 
     private void notifyResultFound(String threadName, Matrix matrix) {
         for (IMatrixChangedListener listener : this.listeners ) {
