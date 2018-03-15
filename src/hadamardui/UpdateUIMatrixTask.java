@@ -1,6 +1,5 @@
 package hadamardui;
 
-import hadamard.Configuration;
 import hadamard.Matrix;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
@@ -28,7 +27,7 @@ public class UpdateUIMatrixTask implements Runnable {
         Optional<Tab> optionalExistingTab = this.tabs.stream().filter(t -> t.getText().equalsIgnoreCase(threadName))
                 .findFirst();
         // tab exists -> update
-        if (optionalExistingTab.isPresent()){
+        if (optionalExistingTab.isPresent()) {
 
             Tab tab = optionalExistingTab.get();
             Canvas canvas = UIHelpers.generateMatrixMatrixCanvas(changedMatrix);
@@ -36,8 +35,6 @@ public class UpdateUIMatrixTask implements Runnable {
             // TODO Move style out
             if (this.matrixIsResult)
                 tab.setStyle("-fx-border-color:green; -fx-background-color: green;  -fx-font-weight: bold;");
-
-
 
 
         } else {

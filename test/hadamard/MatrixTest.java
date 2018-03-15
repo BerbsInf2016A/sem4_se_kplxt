@@ -61,7 +61,7 @@ public class MatrixTest {
 
         int[][] result = testMatrix1.times(testMatrix2);
 
-        int expectedResult[][] = {{2,-2,4,-2}, {-2,2,0,2}, {2, -2, 0, -2}, {4, -4, 2, -4}};
+        int expectedResult[][] = {{2, -2, 4, -2}, {-2, 2, 0, 2}, {2, -2, 0, -2}, {4, -4, 2, -4}};
 
         Assert.assertTrue("Should be true.", Arrays.deepEquals(expectedResult, result));
     }

@@ -9,7 +9,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     private static ThreadDataAggregator threadDataAggregator;
     protected ExecutorService executorPool;
 
-    public void run(ThreadDataAggregator threadDataAggregator)  {
+    public void run(ThreadDataAggregator threadDataAggregator) {
         executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         SylvesterAlgorithm.threadDataAggregator = threadDataAggregator;
         try {
@@ -32,7 +32,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
     private Boolean startSolving(boolean startValue, int dimension) throws InterruptedException {
         SylvesterMatrix result = new SylvesterMatrix(startValue);
-        for(int i=0; i<Math.log(dimension)/Math.log(2); i++) {
+        for (int i = 0; i < Math.log(dimension) / Math.log(2); i++) {
             if (Configuration.instance.simulateSteps) {
                 threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
                 Thread.sleep(Configuration.instance.simulationStepDelayInMS);
@@ -57,18 +57,18 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             final List<Callable<List<ConcatenatedColumn>>> partitions = new ArrayList<>();
             final int threads = Configuration.instance.maximumNumberOfThreads;
 
-            int rangeDivisor = resultMatrix.getDimension()/threads;
+            int rangeDivisor = resultMatrix.getDimension() / threads;
             int moduloRange = resultMatrix.getDimension() % threads;
             int startValue = 0;
 
-            if(resultMatrix.getDimension() >= threads)
-                for(int i=0; i<threads; i++) {
+            if (resultMatrix.getDimension() >= threads)
+                for (int i = 0; i < threads; i++) {
                     final int startRange = startValue;
                     partitions.add(() -> calculateRangeColumns(startRange, rangeDivisor + startRange, source));
                     startValue += rangeDivisor;
                 }
 
-            if(startValue != resultMatrix.getDimension()) {
+            if (startValue != resultMatrix.getDimension()) {
                 final int startRange = startValue;
                 partitions.add(() -> calculateRangeColumns(startRange, moduloRange + startRange, source));
             }
@@ -76,7 +76,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             final List<Future<List<ConcatenatedColumn>>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
 
             for (final Future<List<ConcatenatedColumn>> result : resultFromParts)
-                for(ConcatenatedColumn column : result.get())
+                for (ConcatenatedColumn column : result.get())
                     resultMatrix.setColumn(column.getColumn(), column.getColumnIndex());
 
         } catch (Exception e) {
@@ -88,9 +88,9 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
     private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, SylvesterMatrix source) {
         List<ConcatenatedColumn> concatenatedColumns = new ArrayList<>();
-        for(int i=startRange; i<endRange; i++) {
+        for (int i = startRange; i < endRange; i++) {
             this.precheckConditions();
-            if(i < source.getDimension()) {
+            if (i < source.getDimension()) {
                 BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i], source.getColumns()[i], source.getDimension());
                 concatenatedColumns.add(new ConcatenatedColumn(newColumn, i));
             } else {
@@ -107,7 +107,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         if (threadDataAggregator.abortAllThreads.get()) {
             Thread.currentThread().interrupt();
         }
-        if (Thread.currentThread().isInterrupted()){
+        if (Thread.currentThread().isInterrupted()) {
             System.out.println(Thread.currentThread().toString() + " has been interrupted!");
             throw new CancellationException("Thread has been requested to stop");
         }

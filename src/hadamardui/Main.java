@@ -9,8 +9,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(getClass().getResource("ui.fxml").openStream());
         primaryStage.setTitle("Hadamard");
@@ -30,10 +34,5 @@ public class Main extends Application {
         primaryStage.setMaxHeight(primaryScreenBounds.getHeight());
         primaryStage.setMinHeight(primaryScreenBounds.getHeight());
         primaryStage.show();
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

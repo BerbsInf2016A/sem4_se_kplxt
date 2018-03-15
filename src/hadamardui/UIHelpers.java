@@ -1,23 +1,18 @@
 package hadamardui;
 
-import hadamard.Configuration;
 import hadamard.Matrix;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 
 import java.util.BitSet;
-
-import static hadamardui.UIConfiguration.*;
 
 
 public class UIHelpers {
 
-    private static void drawRectangle(GraphicsContext gc,Rectangle rect, Color fillColor){
+    private static void drawRectangle(GraphicsContext gc, Rectangle rect, Color fillColor) {
         gc.setFill(Color.GRAY);
         gc.fillRect(rect.getX(),
                 rect.getY(),
@@ -39,17 +34,16 @@ public class UIHelpers {
 
         int dimension = changedMatrix.getDimension();
 
-        for (int row = 0; row < dimension; row++){
-            for (int column = 0; column < dimension; column++){
+        for (int row = 0; row < dimension; row++) {
+            for (int column = 0; column < dimension; column++) {
 
                 Rectangle rec = new Rectangle();
 
 
-
-                rec.widthProperty().bind(canvas.widthProperty().divide(dimension ));
-                rec.heightProperty().bind(canvas.heightProperty().divide(dimension ));
-                rec.xProperty().bind(rec.widthProperty().multiply(column ));
-                rec.yProperty().bind(rec.heightProperty().multiply(row ));
+                rec.widthProperty().bind(canvas.widthProperty().divide(dimension));
+                rec.heightProperty().bind(canvas.heightProperty().divide(dimension));
+                rec.xProperty().bind(rec.widthProperty().multiply(column));
+                rec.yProperty().bind(rec.heightProperty().multiply(row));
 
 
                 CellValue value = getCellValue(row, column, changedMatrix);
@@ -72,7 +66,7 @@ public class UIHelpers {
 
     private static CellValue getCellValue(int row, int column, Matrix matrix) {
         int nextColumIndex = matrix.getNextUnsetColumnIndex();
-        if ( column >= nextColumIndex && nextColumIndex != -1 )
+        if (column >= nextColumIndex && nextColumIndex != -1)
             return CellValue.Unset;
 
         boolean value = matrix.getColumns()[column].get(row);
@@ -90,13 +84,13 @@ public class UIHelpers {
         Canvas canvas = (Canvas) content;
         GraphicsContext graphicContext = canvas.getGraphicsContext2D();
         int dimension = column.length();
-        for (int row = 0; row < dimension; row++){
+        for (int row = 0; row < dimension; row++) {
             Rectangle rec = new Rectangle();
 
-            rec.widthProperty().bind(canvas.widthProperty().divide(dimension ));
-            rec.heightProperty().bind(canvas.heightProperty().divide(dimension ));
-            rec.xProperty().bind(rec.widthProperty().multiply(columnIndex ));
-            rec.yProperty().bind(rec.heightProperty().multiply(row ));
+            rec.widthProperty().bind(canvas.widthProperty().divide(dimension));
+            rec.heightProperty().bind(canvas.heightProperty().divide(dimension));
+            rec.xProperty().bind(rec.widthProperty().multiply(columnIndex));
+            rec.yProperty().bind(rec.heightProperty().multiply(row));
 
 
             CellValue value = getCellValue(row, column);
