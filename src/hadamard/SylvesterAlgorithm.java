@@ -54,7 +54,6 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
      */
     private void startSolving(int dimension) throws InterruptedException {
         Matrix result = new Matrix(1);
-
         for (int i=0; i<Math.log(dimension)/Math.log(2); i++) {
             if (Configuration.instance.simulateSteps) {
                 threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
@@ -131,7 +130,6 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
      */
     private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, Matrix source) {
         List<ConcatenatedColumn> concatenatedColumns = new ArrayList<>();
-
         for(int i=startRange; i<endRange; i++) {
             this.precheckConditions();
 
@@ -155,7 +153,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         if (threadDataAggregator.abortAllThreads.get()) {
             Thread.currentThread().interrupt();
         }
-        if (Thread.currentThread().isInterrupted()){
+        if (Thread.currentThread().isInterrupted()) {
             System.out.println(Thread.currentThread().toString() + " has been interrupted!");
             throw new CancellationException("Thread has been requested to stop");
         }

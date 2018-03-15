@@ -1,13 +1,6 @@
 package hadamardui;
 
-import hadamard.BacktrackingAlgorithm;
-import hadamard.Configuration;
-import hadamard.HadamardContext;
-import hadamard.IHadamardStrategy;
-import hadamard.IMatrixChangedListener;
-import hadamard.Matrix;
-import hadamard.SylvesterAlgorithm;
-import hadamard.ThreadDataAggregator;
+import hadamard.*;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,26 +11,29 @@ import javafx.scene.control.Tab;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import java.util.Optional;
 
-public class HadamardModel implements IMatrixChangedListener{
+public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateChangedListener {
 
     private final SimpleBooleanProperty canExecute = new SimpleBooleanProperty(this, "canExecute");
     private final SimpleStringProperty dimension = new SimpleStringProperty(this, "dimension");
+    private final SimpleStringProperty applicationState = new SimpleStringProperty(this, "algorithmState");
 
     private List<Tab> list = new ArrayList<Tab>();
+    private ObservableList<Tab> tabs = FXCollections.observableList(list);
+    private Strategy strategy;
+    private HadamardContext context;
+    private List<IFoundResultListener> listeners;
+
+    public HadamardModel() {
+        this.dimension.set("2");
+        this.strategy = Strategy.Backtracking;
+        this.updateContext();
+        this.listeners = new ArrayList<>();
+    }
 
     public ObservableList<Tab> getTabs() {
         return tabs;
     }
-
-    private ObservableList<Tab> tabs = FXCollections.observableList(list);
-
-    private Strategy strategy;
-    private HadamardContext context;
-
-    private List<IFoundResultListener> listeners;
-
 
     public SimpleStringProperty dimensionProperty() {
         return dimension;
@@ -45,6 +41,10 @@ public class HadamardModel implements IMatrixChangedListener{
 
     public SimpleBooleanProperty canExecuteProperty() {
         return canExecute;
+    }
+
+    public SimpleStringProperty applicationStateProperty() {
+        return applicationState;
     }
 
     public Strategy getStrategy() {
@@ -56,19 +56,12 @@ public class HadamardModel implements IMatrixChangedListener{
         this.updateContext();
     }
 
-    public HadamardModel(){
-        this.dimension.set("2");
-        this.strategy = Strategy.Backtracking;
-        this.updateContext();
-        this.listeners = new ArrayList<>();
-    }
-
-    public void addListener(IFoundResultListener listener){
+    public void addListener(IFoundResultListener listener) {
         if (!this.listeners.contains(listener))
             this.listeners.add(listener);
     }
 
-    public void removeListener(IFoundResultListener listener){
+    public void removeListener(IFoundResultListener listener) {
         if (this.listeners.contains(listener))
             this.listeners.remove(listener);
     }
@@ -90,19 +83,20 @@ public class HadamardModel implements IMatrixChangedListener{
             int value = Integer.parseInt(this.dimension.get());
             if (value > 0 && value <= UIConfiguration.MaxDimension) {
                 this.canExecute.set(context.canExceuteForDimension(value));
-            } else{
+            } else {
                 this.canExecute.set(false);
             }
 
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             this.canExecute.set(false);
         }
     }
 
     public void execute(ThreadDataAggregator aggregator) {
-        if (this.canExecute.get()){
+        if (this.canExecute.get()) {
             // TODO Add Bindings
-            aggregator.registerListener(this);
+            aggregator.registerMatrixChangedListener(this);
+            aggregator.registerStateChangedListener(this);
             Configuration.instance.dimension = Integer.parseInt(this.dimension.get());
             this.context.executeStrategy(aggregator);
         }
@@ -121,8 +115,13 @@ public class HadamardModel implements IMatrixChangedListener{
     @Override
     public void resultFound(String threadName, Matrix changedMatrix) {
         Platform.runLater(new UpdateUIMatrixTask(threadName, changedMatrix, this.tabs, true));
-        for (IFoundResultListener listener : this.listeners ) {
+        for (IFoundResultListener listener : this.listeners) {
             listener.resultFound(threadName);
         }
+    }
+
+    @Override
+    public void stateChanged(String newState) {
+        Platform.runLater(new UpdateAlgorithmStateTask(this.applicationState, newState));
     }
 }

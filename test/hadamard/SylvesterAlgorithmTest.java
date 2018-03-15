@@ -7,6 +7,7 @@ import java.util.BitSet;
 import java.util.concurrent.Executors;
 
 public class SylvesterAlgorithmTest {
+
     private class TestSylvesterAlgorithm extends SylvesterAlgorithm {
         private void createExecutorPool() {
             executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
@@ -45,7 +46,7 @@ public class SylvesterAlgorithmTest {
         TestMatrixListener testMatrixListener = new TestMatrixListener();
 
         ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
-        threadDataAggregator.registerListener(testMatrixListener);
+        threadDataAggregator.registerMatrixChangedListener(testMatrixListener);
 
         sylvesterAlgorithm.run(threadDataAggregator);
 
@@ -57,6 +58,7 @@ public class SylvesterAlgorithmTest {
 
         threadDataAggregator.reset();
     }
+
 
     @Test
     public void SylvesterAlgorithm_CanExecutorForDimension() {
@@ -140,8 +142,9 @@ public class SylvesterAlgorithmTest {
         expectedMatrix.setColumn(thirdColumn, 2);
         expectedMatrix.setColumn(fourthColumn, 3);
 
+
         Assert.assertTrue("Should be true.", expectedMatrix.equals(fourthMatrix));
-        Assert.assertTrue("Should be true.",  Helpers.isIdentity(fourthMatrix.times(fourthMatrix.transpose())));
+        Assert.assertTrue("Should be true.", Helpers.isIdentity(fourthMatrix.times(fourthMatrix.transpose())));
     }
 
     @Test
@@ -150,6 +153,7 @@ public class SylvesterAlgorithmTest {
         testSylvesterAlgorithm.createExecutorPool();
 
         Matrix Matrix = new Matrix(1);
+
 
         for(int i=0; i<3; i++)
             Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
@@ -164,8 +168,10 @@ public class SylvesterAlgorithmTest {
 
         Matrix Matrix = new Matrix(1);
 
+
         for(int i=0; i<4; i++)
             Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
+
 
         Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }
@@ -177,8 +183,10 @@ public class SylvesterAlgorithmTest {
 
         Matrix Matrix = new Matrix(1);
 
+
         for(int i=0; i<9; i++)
             Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
+
 
         Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }

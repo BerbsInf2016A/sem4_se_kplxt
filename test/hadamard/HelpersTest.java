@@ -3,7 +3,6 @@ package hadamard;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigInteger;
 import java.util.BitSet;
 
 public class HelpersTest {
@@ -25,18 +24,18 @@ public class HelpersTest {
     @Test
     public void Helpers_ConcatenateSets() {
         BitSet firstPart = new BitSet();
-        for (int i = 0; i < 8; i += 2){
+        for (int i = 0; i < 8; i += 2) {
             firstPart.set(i);
         }
         BitSet secondPart = new BitSet();
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 8; i++) {
             secondPart.set(i);
         }
 
         BitSet combinedBitSet = Helpers.concatenateSets(firstPart, secondPart, 8);
 
         BitSet comparingBitSet = new BitSet();
-        for(int i = 0; i < 8; i+=2)
+        for (int i = 0; i < 8; i += 2)
             comparingBitSet.set(i);
         for (int i = 8; i < 16; i++)
             comparingBitSet.set(i);

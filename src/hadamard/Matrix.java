@@ -20,7 +20,7 @@ public class Matrix {
         BigInteger bigintValue = BigInteger.valueOf(2).pow(this.dimension)
                 .subtract(BigInteger.ONE);
         this.columns[0] = Helpers.convertTo(bigintValue);
-        for(int i = 1; i < dimension; i++)
+        for (int i = 1; i < dimension; i++)
             this.columns[i] = new BitSet();
         this.nextUnsetColumnIndex = 1;
     }
@@ -28,7 +28,7 @@ public class Matrix {
     public Matrix(Matrix source) {
         this.dimension = source.dimension;
         this.columns = new BitSet[this.dimension];
-        for(int i = 0; i < this.dimension; i++){
+        for (int i = 0; i < this.dimension; i++) {
             this.columns[i] = (BitSet) source.columns[i].clone();
         }
         this.nextUnsetColumnIndex = source.nextUnsetColumnIndex;
@@ -52,7 +52,7 @@ public class Matrix {
     }
 
     public void setElement(int columnIndex, int rowIndex, boolean value) {
-        if(value)
+        if (value)
             this.columns[columnIndex].set(rowIndex);
         else
             this.columns[columnIndex].clear(rowIndex);
@@ -91,16 +91,16 @@ public class Matrix {
 
         for (int rowIndex = 0; rowIndex < A.dimension; rowIndex++)
             for (int columnIndex = 0; columnIndex < A.getDimension(); columnIndex++)
-                for (int index = 0; index < A.getDimension(); index++){
-                        boolean firstMatrixValue = A.getColumns()[index].get(rowIndex);
-                        boolean secondMatrixValue = B.getColumns()[columnIndex].get(index);
-                        C[columnIndex][rowIndex] += calculateSum(firstMatrixValue, secondMatrixValue);
+                for (int index = 0; index < A.getDimension(); index++) {
+                    boolean firstMatrixValue = A.getColumns()[index].get(rowIndex);
+                    boolean secondMatrixValue = B.getColumns()[columnIndex].get(index);
+                    C[columnIndex][rowIndex] += calculateSum(firstMatrixValue, secondMatrixValue);
                 }
-                
+
         return C;
     }
 
-    public boolean isIdentity(){
+    public boolean isIdentity() {
         Matrix transposedMatrix = this.transpose();
 
         int matrix[][] = new int[this.getDimension()][this.getDimension()];
@@ -119,7 +119,7 @@ public class Matrix {
                     break;
                 }
             }
-            if(!flag)
+            if (!flag)
                 return false;
         }
 
@@ -127,7 +127,7 @@ public class Matrix {
     }
 
     private int calculateSum(boolean firstMatrixValue, boolean secondMatrixValue) {
-        if (firstMatrixValue == secondMatrixValue  ) {
+        if (firstMatrixValue == secondMatrixValue) {
             return 1;
         }
         return -1;
@@ -137,10 +137,10 @@ public class Matrix {
         return nextUnsetColumnIndex;
     }
 
-    public String getDebugStringRepresentation(){
+    public String getDebugStringRepresentation() {
         String separator = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < this.dimension; row++){
+        for (int row = 0; row < this.dimension; row++) {
             for (int column = 0; column < this.dimension; column++) {
                 if (column == 0) {
                     String value = this.columns[column].get(row) ? " 1" : "-1";
@@ -155,16 +155,16 @@ public class Matrix {
         return sb.toString();
     }
 
-    public String getUIDebugStringRepresentation(){
+    public String getUIDebugStringRepresentation() {
         String separator = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < this.dimension; row++){
+        for (int row = 0; row < this.dimension; row++) {
             for (int column = 0; column < this.dimension; column++) {
                 if (column == 0) {
                     String value = this.columns[column].get(row) ? " 1" : "-1";
                     sb.append(value);
                 } else {
-                    if((column >= nextUnsetColumnIndex && nextUnsetColumnIndex != -1) ){
+                    if ((column >= nextUnsetColumnIndex && nextUnsetColumnIndex != -1)) {
                         sb.append(" ").append("-");
                         continue;
                     }

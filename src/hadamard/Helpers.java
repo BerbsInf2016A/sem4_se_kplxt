@@ -4,10 +4,10 @@ import java.math.BigInteger;
 import java.util.BitSet;
 
 public class Helpers {
-    public static boolean isIdentity(int[][] matrix){
-        if(matrix.length == 0)
+    public static boolean isIdentity(int[][] matrix) {
+        if (matrix.length == 0)
             throw new RuntimeException("Illegal matrix dimensions.");
-        if(matrix.length != matrix[0].length)
+        if (matrix.length != matrix[0].length)
             return false;
 
         int identityValue = matrix[0][0];
@@ -16,18 +16,19 @@ public class Helpers {
          * Source: http://www.penguincoders.net/2015/05/check-if-matrix-is-identity-matrix-in-java.html
          */
         boolean flag = true;
-        for(int i=0;i<matrix.length;i++) {
-            for(int j=0;j<matrix.length;j++)
-                if((i==j && matrix[i][j] != identityValue) || (i!=j && matrix[i][j] != 0)) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++)
+                if ((i == j && matrix[i][j] != identityValue) || (i != j && matrix[i][j] != 0)) {
                     flag = false;
                     break;
                 }
-            if(!flag)
+            if (!flag)
                 return false;
         }
         return true;
     }
-    public static BitSet convertTo (BigInteger bi) {
+
+    public static BitSet convertTo(BigInteger bi) {
 
         // TODO: Both variants seem to work. The first one seems to be faster than the second one. This needs to be tested.
 
@@ -43,27 +44,26 @@ public class Helpers {
     }
 
     private static byte[] reverse(byte[] bytes) {
-        for(int i = 0; i < bytes.length/2; i++) {
+        for (int i = 0; i < bytes.length / 2; i++) {
             byte temp = bytes[i];
-            bytes[i] = bytes[bytes.length-i-1];
-            bytes[bytes.length-i-1] = temp;
+            bytes[i] = bytes[bytes.length - i - 1];
+            bytes[bytes.length - i - 1] = temp;
         }
         return bytes;
     }
 
 
     public static boolean isOrthogonal(BitSet firstColumn, BitSet secondColumn, int targetColumnIndex) {
-        if (firstColumn.length() != secondColumn.length() || firstColumn.length() < targetColumnIndex || secondColumn.length() < targetColumnIndex){
+        if (firstColumn.length() != secondColumn.length() || firstColumn.length() < targetColumnIndex || secondColumn.length() < targetColumnIndex) {
             throw new RuntimeException("Invalid dimensions.");
         }
         int sum = 0;
-        for (int i = 0; i < firstColumn.length(); i++){
+        for (int i = 0; i < firstColumn.length(); i++) {
             boolean firstBit = firstColumn.get(i);
             boolean secondBit = secondColumn.get(i);
-            if (firstBit != secondBit)
-            {
+            if (firstBit != secondBit) {
                 sum += -1;
-            } else{
+            } else {
                 sum++;
             }
         }
@@ -81,7 +81,6 @@ public class Helpers {
      */
     public static BitSet concatenateSets(BitSet set1, BitSet set2, int dimension) {
         BitSet newSet = (BitSet) set1.clone();
-
         for (int i= dimension; i< 2* dimension; i++)
             newSet.set(i, set2.get(i - dimension));
 

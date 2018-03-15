@@ -6,6 +6,7 @@ public class HadamardContext {
     public HadamardContext(IHadamardStrategy strategy) {
         this.strategy = strategy;
     }
+
     public void executeStrategy(ThreadDataAggregator threadDataAggregator) {
         strategy.run(threadDataAggregator);
     }

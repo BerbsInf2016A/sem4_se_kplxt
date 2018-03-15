@@ -3,19 +3,18 @@ package hadamardui;
 import hadamard.ThreadDataAggregator;
 
 public class StaticThreadExecutorHelper {
+    private static HadamardModel model;
+    private static ThreadDataAggregator aggregator;
+
     public static void setModel(HadamardModel model) {
         StaticThreadExecutorHelper.model = model;
     }
-
-    private static HadamardModel model;
 
     public static void setAggregator(ThreadDataAggregator aggregator) {
         StaticThreadExecutorHelper.aggregator = aggregator;
     }
 
-    private static ThreadDataAggregator aggregator;
-
-    public static void execute(){
+    public static void execute() {
         model.execute(aggregator);
     }
 
