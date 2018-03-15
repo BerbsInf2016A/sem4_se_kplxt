@@ -4,6 +4,12 @@ import java.math.BigInteger;
 import java.util.BitSet;
 
 public class Helpers {
+    /**
+     * Checks if the Matrix is an identity Matrix.
+     *
+     * @param matrix The Matrix.
+     * @return Boolean indicating if the Matrix is an identity Matrix.
+     */
     public static boolean isIdentity(int[][] matrix) {
         if (matrix.length == 0)
             throw new RuntimeException("Illegal matrix dimensions.");
@@ -12,9 +18,6 @@ public class Helpers {
 
         int identityValue = matrix[0][0];
 
-        /**
-         * Source: http://www.penguincoders.net/2015/05/check-if-matrix-is-identity-matrix-in-java.html
-         */
         boolean flag = true;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++)
@@ -28,6 +31,12 @@ public class Helpers {
         return true;
     }
 
+    /**
+     * Converts a BigInteger to a BitSet.
+     *
+     * @param bi The BigInteger value.
+     * @return The resulting BitSet.
+     */
     public static BitSet convertTo(BigInteger bi) {
 
         // TODO: Both variants seem to work. The first one seems to be faster than the second one. This needs to be tested.
@@ -52,7 +61,14 @@ public class Helpers {
         return bytes;
     }
 
-
+    /**
+     * Checks if two columns are Orthogonal to each other.
+     *
+     * @param firstColumn The first column.
+     * @param secondColumn The second column.
+     * @param targetColumnIndex The target column index.
+     * @return Boolean indicating if the two columns are orthogonal.
+     */
     public static boolean isOrthogonal(BitSet firstColumn, BitSet secondColumn, int targetColumnIndex) {
         if (firstColumn.length() != secondColumn.length() || firstColumn.length() < targetColumnIndex || secondColumn.length() < targetColumnIndex) {
             throw new RuntimeException("Invalid dimensions.");
