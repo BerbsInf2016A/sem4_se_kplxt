@@ -3,12 +3,29 @@ package hadamard;
 import java.math.BigInteger;
 import java.util.BitSet;
 
+/**
+ * Class for the Matrix. (Not the one with Keanu Reeves)
+ */
 public class Matrix {
+    /**
+     * The dimension.
+     */
     private final int dimension;
-    // 1 = 1 and 0 = -1
+    /**
+     * The Columns.
+     * 1 = 1 and 0 = -1
+     */
     private final BitSet[] columns;
+    /**
+     * The Index of the next Column that is not set.
+     */
     private int nextUnsetColumnIndex;
 
+    /**
+     * Constructor for the Matrix.
+     *
+     * @param dimension The dimension.
+     */
     public Matrix(int dimension) {
         this.dimension = dimension;
         this.columns = new BitSet[this.dimension];
@@ -25,6 +42,11 @@ public class Matrix {
         this.nextUnsetColumnIndex = 1;
     }
 
+    /**
+     * Constructor for the Matrix.
+     *
+     * @param source The source Matrix.
+     */
     public Matrix(Matrix source) {
         this.dimension = source.dimension;
         this.columns = new BitSet[this.dimension];
@@ -34,14 +56,30 @@ public class Matrix {
         this.nextUnsetColumnIndex = source.nextUnsetColumnIndex;
     }
 
+    /**
+     * Gets the Dimension.
+     *
+     * @return The Dimension.
+     */
     public int getDimension() {
         return dimension;
     }
 
+    /**
+     * Gets the Columns.
+     *
+     * @return The Columns.
+     */
     public BitSet[] getColumns() {
         return columns;
     }
 
+    /**
+     * Sets a specific Column.
+     *
+     * @param column The Column.
+     * @param index The Index of the Column.
+     */
     public void setColumn(BitSet column, int index) {
         this.columns[index] = column;
         if (index == this.dimension - 1) {
@@ -51,6 +89,13 @@ public class Matrix {
         }
     }
 
+    /**
+     * Sets an element in the Matrix.
+     *
+     * @param columnIndex The Column Index.
+     * @param rowIndex The Row Index.
+     * @param value The value.
+     */
     public void setElement(int columnIndex, int rowIndex, boolean value) {
         if (value)
             this.columns[columnIndex].set(rowIndex);
@@ -58,6 +103,11 @@ public class Matrix {
             this.columns[columnIndex].clear(rowIndex);
     }
 
+    /**
+     * Gets the transposed Matrix.
+     *
+     * @return The transposed Matrix.
+     */
     public Matrix transpose() {
         Matrix A = new Matrix(dimension);
         BitSet[] columns1 = this.getColumns();
@@ -69,6 +119,12 @@ public class Matrix {
         return A;
     }
 
+    /**
+     * Compares another Matrix for equality.
+     *
+     * @param B The Matrix to compare to.
+     * @return Boolean indicating if they are equal.
+     */
     public boolean equals(Matrix B) {
         Matrix A = this;
         if (A.getDimension() != B.getDimension()) throw new RuntimeException("Illegal matrix dimensions.");
@@ -83,7 +139,12 @@ public class Matrix {
         return true;
     }
 
-
+    /**
+     * Multiplies the Matrix with another Matrix.
+     * 
+     * @param B The Matrix to multiply with.
+     * @return The multiplication result.
+     */
     public int[][] times(Matrix B) {
         Matrix A = this;
         if (A.dimension != B.dimension) throw new RuntimeException("Illegal matrix dimensions.");
@@ -100,6 +161,12 @@ public class Matrix {
         return C;
     }
 
+    /**
+     * Checks if the Matrix is an identity Matrix.
+     * TODO: Can be removed if not neaded, but it should be faster that the Helpers one.
+     *
+     * @return Boolean indicating if the Matrix is an identity Matrix.
+     */
     public boolean isIdentity() {
         Matrix transposedMatrix = this.transpose();
 
@@ -126,6 +193,14 @@ public class Matrix {
         return true;
     }
 
+    /**
+     * Calculates the sum of two Bit values in a Matrix.
+     * 1 = 1, 0 = -1
+     *
+     * @param firstMatrixValue The first value.
+     * @param secondMatrixValue The second value.
+     * @return The sum of the two values.
+     */
     private int calculateSum(boolean firstMatrixValue, boolean secondMatrixValue) {
         if (firstMatrixValue == secondMatrixValue) {
             return 1;
@@ -133,6 +208,11 @@ public class Matrix {
         return -1;
     }
 
+    /**
+     * Gets the next Column index that is not set.
+     *
+     * @return The next Column index that is not set.
+     */
     public int getNextUnsetColumnIndex() {
         return nextUnsetColumnIndex;
     }
@@ -155,6 +235,11 @@ public class Matrix {
         return sb.toString();
     }
 
+    /**
+     * Gets the String Representation of the Matrix.
+     *
+     * @return The String Representation of the Matrix.
+     */
     public String getUIDebugStringRepresentation() {
         String separator = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
