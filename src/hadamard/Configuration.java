@@ -3,8 +3,7 @@ package hadamard;
 
 public enum Configuration {
     instance;
-    //final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
-    final int maximumNumberOfThreads = 48;
+    final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
 
     public final long maxTimeOutInSeconds = Integer.MAX_VALUE;
     public int dimension = 2;

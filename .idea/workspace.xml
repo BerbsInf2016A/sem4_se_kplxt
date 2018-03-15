@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cc1f6a8-739a-43a3-aa78-c5838b2f0f78" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" afterPath="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
       <change beforePath="$PROJECT_DIR$/src/hadamard/Configuration.java" afterPath="$PROJECT_DIR$/src/hadamard/Configuration.java" />
-      <change beforePath="$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java" afterPath="$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BacktrackingAlgorithm.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BacktrackingAlgorithm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="397">
@@ -101,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+            <state relative-caret-position="85">
+              <caret line="5" column="82" lean-forward="false" selection-start-line="5" selection-start-column="82" selection-end-line="5" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -182,8 +179,8 @@
         <option value="$PROJECT_DIR$/src/hadamardui/HadamardModel.java" />
         <option value="$PROJECT_DIR$/src/hadamardui/HadamardController.java" />
         <option value="$PROJECT_DIR$/src/hadamard/ThreadDataAggregator.java" />
-        <option value="$PROJECT_DIR$/src/hadamard/Configuration.java" />
         <option value="$PROJECT_DIR$/src/hadamard/BacktrackingAlgorithm.java" />
+        <option value="$PROJECT_DIR$/src/hadamard/Configuration.java" />
       </list>
     </option>
   </component>
@@ -607,7 +604,7 @@
       <workItem from="1521021598818" duration="112000" />
       <workItem from="1521030052139" duration="1665000" />
       <workItem from="1521102922769" duration="131000" />
-      <workItem from="1521103182960" duration="6462000" />
+      <workItem from="1521103182960" duration="6680000" />
     </task>
     <servers />
   </component>
@@ -644,7 +641,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104244000" />
+    <option name="totallyTimeSpent" value="104462000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1006,14 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hadamard/SylvesterAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1026,6 +1015,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hadamard/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="82" lean-forward="false" selection-start-line="5" selection-start-column="82" selection-end-line="5" selection-end-column="82" />
           <folding />
         </state>
       </provider>
