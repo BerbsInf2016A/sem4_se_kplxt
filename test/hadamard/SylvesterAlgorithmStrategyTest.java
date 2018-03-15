@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.util.BitSet;
 import java.util.concurrent.Executors;
 
-public class SylvesterAlgorithmTest {
+public class SylvesterAlgorithmStrategyTest {
 
-    private class TestSylvesterAlgorithm extends SylvesterAlgorithm {
+    private class TestSylvesterAlgorithmStrategy extends SylvesterAlgorithmStrategy {
         private void createExecutorPool() {
             executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         }
@@ -41,14 +41,14 @@ public class SylvesterAlgorithmTest {
 
     @Test
     public void SylvesterAlgorithm_RunsForDimensionEightAndReturnsValidResult() {
-        SylvesterAlgorithm sylvesterAlgorithm = new SylvesterAlgorithm();
+        SylvesterAlgorithmStrategy sylvesterAlgorithmStrategy = new SylvesterAlgorithmStrategy();
         Configuration.instance.dimension = 8;
         TestMatrixListener testMatrixListener = new TestMatrixListener();
 
         ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
         threadDataAggregator.registerMatrixChangedListener(testMatrixListener);
 
-        sylvesterAlgorithm.run(threadDataAggregator);
+        sylvesterAlgorithmStrategy.run(threadDataAggregator);
 
         Assert.assertTrue("Should be true.", testMatrixListener.isResultFound());
 
@@ -62,25 +62,25 @@ public class SylvesterAlgorithmTest {
 
     @Test
     public void SylvesterAlgorithm_CanExecutorForDimension() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
+        TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
-        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(32));
-        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(64));
-        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(1));
-        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(128));
-        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecutorForDimension(256));
+        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecuteForDimension(32));
+        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecuteForDimension(64));
+        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecuteForDimension(1));
+        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecuteForDimension(128));
+        Assert.assertTrue("Should be true!", testSylvesterAlgorithm.canExecuteForDimension(256));
 
-        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecutorForDimension(18));
-        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecutorForDimension(24));
-        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecutorForDimension(20));
-        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecutorForDimension(12));
-        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecutorForDimension(12323));
+        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecuteForDimension(18));
+        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecuteForDimension(24));
+        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecuteForDimension(20));
+        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecuteForDimension(12));
+        Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecuteForDimension(12323));
     }
 
     @Test
     public void SylvesterAlgorithm_Matrix_Two() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
+        TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
         Matrix Matrix = new Matrix(1);
@@ -104,7 +104,7 @@ public class SylvesterAlgorithmTest {
 
     @Test
     public void SylvesterAlgorithm_Matrix_Four() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
+        TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
         Matrix Matrix = new Matrix(1);
@@ -149,7 +149,7 @@ public class SylvesterAlgorithmTest {
 
     @Test
     public void SylvesterAlgorithm_Matrix_EightIsHadamard() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
+        TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
         Matrix Matrix = new Matrix(1);
@@ -163,7 +163,7 @@ public class SylvesterAlgorithmTest {
 
     @Test
     public void SylvesterAlgorithm_Matrix_SixteenIsHadamard() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
+        TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
         Matrix Matrix = new Matrix(1);
@@ -178,7 +178,7 @@ public class SylvesterAlgorithmTest {
 
     @Test
     public void SylvesterAlgorithm_Matrix_512IsHadamard() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
+        TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
         Matrix Matrix = new Matrix(1);

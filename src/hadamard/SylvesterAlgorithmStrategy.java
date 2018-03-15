@@ -8,25 +8,25 @@ import java.util.concurrent.*;
 /**
  * Class for the Sylvester Algorithm.
  */
-public class SylvesterAlgorithm implements IHadamardStrategy {
+public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
     /**
      * The Thread Data Aggregator.
      */
-    private static ThreadDataAggregator threadDataAggregator;
+    private ThreadDataAggregator threadDataAggregator;
     /**
      * The Executor Pool.
      */
     protected ExecutorService executorPool;
 
     /**
-     * The run Method for starting the Algorithm.
+     * The run method for starting the algorithm.
      *
      * @param threadDataAggregator The Thread Data Aggregator.
      */
     public void run(ThreadDataAggregator threadDataAggregator)  {
         threadDataAggregator.setAlgorithmState(AlgorithmState.Running);
         executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
-        SylvesterAlgorithm.threadDataAggregator = threadDataAggregator;
+        this.threadDataAggregator = threadDataAggregator;
 
         try {
             this.startSolving(Configuration.instance.dimension);
@@ -38,20 +38,20 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     }
 
     /**
-     * Checks if the Algorithm can run for a given dimension.
+     * Checks if the algorithm can run for a given dimension.
      *
      * @param dimension The dimension.
      * @return Boolean indicating if the Algorithm can be executed for the given dimension.
      */
-    public boolean canExecutorForDimension(int dimension) {
+    public boolean canExecuteForDimension(int dimension) {
         return dimension > 0 && ((dimension & (dimension - 1)) == 0);
     }
 
     /**
-     * Starts generating the Matrix.
+     * Starts generating the matrix.
      *
-     * @param dimension The dimension of the Matrix.
-     * @throws InterruptedException Exception thrown when the Task is Interrupted.
+     * @param dimension The dimension of the matrix.
+     * @throws InterruptedException Exception thrown when the thread is interrupted.
      */
     private void startSolving(int dimension) throws InterruptedException {
         Matrix result = new Matrix(1);
@@ -68,21 +68,21 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
             System.out.println(result.getUIDebugStringRepresentation());
         }
 
-        SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
+        this.threadDataAggregator.setResult(Thread.currentThread().getName(), result);
     }
 
     /**
-     * Generates the next Hadamard Matrix, double the size as the source one.
+     * Generates the next Hadamard matrix, double the size as the source one.
      *
-     * @param source The source Matrix.
-     * @return The new Matrix.
+     * @param source The source matrix.
+     * @return The new matrix.
      */
     public Matrix generateNextSizeMatrix(Matrix source) {
-        this.precheckConditions();
+        this.preCheckConditions();
         Matrix resultMatrix = new Matrix(source.getDimension() * 2);
 
         try {
-            final List<Callable<List<ConcatenatedColumn>>> partitions = new ArrayList<>();
+            final List<Callable<List<IndexedColumn>>> partitions = new ArrayList<>();
             final int threads = Configuration.instance.maximumNumberOfThreads;
 
             // Splits the Generation of the Columns for the new Matrix into parts, so every thread can do a specific range.
@@ -105,11 +105,11 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
                 partitions.add(() -> calculateRangeColumns(startRange, moduloRange + startRange, source));
             }
 
-            final List<Future<List<ConcatenatedColumn>>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
+            final List<Future<List<IndexedColumn>>> resultFromParts = executorPool.invokeAll(partitions, Configuration.instance.maxTimeOutInSeconds, TimeUnit.SECONDS);
 
             // Collects all the Resulting Columns and adds them to the new Matrix.
-            for (final Future<List<ConcatenatedColumn>> result : resultFromParts)
-                for (ConcatenatedColumn column : result.get())
+            for (final Future<List<IndexedColumn>> result : resultFromParts)
+                for (IndexedColumn column : result.get())
                     resultMatrix.setColumn(column.getColumn(), column.getColumnIndex());
 
         } catch (Exception e) {
@@ -120,37 +120,37 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     }
 
     /**
-     * Calculates the columns for the new Matrix in a given range.
-     * When the range exceeds the size of the original Matrix, the Values in the lower half will be inverted.
-     * As it is a requirement for the Sylvester Algorithm to work.
+     * Calculates the columns for the new matrix in a given range.
+     * When the range exceeds the size of the original matrix, the values in the lower half will be inverted,
+     * as it is a requirement for the Sylvester algorithm to work.
      *
      * @param startRange The start of the range.
      * @param endRange The end of the range.
-     * @param source The source Matrix.
-     * @return List of Concatenated Columns, consisting of the Column and the index position in the new Matrix.
+     * @param source The source matrix.
+     * @return List of indexed columns, consisting of the column and the index position in the new matrix.
      */
-    private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, Matrix source) {
-        List<ConcatenatedColumn> concatenatedColumns = new ArrayList<>();
+    private List<IndexedColumn> calculateRangeColumns(int startRange, int endRange, Matrix source) {
+        List<IndexedColumn> indexedColumns = new ArrayList<>();
         for(int i=startRange; i<endRange; i++) {
-            this.precheckConditions();
+            this.preCheckConditions();
 
             if(i < source.getDimension()) {
                 BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i], source.getColumns()[i], source.getDimension());
-                concatenatedColumns.add(new ConcatenatedColumn(newColumn, i));
+                indexedColumns.add(new IndexedColumn(newColumn, i));
             } else {
                 BitSet invertedColumn = (BitSet) source.getColumns()[i - source.getDimension()].clone();
                 invertedColumn.flip(0, source.getDimension());
                 BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i - source.getDimension()], invertedColumn, source.getDimension());
-                concatenatedColumns.add(new ConcatenatedColumn(newColumn, i));
+                indexedColumns.add(new IndexedColumn(newColumn, i));
             }
         }
-        return concatenatedColumns;
+        return indexedColumns;
     }
 
     /**
-     * Checks if the abort flag is set and interrupts the current Thread.
+     * Checks if the abort flag is set and interrupts the current thread.
      */
-    private void precheckConditions() {
+    private void preCheckConditions() {
         if (threadDataAggregator.abortAllThreads.get()) {
             Thread.currentThread().interrupt();
         }
@@ -161,22 +161,44 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     }
 
     /**
-     * Class for the Concatenated Columns.
-     * Is an extension to the normal Column, as it combines the newly generated Columns with their index position in the new Matrix.
+     * Class for the indexed columns.
+     * It is an extension to the normal column, as it combines the newly generated columns with their index position in the new matrix.
      */
-    private class ConcatenatedColumn {
+    private class IndexedColumn {
+        /**
+         * The column.
+         */
         BitSet column;
+        /**
+         * The index of the column.
+         */
         int columnIndex;
 
-        public ConcatenatedColumn(BitSet column, int columnIndex) {
+        /**
+         *  for the IndexedColumn
+         *
+         * @param column The column.
+         * @param columnIndex The index of the column.
+         */
+        public IndexedColumn(BitSet column, int columnIndex) {
             this.column = column;
             this.columnIndex = columnIndex;
         }
 
+        /**
+         * Get the column.
+         *
+         * @return The column.
+         */
         public BitSet getColumn() {
             return column;
         }
 
+        /**
+         * Get the column index.
+         *
+         * @return The column index.
+         */
         public int getColumnIndex() {
             return columnIndex;
         }

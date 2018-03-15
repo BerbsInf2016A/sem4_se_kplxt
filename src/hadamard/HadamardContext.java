@@ -34,6 +34,6 @@ public class HadamardContext {
      * @return True if the strategy can execute, false if not.
      */
     public boolean canExecuteForDimension(int dimension) {
-        return strategy.canExecutorForDimension(dimension);
+        return strategy.canExecuteForDimension(dimension);
     }
 }

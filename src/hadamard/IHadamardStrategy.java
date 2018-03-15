@@ -16,5 +16,5 @@ public interface IHadamardStrategy {
      * @param dimension The dimension.
      * @return Boolean indicating if the Algorithm can be executed for the given dimension.
      */
-    boolean canExecutorForDimension(int dimension);
+    boolean canExecuteForDimension(int dimension);
 }

@@ -132,13 +132,13 @@ public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateCha
      */
     public void updateContext() {
         // Set the strategy.
-        IHadamardStrategy strategy = new BacktrackingAlgorithm();
+        IHadamardStrategy strategy = new BacktrackingAlgorithmStrategy();
         switch (this.strategy) {
             case Backtracking:
-                strategy = new BacktrackingAlgorithm();
+                strategy = new BacktrackingAlgorithmStrategy();
                 break;
             case Sylvester:
-                strategy = new SylvesterAlgorithm();
+                strategy = new SylvesterAlgorithmStrategy();
                 break;
         }
         this.context = new HadamardContext(strategy);
