@@ -89,15 +89,15 @@ public class ThreadDataAggregator {
             abortAllThreads.set(true);
         }
 
-        this.setApplicationState(AlgorithmState.ResultFound);
+        this.setAlgorithmState(AlgorithmState.ResultFound);
     }
 
     /**
-     * Sets the Application State.
+     * Sets the Algorithm State.
      *
-     * @param state The state of the Application.
+     * @param state The state of the Algorithm.
      */
-    public void setApplicationState(String state) {
+    public void setAlgorithmState(String state) {
         for (IAlgorithmStateChangedListener listener : this.algorithmStateListeners) {
             listener.stateChanged(state);
         }
@@ -133,7 +133,7 @@ public class ThreadDataAggregator {
         ThreadDataAggregator.abortAllThreads.set(false);
         ThreadDataAggregator.resultFound.set(false);
         ThreadDataAggregator.threadsWithResults = Collections.synchronizedList(new ArrayList());
-        this.setApplicationState(AlgorithmState.Waiting);
+        this.setAlgorithmState(AlgorithmState.Waiting);
     }
 
     /**

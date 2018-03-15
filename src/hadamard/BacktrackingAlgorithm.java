@@ -24,10 +24,10 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
     }
 
     private void startParallelSearch(int dimension, Matrix startMatrix) {
-        threadDataAggregator.setApplicationState(AlgorithmState.Running);
+        threadDataAggregator.setAlgorithmState(AlgorithmState.Running);
         if (dimension == 1) {
             threadDataAggregator.setResult(Thread.currentThread().getName(), new Matrix(dimension));
-            threadDataAggregator.setApplicationState(AlgorithmState.ResultFound);
+            threadDataAggregator.setAlgorithmState(AlgorithmState.ResultFound);
             return;
         }
         try {
@@ -101,7 +101,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
         this.precheckConditions();
         int nextColumnIndex = sourceMatrix.getNextUnsetColumnIndex();
         if (nextColumnIndex == -1) {
-            threadDataAggregator.setApplicationState(AlgorithmState.Validating);
+            threadDataAggregator.setAlgorithmState(AlgorithmState.Validating);
             // Validate
             Matrix transpose = sourceMatrix.transpose();
             int[][] result = sourceMatrix.times(transpose);

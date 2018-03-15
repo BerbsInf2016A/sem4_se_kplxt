@@ -24,7 +24,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
      * @param threadDataAggregator The Thread Data Aggregator.
      */
     public void run(ThreadDataAggregator threadDataAggregator)  {
-        threadDataAggregator.setApplicationState(AlgorithmState.Running);
+        threadDataAggregator.setAlgorithmState(AlgorithmState.Running);
         executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         SylvesterAlgorithm.threadDataAggregator = threadDataAggregator;
 
