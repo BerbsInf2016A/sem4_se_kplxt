@@ -10,7 +10,7 @@ import java.util.BitSet;
 public class MatrixTest {
 
     @Test
-    public void MatrixTest_Transpose() {
+    public void Matrix_Transpose() {
         Matrix testMatrix = new Matrix(4);
         testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1111", 2)).toByteArray()), 0);
         testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1100", 2)).toByteArray()), 1);
@@ -29,7 +29,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void MatrixTest_Equals() {
+    public void Matrix_Equals() {
         Matrix testMatrix = new Matrix(4);
         testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1001", 2)).toByteArray()), 0);
         testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("0000", 2)).toByteArray()), 1);
@@ -46,7 +46,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void MatrixTest_Times() {
+    public void Matrix_Times() {
         Matrix testMatrix1 = new Matrix(4);
         testMatrix1.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("0101", 2)).toByteArray()), 0);
         testMatrix1.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("0001", 2)).toByteArray()), 1);
@@ -67,7 +67,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void MatrixTest_IsIdentityTrue() {
+    public void Matrix_IsIdentityTrue() {
         BitSet firstColumn = new BitSet();
         firstColumn.set(0);
         firstColumn.set(1);
@@ -103,7 +103,7 @@ public class MatrixTest {
 
 
     @Test
-    public void MatrixTest_IsIdentityFalse() {
+    public void Matrix_IsIdentityFalse() {
         BitSet firstColumn = new BitSet();
         firstColumn.set(0);
         firstColumn.set(1);

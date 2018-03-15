@@ -25,13 +25,11 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
     }
 
     private void startParallelMatrixGeneration(int dimension) throws InterruptedException {
-        startSolving(true, dimension);
-        // TODO: Remove later
-        //startSolving(false, dimension);
+        startSolving(dimension);
     }
 
-    private Boolean startSolving(boolean startValue, int dimension) throws InterruptedException {
-        SylvesterMatrix result = new SylvesterMatrix(startValue);
+    private Boolean startSolving(int dimension) throws InterruptedException {
+        Matrix result = new Matrix(1);
         for(int i=0; i<Math.log(dimension)/Math.log(2); i++) {
             if (Configuration.instance.simulateSteps) {
                 threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
@@ -49,9 +47,9 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         return true;
     }
 
-    public SylvesterMatrix generateNextSizeMatrix(SylvesterMatrix source) {
+    public Matrix generateNextSizeMatrix(Matrix source) {
         this.precheckConditions();
-        SylvesterMatrix resultMatrix = new SylvesterMatrix(source.getDimension() * 2);
+        Matrix resultMatrix = new Matrix(source.getDimension() * 2);
 
         try {
             final List<Callable<List<ConcatenatedColumn>>> partitions = new ArrayList<>();
@@ -86,7 +84,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
         return resultMatrix;
     }
 
-    private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, SylvesterMatrix source) {
+    private List<ConcatenatedColumn> calculateRangeColumns(int startRange, int endRange, Matrix source) {
         List<ConcatenatedColumn> concatenatedColumns = new ArrayList<>();
         for(int i=startRange; i<endRange; i++) {
             this.precheckConditions();

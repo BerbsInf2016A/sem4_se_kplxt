@@ -14,7 +14,7 @@ public class SylvesterAlgorithmTest {
     }
 
     @Test
-    public void SylvesterAlgorithmTest_CanExecutorForDimension() {
+    public void SylvesterAlgorithm_CanExecutorForDimension() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
         testSylvesterAlgorithm.createExecutorPool();
 
@@ -32,13 +32,13 @@ public class SylvesterAlgorithmTest {
     }
 
     @Test
-    public void SylvesterMatrix_Two() {
+    public void SylvesterAlgorithm_Matrix_Two() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
         testSylvesterAlgorithm.createExecutorPool();
 
-        SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
+        Matrix Matrix = new Matrix(1);
 
-        SylvesterMatrix secondSylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(sylvesterMatrix);
+        Matrix secondMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
         BitSet firstColumn = new BitSet();
         firstColumn.set(0);
@@ -52,18 +52,18 @@ public class SylvesterAlgorithmTest {
         expectedMatrix.setColumn(firstColumn, 0);
         expectedMatrix.setColumn(secondColumn, 1);
 
-        Assert.assertTrue("Should be true.", expectedMatrix.equals(secondSylvesterMatrix));
+        Assert.assertTrue("Should be true.", expectedMatrix.equals(secondMatrix));
     }
 
     @Test
-    public void SylvesterMatrix_Four() {
+    public void SylvesterAlgorithm_Matrix_Four() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
         testSylvesterAlgorithm.createExecutorPool();
 
-        SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
+        Matrix Matrix = new Matrix(1);
 
-        SylvesterMatrix secondSylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(sylvesterMatrix);
-        SylvesterMatrix fourthSylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(secondSylvesterMatrix);
+        Matrix secondMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
+        Matrix fourthMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(secondMatrix);
 
         BitSet firstColumn = new BitSet();
         firstColumn.set(0);
@@ -95,59 +95,46 @@ public class SylvesterAlgorithmTest {
         expectedMatrix.setColumn(thirdColumn, 2);
         expectedMatrix.setColumn(fourthColumn, 3);
 
-        Assert.assertTrue("Should be true.", expectedMatrix.equals(fourthSylvesterMatrix));
-        Assert.assertTrue("Should be true.",  Helpers.isIdentity(fourthSylvesterMatrix.times(fourthSylvesterMatrix.transpose())));
+        Assert.assertTrue("Should be true.", expectedMatrix.equals(fourthMatrix));
+        Assert.assertTrue("Should be true.",  Helpers.isIdentity(fourthMatrix.times(fourthMatrix.transpose())));
     }
 
     @Test
-    public void SylvesterMatrix_EightIsHadamardWithStartValue1() {
+    public void SylvesterAlgorithm_Matrix_EightIsHadamard() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
         testSylvesterAlgorithm.createExecutorPool();
 
-        SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
+        Matrix Matrix = new Matrix(1);
 
         for(int i=0; i<3; i++)
-            sylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(sylvesterMatrix);
+            Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
-        Assert.assertTrue("Should be true.", Helpers.isIdentity(sylvesterMatrix.times(sylvesterMatrix.transpose())));
+        Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }
 
     @Test
-    public void SylvesterMatrix_EightIsHadamardWithStartValueMinus1() {
+    public void SylvesterAlgorithm_Matrix_SixteenIsHadamard() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
         testSylvesterAlgorithm.createExecutorPool();
 
-        SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(false);
-
-        for(int i=0; i<3; i++)
-            sylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(sylvesterMatrix);
-
-        Assert.assertTrue("Should be true.", Helpers.isIdentity(sylvesterMatrix.times(sylvesterMatrix.transpose())));
-    }
-
-    @Test
-    public void SylvesterMatrix_SixteenIsHadamardWithStartValue1() {
-        TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
-        testSylvesterAlgorithm.createExecutorPool();
-
-        SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
+        Matrix Matrix = new Matrix(1);
 
         for(int i=0; i<4; i++)
-            sylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(sylvesterMatrix);
+            Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
-        Assert.assertTrue("Should be true.", Helpers.isIdentity(sylvesterMatrix.times(sylvesterMatrix.transpose())));
+        Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }
 
     @Test
-    public void SylvesterMatrix_512IsHadamardWithStartValueMinus1() {
+    public void SylvesterAlgorithm_Matrix_512IsHadamard() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
         testSylvesterAlgorithm.createExecutorPool();
 
-        SylvesterMatrix sylvesterMatrix = new SylvesterMatrix(true);
+        Matrix Matrix = new Matrix(1);
 
         for(int i=0; i<9; i++)
-            sylvesterMatrix = testSylvesterAlgorithm.generateNextSizeMatrix(sylvesterMatrix);
+            Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
-        Assert.assertTrue("Should be true.", Helpers.isIdentity(sylvesterMatrix.times(sylvesterMatrix.transpose())));
+        Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }
 }
