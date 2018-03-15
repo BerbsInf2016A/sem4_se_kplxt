@@ -7,7 +7,7 @@ import java.util.BitSet;
 
 public class HelpersTest {
     @Test
-    public void HelpersTest_IsIdentity() {
+    public void Helpers_IsIdentity() {
         int[][] testMatrix = {{4, 0, 0, 0}, {0, 4, 0, 0}, {0, 0, 4, 0}, {0, 0, 0, 4}};
         Assert.assertTrue("Should be true.", Helpers.isIdentity(testMatrix));
 
@@ -22,7 +22,7 @@ public class HelpersTest {
     }
 
     @Test
-    public void HelpersTest_ConcatenateSets() {
+    public void Helpers_ConcatenateSets() {
         BitSet firstPart = new BitSet();
         for (int i = 0; i < 8; i += 2) {
             firstPart.set(i);
