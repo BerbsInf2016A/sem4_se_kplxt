@@ -35,13 +35,14 @@ public class ThreadDataAggregator {
             System.out.println(threadName + " setting result");
         }
         resultFound.set(true);
-        if (Configuration.instance.abortAfterFirstResult){
-            abortAllThreads.set(true);
-        }
+
         resultThreadName = threadName;
         resultMatrix = matrix;
 
         this.notifyResultFound(threadName, matrix);
+        if (Configuration.instance.abortAfterFirstResult){
+            abortAllThreads.set(true);
+        }
     }
 
     private void notifyResultFound(String threadName, Matrix matrix) {

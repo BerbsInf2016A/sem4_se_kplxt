@@ -4,6 +4,8 @@ import hadamard.Configuration;
 import hadamard.ThreadDataAggregator;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,8 +34,12 @@ public class HadamardController  implements Initializable, IFoundResultListener 
     @FXML
     private CheckBox simulateCheckBox;
 
+    @FXML
+    private CheckBox cancelAfterFirstResultCheckBox;
+
     private final SimpleBooleanProperty isRunning = new SimpleBooleanProperty(this, "isRunning");
     private final SimpleBooleanProperty simulateSteps = new SimpleBooleanProperty(this, "simulateSteps");
+    private final SimpleBooleanProperty cancelAfterFirstResult = new SimpleBooleanProperty(this, "cancelAfterFirstResult");
 
 
     private HadamardModel model;
@@ -123,7 +129,15 @@ public class HadamardController  implements Initializable, IFoundResultListener 
         this.simulateCheckBox.disableProperty().bind(this.isRunning);
         this.simulateCheckBox.selectedProperty().bindBidirectional(this.simulateSteps);
 
+        this.cancelAfterFirstResultCheckBox.disableProperty().bind(this.isRunning);
+        this.cancelAfterFirstResultCheckBox.selectedProperty().bindBidirectional(this.cancelAfterFirstResult);
+        this.cancelAfterFirstResult.set(Configuration.instance.abortAfterFirstResult);
 
+        this.cancelAfterFirstResult.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    Configuration.instance.abortAfterFirstResult = newValue;
+            }});
 
         model.getTabs().addListener(new ListChangeListener<Tab>() {
 
@@ -177,7 +191,9 @@ public class HadamardController  implements Initializable, IFoundResultListener 
                 .findFirst();
         if (optionalExistingTab.isPresent()){
             SingleSelectionModel<Tab> selectionModel = this.tabPane.getSelectionModel();
-            selectionModel.select(optionalExistingTab.get());
+            Tab tab = optionalExistingTab.get();
+            tab.setStyle("-fx-border-color:green; -fx-background-color: green;  -fx-font-weight: bold;");
+            selectionModel.select(tab);
         }
     }
 }

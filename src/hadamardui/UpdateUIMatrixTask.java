@@ -46,6 +46,8 @@ public class UpdateUIMatrixTask implements Runnable {
             //TODO Needed for canvas:
             Canvas canvas = UIHelpers.generateMatrixMatrixCanvas(changedMatrix);
             newTab.setContent(canvas);
+            if (this.matrixIsResult)
+                newTab.setStyle("-fx-border-color:green; -fx-background-color: green;  -fx-font-weight: bold;");
             this.tabs.add(newTab);
         }
     }
