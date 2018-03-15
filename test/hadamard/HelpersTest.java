@@ -3,9 +3,34 @@ package hadamard;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigInteger;
 import java.util.BitSet;
 
 public class HelpersTest {
+
+    @Test
+    public void Helpers_IsOrthogonal() {
+        BitSet firstColumn = Helpers.convertTo(BigInteger.valueOf(9));
+        BitSet secondColumn = Helpers.convertTo(BigInteger.valueOf(12));
+
+        Assert.assertTrue("Should be true.", Helpers.isOrthogonal(firstColumn, secondColumn, 2));
+
+        firstColumn = Helpers.convertTo(BigInteger.valueOf(14));
+        secondColumn = Helpers.convertTo(BigInteger.valueOf(15));
+
+        Assert.assertFalse("Should be false.", Helpers.isOrthogonal(firstColumn, secondColumn, 2));
+    }
+
+    @Test
+    public void Helpers_ConvertTo() {
+        BitSet bitset = Helpers.convertTo(BigInteger.valueOf(9));
+
+        Assert.assertEquals("Should be the same.", true, bitset.get(0));
+        Assert.assertEquals("Should be the same.", false, bitset.get(1));
+        Assert.assertEquals("Should be the same.", false, bitset.get(2));
+        Assert.assertEquals("Should be the same.", true, bitset.get(3));
+    }
+
     @Test
     public void Helpers_IsIdentity() {
         int[][] testMatrix = {{4, 0, 0, 0}, {0, 4, 0, 0}, {0, 0, 4, 0}, {0, 0, 0, 4}};
