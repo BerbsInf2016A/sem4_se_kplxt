@@ -13,6 +13,51 @@ public class SylvesterAlgorithmTest {
         }
     }
 
+    private class TestMatrixListener implements IMatrixChangedListener {
+        private Matrix matrix;
+        private boolean resultFound = false;
+
+        public Matrix getMatrix() {
+            return matrix;
+        }
+
+        public boolean isResultFound() {
+            return resultFound;
+        }
+
+        public void matrixChanged(String threadName, Matrix changedMatrix) {
+            this.matrix = changedMatrix;
+        }
+
+        public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
+        }
+
+        public void resultFound(String threadName, Matrix changedMatrix) {
+            this.matrix = changedMatrix;
+            this.resultFound = true;
+        }
+    }
+
+    @Test
+    public void SylvesterAlgorithm_RunsForDimensionEightAndReturnsValidResult() {
+        SylvesterAlgorithm sylvesterAlgorithm = new SylvesterAlgorithm();
+        Configuration.instance.dimension = 8;
+        TestMatrixListener testMatrixListener = new TestMatrixListener();
+
+        ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
+        threadDataAggregator.registerListener(testMatrixListener);
+
+        sylvesterAlgorithm.run(threadDataAggregator);
+
+        Assert.assertTrue("Should be true.", testMatrixListener.isResultFound());
+
+        Matrix resultMatrix = testMatrixListener.getMatrix();
+
+        Assert.assertTrue("Should be true", Helpers.isIdentity(resultMatrix.times(resultMatrix.transpose())));
+
+        threadDataAggregator.reset();
+    }
+
     @Test
     public void SylvesterAlgorithm_CanExecutorForDimension() {
         TestSylvesterAlgorithm testSylvesterAlgorithm = new TestSylvesterAlgorithm();
