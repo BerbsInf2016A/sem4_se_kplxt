@@ -8,36 +8,29 @@ import java.util.concurrent.Executors;
 
 public class SylvesterAlgorithmStrategyTest {
 
+    /**
+     * A SylvesterAlgorithmStrategy for tests.
+     */
     private class TestSylvesterAlgorithmStrategy extends SylvesterAlgorithmStrategy {
+
+        /**
+         * Set the aggregator.
+         *
+         * @param aggregator The aggregator to set.
+         */
+        public void setAggregator(ThreadDataAggregator aggregator){
+            this.threadDataAggregator = aggregator;
+        }
+
+        /**
+         * Create the executor pool.
+         */
         private void createExecutorPool() {
             executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         }
     }
 
-    private class TestMatrixListener implements IMatrixChangedListener {
-        private Matrix matrix;
-        private boolean resultFound = false;
 
-        public Matrix getMatrix() {
-            return matrix;
-        }
-
-        public boolean isResultFound() {
-            return resultFound;
-        }
-
-        public void matrixChanged(String threadName, Matrix changedMatrix) {
-            this.matrix = changedMatrix;
-        }
-
-        public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
-        }
-
-        public void resultFound(String threadName, Matrix changedMatrix) {
-            this.matrix = changedMatrix;
-            this.resultFound = true;
-        }
-    }
 
     @Test
     public void SylvesterAlgorithm_RunsForDimensionEightAndReturnsValidResult() {
@@ -52,7 +45,7 @@ public class SylvesterAlgorithmStrategyTest {
 
         Assert.assertTrue("Should be true.", testMatrixListener.isResultFound());
 
-        Matrix resultMatrix = testMatrixListener.getMatrix();
+        Matrix resultMatrix = (Matrix)testMatrixListener.getResultMatrices().stream().toArray()[0];
 
         Assert.assertTrue("Should be true", Helpers.isIdentity(resultMatrix.times(resultMatrix.transpose())));
 
@@ -82,6 +75,7 @@ public class SylvesterAlgorithmStrategyTest {
     public void SylvesterAlgorithm_Matrix_Two() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
+        testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
 
         Matrix Matrix = new Matrix(1);
 
@@ -106,6 +100,7 @@ public class SylvesterAlgorithmStrategyTest {
     public void SylvesterAlgorithm_Matrix_Four() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
+        testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
 
         Matrix Matrix = new Matrix(1);
 
@@ -151,6 +146,7 @@ public class SylvesterAlgorithmStrategyTest {
     public void SylvesterAlgorithm_Matrix_EightIsHadamard() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
+        testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
 
         Matrix Matrix = new Matrix(1);
 
@@ -165,6 +161,7 @@ public class SylvesterAlgorithmStrategyTest {
     public void SylvesterAlgorithm_Matrix_SixteenIsHadamard() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
+        testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
 
         Matrix Matrix = new Matrix(1);
 
@@ -180,6 +177,7 @@ public class SylvesterAlgorithmStrategyTest {
     public void SylvesterAlgorithm_Matrix_512IsHadamard() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
+        testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
 
         Matrix Matrix = new Matrix(1);
 

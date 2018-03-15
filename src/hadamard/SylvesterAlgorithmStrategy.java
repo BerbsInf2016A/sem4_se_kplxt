@@ -12,7 +12,7 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
     /**
      * The Thread Data Aggregator.
      */
-    private ThreadDataAggregator threadDataAggregator;
+    protected ThreadDataAggregator threadDataAggregator;
     /**
      * The Executor Pool.
      */

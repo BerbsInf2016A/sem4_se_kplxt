@@ -3,6 +3,9 @@ package hadamard;
 import java.math.BigInteger;
 import java.util.BitSet;
 
+/**
+ * Contains helper methods.
+ */
 public class Helpers {
     /**
      * Checks if the Matrix is an identity Matrix.

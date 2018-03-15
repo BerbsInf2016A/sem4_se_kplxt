@@ -14,15 +14,15 @@ public class ThreadDataAggregator {
     /**
      * Boolean indicating if the Thread found a Valid Result.
      */
-    public static AtomicBoolean resultFound = new AtomicBoolean();
+    public AtomicBoolean resultFound = new AtomicBoolean();
     /**
      * Boolean indicating if all the Threads need to be aborted.
      */
-    public static AtomicBoolean abortAllThreads = new AtomicBoolean();
+    public AtomicBoolean abortAllThreads = new AtomicBoolean();
     /**
      * List of all Thread names that have found an Result.
      */
-    public static List<String> threadsWithResults = Collections.synchronizedList(new ArrayList());
+    public List<String> threadsWithResults = Collections.synchronizedList(new ArrayList());
 
     /**
      * List of the Matrix Changed listeners.
@@ -75,7 +75,10 @@ public class ThreadDataAggregator {
      * @param threadName The name of the Thread.
      * @param matrix The Result Matrix.
      */
-    public void setResult(String threadName, Matrix matrix) {
+    public synchronized void setResult(String threadName, Matrix matrix) {
+        if (resultFound.get() && Configuration.instance.abortAfterFirstResult)
+            return;
+
         if (Configuration.instance.printDebugMessages) {
             System.out.println(threadName + " setting result");
         }
@@ -130,9 +133,9 @@ public class ThreadDataAggregator {
      * Resets all flags and the Application state.
      */
     public void reset() {
-        ThreadDataAggregator.abortAllThreads.set(false);
-        ThreadDataAggregator.resultFound.set(false);
-        ThreadDataAggregator.threadsWithResults = Collections.synchronizedList(new ArrayList());
+        this.abortAllThreads.set(false);
+        this.resultFound.set(false);
+        this.threadsWithResults = Collections.synchronizedList(new ArrayList());
         this.setAlgorithmState(AlgorithmState.Waiting);
     }
 

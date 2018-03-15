@@ -3,30 +3,30 @@ package hadamard;
 import java.util.BitSet;
 
 /**
- * Interface for the Matrix Changed Listener.
+ * Interface for the matrix changed listener.
  */
 public interface IMatrixChangedListener {
     /**
-     * Updates the Matrix for changes.
+     * Updates the matrix for changes.
      *
-     * @param threadName The name of the Thread.
-     * @param changedMatrix The changed Matrix.
+     * @param threadName The name of the thread.
+     * @param changedMatrix The changed matrix.
      */
     void matrixChanged(String threadName, Matrix changedMatrix);
 
     /**
-     * Updates the Matrix Column for changes.
+     * Updates the matrix column for changes.
      *
      * @param threadName The name of the thread.
-     * @param columnIndex The Column index.
-     * @param column The Column.
+     * @param columnIndex The column index.
+     * @param column The column.
      */
     void matrixColumnChanged(String threadName, int columnIndex, BitSet column);
 
     /**
-     * Sets the result Matrix.
-     * @param threadName The Thread Name.
-     * @param resultMatrix The result Matrix.
+     * Sets the result matrix.
+     * @param threadName The thread name.
+     * @param resultMatrix The result matrix.
      */
     void resultFound(String threadName, Matrix resultMatrix);
 }
