@@ -217,26 +217,8 @@ public class Matrix {
         return nextUnsetColumnIndex;
     }
 
-    public String getDebugStringRepresentation() {
-        String separator = System.getProperty("line.separator");
-        StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < this.dimension; row++) {
-            for (int column = 0; column < this.dimension; column++) {
-                if (column == 0) {
-                    String value = this.columns[column].get(row) ? " 1" : "-1";
-                    sb.append(value);
-                } else {
-                    String value = this.columns[column].get(row) ? " 1" : "-1";
-                    sb.append(" ").append(value);
-                }
-            }
-            sb.append(separator);
-        }
-        return sb.toString();
-    }
-
     /**
-     * Gets the String Representation of the Matrix.
+     * Gets the String Representation of the Matrix for the UI.
      *
      * @return The String Representation of the Matrix.
      */

@@ -64,7 +64,7 @@ public class SylvesterAlgorithm implements IHadamardStrategy {
 
         if (Configuration.instance.printDebugMessages) {
             System.out.println("Found for dimension: " + Configuration.instance.dimension);
-            System.out.println(result.getDebugStringRepresentation());
+            System.out.println(result.getUIDebugStringRepresentation());
         }
 
         SylvesterAlgorithm.threadDataAggregator.setResult(Thread.currentThread().getName(), result);

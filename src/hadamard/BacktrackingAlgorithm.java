@@ -108,7 +108,7 @@ public class BacktrackingAlgorithm implements IHadamardStrategy {
             if (Helpers.isIdentity(result)) {
                 if (Configuration.instance.printDebugMessages) {
                     System.out.println("Found for dimension: " + Configuration.instance.dimension);
-                    System.out.println(sourceMatrix.getDebugStringRepresentation());
+                    System.out.println(sourceMatrix.getUIDebugStringRepresentation());
                 }
                 threadDataAggregator.setResult(Thread.currentThread().getName(), sourceMatrix);
                 return true;
