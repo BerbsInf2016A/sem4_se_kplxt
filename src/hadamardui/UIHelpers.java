@@ -4,6 +4,7 @@ import hadamard.Matrix;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Tab;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -107,5 +108,9 @@ public class UIHelpers {
             }
         }
         return canvas;
+    }
+
+    public static void setResultTabStyle(Tab tab) {
+        tab.setStyle(UIConfiguration.instance.ResultTabStyle);
     }
 }
