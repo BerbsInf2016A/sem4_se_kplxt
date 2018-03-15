@@ -7,5 +7,5 @@ public enum UIConfiguration {
 
     public static ReadOnlyDoubleProperty tabPaneWidthProperty;
     public static ReadOnlyDoubleProperty tabPaneHeightProperty;
-
+    public final static int MaxDimension = 668;
 }
