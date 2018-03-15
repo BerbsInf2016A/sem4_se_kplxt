@@ -10,6 +10,19 @@ import java.util.BitSet;
 public class MatrixTest {
 
     @Test
+    public void Matrix_CloneConstructor() {
+        Matrix testMatrix = new Matrix(4);
+        testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1111", 2)).toByteArray()), 0);
+        testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1100", 2)).toByteArray()), 1);
+        testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1110", 2)).toByteArray()), 2);
+        testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1011", 2)).toByteArray()), 3);
+
+        Matrix newMatrix = new Matrix(testMatrix);
+
+        Assert.assertTrue("Should be true.", newMatrix.equals(testMatrix));
+    }
+
+    @Test
     public void Matrix_Transpose() {
         Matrix testMatrix = new Matrix(4);
         testMatrix.setColumn(BitSet.valueOf(BigInteger.valueOf(Integer.parseInt("1111", 2)).toByteArray()), 0);
