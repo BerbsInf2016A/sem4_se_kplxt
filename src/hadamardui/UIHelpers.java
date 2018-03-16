@@ -64,7 +64,7 @@ public class UIHelpers {
                 rec.yProperty().bind(rec.heightProperty().multiply(row));
 
                 // Draw the rectangle on the canvas.
-                CellValue value = getCellValue(row, column, matrix);
+                HadamardCellValue value = getCellValue(row, column, matrix);
                 drawRectangleForColor(graphicContext, rec, value);
             }
         }
@@ -79,7 +79,7 @@ public class UIHelpers {
      * @param rec The rectangle to draw.
      * @param value The represented value.
      */
-    private static void drawRectangleForColor(GraphicsContext graphicContext, Rectangle rec, CellValue value) {
+    private static void drawRectangleForColor(GraphicsContext graphicContext, Rectangle rec, HadamardCellValue value) {
         switch (value) {
             case Positive:
                 drawRectangle(graphicContext, rec, Color.BLACK);
@@ -101,13 +101,13 @@ public class UIHelpers {
      * @param matrix The matrix containing the cell.
      * @return The value of the cell.
      */
-    private static CellValue getCellValue(int row, int column, Matrix matrix) {
+    private static HadamardCellValue getCellValue(int row, int column, Matrix matrix) {
         int nextColumnIndex = matrix.getNextUnsetColumnIndex();
         if (column >= nextColumnIndex && nextColumnIndex != -1)
-            return CellValue.Unset;
+            return HadamardCellValue.Unset;
 
         boolean value = matrix.getColumns()[column].get(row);
-        return value ? CellValue.Positive : CellValue.Negative;
+        return value ? HadamardCellValue.Positive : HadamardCellValue.Negative;
     }
 
     /**
@@ -117,10 +117,10 @@ public class UIHelpers {
      * @param column The column to extract the value from.
      * @return The value of the cell.
      */
-    private static CellValue getCellValue(Integer rowIndex, BitSet column) {
+    private static HadamardCellValue getCellValue(Integer rowIndex, BitSet column) {
         boolean value = column.get(rowIndex);
-        if (value) return CellValue.Positive;
-        return CellValue.Negative;
+        if (value) return HadamardCellValue.Positive;
+        return HadamardCellValue.Negative;
     }
 
     /**
@@ -144,7 +144,7 @@ public class UIHelpers {
             rec.yProperty().bind(rec.heightProperty().multiply(row));
 
 
-            CellValue value = getCellValue(row, column);
+            HadamardCellValue value = getCellValue(row, column);
             drawRectangleForColor(graphicContext, rec, value);
         }
         return canvas;
@@ -156,6 +156,6 @@ public class UIHelpers {
      * @param tab The tab to set the style to.
      */
     public static void setResultTabStyle(Tab tab) {
-        tab.setStyle(UIConfiguration.instance.ResultTabStyle);
+        tab.setStyle(UIConfiguration.instance.resultTabStyle);
     }
 }

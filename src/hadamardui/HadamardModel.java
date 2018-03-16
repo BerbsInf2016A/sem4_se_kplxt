@@ -146,7 +146,7 @@ public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateCha
         // There is no try-parse in java....
         try {
             int value = Integer.parseInt(this.dimension.get());
-            if (value > 0 && value <= UIConfiguration.MaxDimension) {
+            if (value > 0 && value <= UIConfiguration.maxDimension) {
                 this.canExecute.set(context.canExecuteForDimension(value));
             } else {
                 this.canExecute.set(false);
