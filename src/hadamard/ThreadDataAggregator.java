@@ -14,24 +14,24 @@ public class ThreadDataAggregator {
     /**
      * Boolean indicating if the Thread found a Valid Result.
      */
-    public AtomicBoolean resultFound = new AtomicBoolean();
+    public final AtomicBoolean resultFound = new AtomicBoolean();
     /**
      * Boolean indicating if all the Threads need to be aborted.
      */
-    public AtomicBoolean abortAllThreads = new AtomicBoolean();
+    public final AtomicBoolean abortAllThreads = new AtomicBoolean();
     /**
      * List of all Thread names that have found an Result.
      */
-    public List<String> threadsWithResults = Collections.synchronizedList(new ArrayList());
+    public List<String> threadsWithResults = Collections.synchronizedList(new ArrayList<String>());
 
     /**
      * List of the Matrix Changed listeners.
      */
-    private List<IMatrixChangedListener> matrixChangedListeners;
+    private final List<IMatrixChangedListener> matrixChangedListeners;
     /**
      * List of the Algorithm State listeners.
      */
-    private List<IAlgorithmStateChangedListener> algorithmStateListeners;
+    private final List<IAlgorithmStateChangedListener> algorithmStateListeners;
 
     /**
      * Constructor for the Thread Data Aggregator.
@@ -135,7 +135,7 @@ public class ThreadDataAggregator {
     public void reset() {
         this.abortAllThreads.set(false);
         this.resultFound.set(false);
-        this.threadsWithResults = Collections.synchronizedList(new ArrayList());
+        this.threadsWithResults = Collections.synchronizedList(new ArrayList<String>());
         this.setAlgorithmState(AlgorithmState.Waiting);
     }
 

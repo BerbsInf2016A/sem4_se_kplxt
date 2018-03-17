@@ -29,5 +29,5 @@ public enum UIConfiguration {
     /**
      * The style which should be set for a tab, which contains a result.
      */
-    public String resultTabStyle = "-fx-border-color:green; -fx-background-color: green;  -fx-font-weight: bold;";
+    public final String resultTabStyle = "-fx-border-color:green; -fx-background-color: green;  -fx-font-weight: bold;";
 }

@@ -50,11 +50,9 @@ public class UpdateUIMatrixColumnTask implements Runnable {
         Optional<Tab> optionalExistingTab = this.tabs.stream().filter(t -> t.getText().equalsIgnoreCase(threadName))
                 .findFirst();
         // Tab exists -> update. Tabs should already be created by another task.
-        if (optionalExistingTab.isPresent()) {
-            Tab tab = optionalExistingTab.get();
-            if (tab.getContent() != null) {
+        optionalExistingTab.ifPresent(tab -> {
+            if (tab.getContent() != null)
                 tab.setContent(UIHelpers.updateTabCanvasContent(tab.getContent(), columnIndex, column));
-            }
-        }
+        });
     }
 }

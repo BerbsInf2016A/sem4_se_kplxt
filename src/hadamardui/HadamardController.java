@@ -202,9 +202,7 @@ public class HadamardController implements Initializable, IFoundResultListener {
 
         // Add the bindings and listeners:
         this.dimension.textProperty().bindBidirectional(model.dimensionProperty());
-        this.dimension.textProperty().addListener((observable, oldValue, newValue) -> {
-            model.updateContext();
-        });
+        this.dimension.textProperty().addListener((observable, oldValue, newValue) -> model.updateContext());
 
         this.startButton.disableProperty().bind(Bindings.or(model.canExecuteProperty().not(), this.isRunning));
 
@@ -261,11 +259,10 @@ public class HadamardController implements Initializable, IFoundResultListener {
         this.isRunning.set(false);
         Optional<Tab> optionalExistingTab = this.tabPane.getTabs().stream().filter(t -> t.getText().equalsIgnoreCase(threadName))
                 .findFirst();
-        if (optionalExistingTab.isPresent()) {
+        optionalExistingTab.ifPresent(tab -> {
             SingleSelectionModel<Tab> selectionModel = this.tabPane.getSelectionModel();
-            Tab tab = optionalExistingTab.get();
             tab.setStyle(UIConfiguration.instance.resultTabStyle);
             selectionModel.select(tab);
-        }
+        });
     }
 }

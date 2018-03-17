@@ -86,10 +86,12 @@ public class ThreadDataAggregatorTest {
 
     @Test
     public void ThreadDataAggregator_ThreadAlreadyFoundResult() {
+        Assert.assertTrue(false);
     }
 
     @Test
     public void ThreadDataAggregator_Reset() {
+        Assert.assertTrue(false);
     }
 
     private class TestAlgorithmStateChangedListener implements IAlgorithmStateChangedListener {

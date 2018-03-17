@@ -21,7 +21,7 @@ public class SylvesterAlgorithmStrategyTest {
 
         Assert.assertTrue("Should be true.", testMatrixListener.isResultFound());
 
-        Matrix resultMatrix = (Matrix) testMatrixListener.getResultMatrices().stream().toArray()[0];
+        Matrix resultMatrix = (Matrix) testMatrixListener.getResultMatrices().toArray()[0];
 
         Assert.assertTrue("Should be true", Helpers.isIdentity(resultMatrix.times(resultMatrix.transpose())));
 

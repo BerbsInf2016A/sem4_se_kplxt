@@ -11,7 +11,7 @@ public class TestMatrixListener implements IMatrixChangedListener {
     /**
      * The result matrices.
      */
-    private List<Matrix> resultMatrices = new ArrayList<>();
+    private final List<Matrix> resultMatrices = new ArrayList<>();
     /**
      * True if a result is set.
      */
@@ -20,7 +20,7 @@ public class TestMatrixListener implements IMatrixChangedListener {
     /**
      * Get the result matrices.
      *
-     * @return
+     * @return The result matrices.
      */
     public List<Matrix> getResultMatrices() {
         return resultMatrices;

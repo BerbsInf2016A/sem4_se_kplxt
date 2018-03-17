@@ -173,11 +173,11 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
         /**
          * The column.
          */
-        BitSet column;
+        final BitSet column;
         /**
          * The index of the column.
          */
-        int columnIndex;
+        final int columnIndex;
 
         /**
          * for the IndexedColumn

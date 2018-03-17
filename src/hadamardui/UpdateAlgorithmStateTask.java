@@ -32,6 +32,6 @@ public class UpdateAlgorithmStateTask implements Runnable {
      */
     @Override
     public void run() {
-        this.algorithmState.set(newState.toString());
+        this.algorithmState.set(newState);
     }
 }

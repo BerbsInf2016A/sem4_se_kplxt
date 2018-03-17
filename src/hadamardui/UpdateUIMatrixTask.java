@@ -22,11 +22,11 @@ public class UpdateUIMatrixTask implements Runnable {
     /**
      * The tabs to select the tab to update from.
      */
-    private ObservableList<Tab> tabs;
+    private final ObservableList<Tab> tabs;
     /**
      * True, if the matrix is a result, false if not.
      */
-    private boolean matrixIsResult;
+    private final boolean matrixIsResult;
 
     /**
      * Constructor for the UpdateUIMatrixTask.

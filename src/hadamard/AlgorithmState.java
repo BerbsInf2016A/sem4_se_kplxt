@@ -7,17 +7,17 @@ public class AlgorithmState {
     /**
      * Represents the Running State.
      */
-    public static String Running = "Running";
+    public static final String Running = "Running";
     /**
      * Represents the Validating State.
      */
-    public static String Validating = "Validating";
+    public static final String Validating = "Validating";
     /**
      * Represents the Result Found State.
      */
-    public static String ResultFound = "Result found";
+    public static final String ResultFound = "Result found";
     /**
      * Represents the Waiting State.
      */
-    public static String Waiting = "Waiting";
+    public static final String Waiting = "Waiting";
 }

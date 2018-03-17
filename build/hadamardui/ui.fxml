@@ -2,34 +2,30 @@
 
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="973.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="hadamardui.HadamardController">
-    <children>
-        <TabPane fx:id="tabPane" layoutY="34.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0"
-                 AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="45.0">
-            <tabs>
-            </tabs>
-        </TabPane>
-        <Label layoutX="8.0" layoutY="6.0" text="Dimension:"/>
-        <TextField fx:id="dimension" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0"/>
-        <Button fx:id="startButton" layoutX="178.0" layoutY="2.0" mnemonicParsing="false" onAction="#startButtonClicked"
-                text="Start"/>
-        <Button layoutX="235.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel"/>
-        <ChoiceBox fx:id="strategyChoiceBox" layoutX="300.0" layoutY="2.0" onAction="#choiceMade" prefWidth="150.0"
-                   value="Sylvester">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Sylvester"/>
-                    <String fx:value="Backtracking"/>
-                </FXCollections>
-            </items>
-        </ChoiceBox>
-        <CheckBox fx:id="simulateCheckBox" layoutX="470.0" layoutY="6.0" mnemonicParsing="false" text="Simulate steps"/>
-        <CheckBox fx:id="cancelAfterFirstResultCheckBox" layoutX="583.0" layoutY="6.0" mnemonicParsing="false"
-                  text="Cancel thread after first result"/>
-        <Label layoutX="771.0" layoutY="6.0" text="Application state:"/>
-        <Label fx:id="algorithmState" layoutX="870.0" layoutY="6.0" prefHeight="17.0" prefWidth="75.0"/>
-    </children>
+    <TabPane fx:id="tabPane" layoutY="34.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0"
+             AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="45.0">
+    </TabPane>
+    <Label layoutX="8.0" layoutY="6.0" text="Dimension:"/>
+    <TextField fx:id="dimension" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0"/>
+    <Button fx:id="startButton" layoutX="178.0" layoutY="2.0" mnemonicParsing="false" onAction="#startButtonClicked"
+            text="Start"/>
+    <Button layoutX="235.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel"/>
+    <ChoiceBox fx:id="strategyChoiceBox" layoutX="300.0" layoutY="2.0" onAction="#choiceMade" prefWidth="150.0"
+               value="Sylvester">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Sylvester"/>
+                <String fx:value="Backtracking"/>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <CheckBox fx:id="simulateCheckBox" layoutX="470.0" layoutY="6.0" mnemonicParsing="false" text="Simulate steps"/>
+    <CheckBox fx:id="cancelAfterFirstResultCheckBox" layoutX="583.0" layoutY="6.0" mnemonicParsing="false"
+              text="Cancel thread after first result"/>
+    <Label layoutX="771.0" layoutY="6.0" text="Application state:"/>
+    <Label fx:id="algorithmState" layoutX="870.0" layoutY="6.0" prefHeight="17.0" prefWidth="75.0"/>
 </AnchorPane>
