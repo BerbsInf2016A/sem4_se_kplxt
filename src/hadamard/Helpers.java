@@ -41,27 +41,11 @@ public class Helpers {
      * @return The resulting BitSet.
      */
     public static BitSet convertTo(BigInteger bi) {
-
-        // TODO: Both variants seem to work. The first one seems to be faster than the second one. This needs to be tested.
-
-        return BitSet.valueOf(reverse(bi.toByteArray()));
-/*
         BitSet set = new BitSet();
         for (int i = 0; i < Configuration.instance.dimension; i++) {
             set.set(i, bi.testBit(i));
         }
         return set;
-        */
-
-    }
-
-    private static byte[] reverse(byte[] bytes) {
-        for (int i = 0; i < bytes.length / 2; i++) {
-            byte temp = bytes[i];
-            bytes[i] = bytes[bytes.length - i - 1];
-            bytes[bytes.length - i - 1] = temp;
-        }
-        return bytes;
     }
 
     /**
