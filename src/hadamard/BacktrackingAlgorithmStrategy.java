@@ -4,7 +4,12 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A backtracking algorithm to find Hadamard matrices.
@@ -42,7 +47,7 @@ public class BacktrackingAlgorithmStrategy implements IHadamardStrategy {
     /**
      * Start the search with multiple threads.
      *
-     * @param dimension The dimension to search for.
+     * @param dimension   The dimension to search for.
      * @param startMatrix The start matrix.
      */
     private void startParallelSearch(int dimension, Matrix startMatrix) {
@@ -99,8 +104,8 @@ public class BacktrackingAlgorithmStrategy implements IHadamardStrategy {
      * Start the solving for a given matrix in a given range.
      *
      * @param startMatrix The matrix to start the search on.
-     * @param from The lower limit of the search range.
-     * @param end The upper limit of the search range.
+     * @param from        The lower limit of the search range.
+     * @param end         The upper limit of the search range.
      * @return True if a result was found, false if not.
      * @throws InterruptedException Can be thrown if the thread is interrupted.
      */
@@ -185,9 +190,9 @@ public class BacktrackingAlgorithmStrategy implements IHadamardStrategy {
     /**
      * Simulate a step for the UI.
      *
-     * @param name The name of the thread.
-     * @param newMatrix The new matrix to show on the ui.
-     * @param column The new column to set.
+     * @param name            The name of the thread.
+     * @param newMatrix       The new matrix to show on the ui.
+     * @param column          The new column to set.
      * @param nextColumnIndex The index of the column to set.
      * @throws InterruptedException Can be thrown if the thread is interrupted.
      */
@@ -221,8 +226,8 @@ public class BacktrackingAlgorithmStrategy implements IHadamardStrategy {
     /**
      * Check if a column is orthogonal to all existing columns.
      *
-     * @param columns The existing columns.
-     * @param newColumn The new column to check against the existing columns.
+     * @param columns           The existing columns.
+     * @param newColumn         The new column to check against the existing columns.
      * @param targetColumnIndex The index for the new column.
      * @return True of the new column is orthogonal to all existing columns, false if not.
      */

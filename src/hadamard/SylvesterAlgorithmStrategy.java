@@ -3,7 +3,12 @@ package hadamard;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Class for the Sylvester Algorithm.
@@ -23,7 +28,7 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
      *
      * @param threadDataAggregator The Thread Data Aggregator.
      */
-    public void run(ThreadDataAggregator threadDataAggregator)  {
+    public void run(ThreadDataAggregator threadDataAggregator) {
         threadDataAggregator.setAlgorithmState(AlgorithmState.Running);
         executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
         this.threadDataAggregator = threadDataAggregator;
@@ -55,7 +60,7 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
      */
     private void startSolving(int dimension) throws InterruptedException {
         Matrix result = new Matrix(1);
-        for (int i=0; i<Math.log(dimension)/Math.log(2); i++) {
+        for (int i = 0; i < Math.log(dimension) / Math.log(2); i++) {
             if (Configuration.instance.simulateSteps) {
                 threadDataAggregator.updateMatrix(Thread.currentThread().getName(), result);
                 Thread.sleep(Configuration.instance.simulationStepDelayInMS);
@@ -86,14 +91,14 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
             final int threads = Configuration.instance.maximumNumberOfThreads;
 
             // Splits the Generation of the Columns for the new Matrix into parts, so every thread can do a specific range.
-            int rangeDivisor = resultMatrix.getDimension()/threads;
+            int rangeDivisor = resultMatrix.getDimension() / threads;
             // If the dimension cannot be split evenly between every thread, the reminding columns will be done separately.
             int moduloRange = resultMatrix.getDimension() % threads;
             int startValue = 0;
 
             // Splits up the generation between the threads.
             if (resultMatrix.getDimension() >= threads)
-                for(int i=0; i<threads; i++) {
+                for (int i = 0; i < threads; i++) {
                     final int startRange = startValue;
                     partitions.add(() -> calculateRangeColumns(startRange, rangeDivisor + startRange, source));
                     startValue += rangeDivisor;
@@ -125,16 +130,16 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
      * as it is a requirement for the Sylvester algorithm to work.
      *
      * @param startRange The start of the range.
-     * @param endRange The end of the range.
-     * @param source The source matrix.
+     * @param endRange   The end of the range.
+     * @param source     The source matrix.
      * @return List of indexed columns, consisting of the column and the index position in the new matrix.
      */
     private List<IndexedColumn> calculateRangeColumns(int startRange, int endRange, Matrix source) {
         List<IndexedColumn> indexedColumns = new ArrayList<>();
-        for(int i=startRange; i<endRange; i++) {
+        for (int i = startRange; i < endRange; i++) {
             this.preCheckConditions();
 
-            if(i < source.getDimension()) {
+            if (i < source.getDimension()) {
                 BitSet newColumn = Helpers.concatenateSets(source.getColumns()[i], source.getColumns()[i], source.getDimension());
                 indexedColumns.add(new IndexedColumn(newColumn, i));
             } else {
@@ -175,9 +180,9 @@ public class SylvesterAlgorithmStrategy implements IHadamardStrategy {
         int columnIndex;
 
         /**
-         *  for the IndexedColumn
+         * for the IndexedColumn
          *
-         * @param column The column.
+         * @param column      The column.
          * @param columnIndex The index of the column.
          */
         public IndexedColumn(BitSet column, int columnIndex) {

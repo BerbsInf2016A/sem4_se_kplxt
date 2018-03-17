@@ -7,15 +7,13 @@ public enum Configuration {
     instance;
 
     /**
-     * The Maximum Number of threads available.
-     */
-    final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
-
-    /**
      * The Timeout value.
      */
     public final long maxTimeOutInSeconds = Integer.MAX_VALUE;
-
+    /**
+     * The Maximum Number of threads available.
+     */
+    final int maximumNumberOfThreads = Runtime.getRuntime().availableProcessors();
     /**
      * The dimension of the Matrix to generate.
      */

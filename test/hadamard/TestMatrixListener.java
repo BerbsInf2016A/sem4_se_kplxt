@@ -19,6 +19,7 @@ public class TestMatrixListener implements IMatrixChangedListener {
 
     /**
      * Get the result matrices.
+     *
      * @return
      */
     public List<Matrix> getResultMatrices() {
@@ -37,7 +38,7 @@ public class TestMatrixListener implements IMatrixChangedListener {
     /**
      * Called when a matrix is changed.
      *
-     * @param threadName The name of the Thread.
+     * @param threadName    The name of the Thread.
      * @param changedMatrix The changed Matrix.
      */
     public void matrixChanged(String threadName, Matrix changedMatrix) {
@@ -47,9 +48,9 @@ public class TestMatrixListener implements IMatrixChangedListener {
     /**
      * Called when a column of a matrix is changed.
      *
-     * @param threadName The name of the thread.
+     * @param threadName  The name of the thread.
      * @param columnIndex The Column index.
-     * @param column The Column.
+     * @param column      The Column.
      */
     public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
     }
@@ -57,7 +58,7 @@ public class TestMatrixListener implements IMatrixChangedListener {
     /**
      * Called when a result has been found.
      *
-     * @param threadName The Thread Name.
+     * @param threadName    The Thread Name.
      * @param changedMatrix The result matrix.
      */
     public void resultFound(String threadName, Matrix changedMatrix) {

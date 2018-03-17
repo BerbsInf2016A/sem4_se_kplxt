@@ -4,14 +4,20 @@ import hadamard.Configuration;
 import hadamard.ThreadDataAggregator;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
@@ -186,7 +192,7 @@ public class HadamardController implements Initializable, IFoundResultListener {
     /**
      * Initialize the ui elements.
      *
-     * @param url The url.
+     * @param url            The url.
      * @param resourceBundle The resource bundle.
      */
     @Override
@@ -227,7 +233,7 @@ public class HadamardController implements Initializable, IFoundResultListener {
     /**
      * Handles adding and removing of tabs.
      *
-     * @param change The change, which occurred.
+     * @param change  The change, which occurred.
      * @param tabPane The tabPane to act on.
      */
     private void handleChangeModelTab(ListChangeListener.Change<? extends Tab> change, TabPane tabPane) {

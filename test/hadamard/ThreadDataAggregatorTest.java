@@ -1,6 +1,5 @@
 package hadamard;
 
-import com.sun.glass.ui.Application;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,44 +7,6 @@ import java.math.BigInteger;
 import java.util.BitSet;
 
 public class ThreadDataAggregatorTest {
-
-    private class TestAlgorithmStateChangedListener implements IAlgorithmStateChangedListener {
-        private String state;
-
-        public String getState() {
-            return state;
-        }
-
-        public void stateChanged(String newState) {
-            this.state = newState;
-        }
-    }
-
-    private class TestMatrixListener implements IMatrixChangedListener {
-        private Matrix matrix;
-        private boolean resultFound = false;
-
-        public Matrix getMatrix() {
-            return matrix;
-        }
-
-        public boolean isResultFound() {
-            return resultFound;
-        }
-
-        public void matrixChanged(String threadName, Matrix changedMatrix) {
-            this.matrix = changedMatrix;
-        }
-
-        public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
-            this.matrix.setColumn(column, columnIndex);
-        }
-
-        public void resultFound(String threadName, Matrix changedMatrix) {
-            this.matrix = changedMatrix;
-            this.resultFound = true;
-        }
-    }
 
     private Matrix createTestMatrix() {
         Matrix testMatrix = new Matrix(4);
@@ -129,5 +90,43 @@ public class ThreadDataAggregatorTest {
 
     @Test
     public void ThreadDataAggregator_Reset() {
+    }
+
+    private class TestAlgorithmStateChangedListener implements IAlgorithmStateChangedListener {
+        private String state;
+
+        public String getState() {
+            return state;
+        }
+
+        public void stateChanged(String newState) {
+            this.state = newState;
+        }
+    }
+
+    private class TestMatrixListener implements IMatrixChangedListener {
+        private Matrix matrix;
+        private boolean resultFound = false;
+
+        public Matrix getMatrix() {
+            return matrix;
+        }
+
+        public boolean isResultFound() {
+            return resultFound;
+        }
+
+        public void matrixChanged(String threadName, Matrix changedMatrix) {
+            this.matrix = changedMatrix;
+        }
+
+        public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
+            this.matrix.setColumn(column, columnIndex);
+        }
+
+        public void resultFound(String threadName, Matrix changedMatrix) {
+            this.matrix = changedMatrix;
+            this.resultFound = true;
+        }
     }
 }

@@ -1,6 +1,14 @@
 package hadamardui;
 
-import hadamard.*;
+import hadamard.BacktrackingAlgorithmStrategy;
+import hadamard.Configuration;
+import hadamard.HadamardContext;
+import hadamard.IAlgorithmStateChangedListener;
+import hadamard.IHadamardStrategy;
+import hadamard.IMatrixChangedListener;
+import hadamard.Matrix;
+import hadamard.SylvesterAlgorithmStrategy;
+import hadamard.ThreadDataAggregator;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -176,7 +184,7 @@ public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateCha
     /**
      * Called when a matrix was changed. Updates the complete matrix on the ui.
      *
-     * @param threadName The name of the thread which wants to update its matrix.
+     * @param threadName    The name of the thread which wants to update its matrix.
      * @param changedMatrix The matrix value to set.
      */
     @Override
@@ -188,9 +196,9 @@ public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateCha
     /**
      * Called when a single column of a matrix should be updated.
      *
-     * @param threadName The name of the thread which wants to update its matrix.
+     * @param threadName  The name of the thread which wants to update its matrix.
      * @param columnIndex Index of the column to update.
-     * @param column The column value to set.
+     * @param column      The column value to set.
      */
     @Override
     public void matrixColumnChanged(String threadName, int columnIndex, BitSet column) {
@@ -201,7 +209,7 @@ public class HadamardModel implements IMatrixChangedListener, IAlgorithmStateCha
     /**
      * Called when a result is found.
      *
-     * @param threadName The name of the thread which wants to update its matrix.
+     * @param threadName   The name of the thread which wants to update its matrix.
      * @param resultMatrix The matrix value to set.
      */
     @Override

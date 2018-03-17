@@ -18,8 +18,8 @@ public class UIHelpers {
     /**
      * Draw a rectangle on a given GraphicsContext.
      *
-     * @param gc The GraphicsContext to draw on.
-     * @param rect The rectangle to draw.
+     * @param gc        The GraphicsContext to draw on.
+     * @param rect      The rectangle to draw.
      * @param fillColor The color which should be used to fill the rectangle.
      */
     private static void drawRectangle(GraphicsContext gc, Rectangle rect, Color fillColor) {
@@ -76,8 +76,8 @@ public class UIHelpers {
      * Draw a rectangle on a given GraphicsContext and fill it depending on the given cell value.
      *
      * @param graphicContext The GraphicsContext to draw on.
-     * @param rec The rectangle to draw.
-     * @param value The represented value.
+     * @param rec            The rectangle to draw.
+     * @param value          The represented value.
      */
     private static void drawRectangleForColor(GraphicsContext graphicContext, Rectangle rec, HadamardCellValue value) {
         switch (value) {
@@ -96,7 +96,7 @@ public class UIHelpers {
     /**
      * Get the value of a cell from a matrix, described by its row and column position.
      *
-     * @param row The row of the cell.
+     * @param row    The row of the cell.
      * @param column The column of the cell.
      * @param matrix The matrix containing the cell.
      * @return The value of the cell.
@@ -114,7 +114,7 @@ public class UIHelpers {
      * Get the value of a cell from a column, described by its rowIndex.
      *
      * @param rowIndex The row index of the cell.
-     * @param column The column to extract the value from.
+     * @param column   The column to extract the value from.
      * @return The value of the cell.
      */
     private static HadamardCellValue getCellValue(Integer rowIndex, BitSet column) {
@@ -126,9 +126,9 @@ public class UIHelpers {
     /**
      * Update the content of a tab canvas.
      *
-     * @param content The existing content to update.
+     * @param content     The existing content to update.
      * @param columnIndex The index of the column to update.
-     * @param column The column value to set.
+     * @param column      The column value to set.
      * @return The update canvas.
      */
     public static Canvas updateTabCanvasContent(Node content, int columnIndex, BitSet column) {

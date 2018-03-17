@@ -30,10 +30,10 @@ public class UpdateUIMatrixColumnTask implements Runnable {
     /**
      * Constructor for the UpdateUIMatrixColumnTask.
      *
-     * @param threadName Name of the thread. Used to identify the tab.
+     * @param threadName  Name of the thread. Used to identify the tab.
      * @param columnIndex The index of the column to update.
-     * @param column The column value to set,
-     * @param tabs The tabs to select the tab to update from.
+     * @param column      The column value to set,
+     * @param tabs        The tabs to select the tab to update from.
      */
     public UpdateUIMatrixColumnTask(String threadName, int columnIndex, BitSet column, ObservableList<Tab> tabs) {
         this.threadName = threadName;

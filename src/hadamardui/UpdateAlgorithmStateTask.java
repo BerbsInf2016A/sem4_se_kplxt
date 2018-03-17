@@ -19,7 +19,7 @@ public class UpdateAlgorithmStateTask implements Runnable {
      * Constructor fpr the UpdateAlgorithmStateTask.
      *
      * @param algorithmState The property to work on.
-     * @param newState The new state to set.
+     * @param newState       The new state to set.
      */
     public UpdateAlgorithmStateTask(SimpleStringProperty algorithmState, String newState) {
 

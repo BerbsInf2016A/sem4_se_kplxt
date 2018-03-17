@@ -45,7 +45,7 @@ public class ThreadDataAggregator {
      * Notifies the listeners if the Matrix was updated.
      *
      * @param threadName The name of the Thread.
-     * @param matrix The updated Matrix.
+     * @param matrix     The updated Matrix.
      */
     public void updateMatrix(String threadName, Matrix matrix) {
         if (Configuration.instance.printDebugMessages)
@@ -58,9 +58,9 @@ public class ThreadDataAggregator {
     /**
      * Notifies the listeners for a Column change in the Matrix.
      *
-     * @param threadName The name of the Thread.
+     * @param threadName  The name of the Thread.
      * @param columnIndex The Column index.
-     * @param column The Column that was updated.
+     * @param column      The Column that was updated.
      */
     public void updateMatrixColumn(String threadName, int columnIndex, BitSet column) {
         for (IMatrixChangedListener listener : this.matrixChangedListeners) {
@@ -73,7 +73,7 @@ public class ThreadDataAggregator {
      * Also aborts all threads if the "Abort if the first result was found" flag is set.
      *
      * @param threadName The name of the Thread.
-     * @param matrix The Result Matrix.
+     * @param matrix     The Result Matrix.
      */
     public synchronized void setResult(String threadName, Matrix matrix) {
         if (resultFound.get() && Configuration.instance.abortAfterFirstResult)
@@ -110,7 +110,7 @@ public class ThreadDataAggregator {
      * Notifies the listeners for a found result Matrix.
      *
      * @param threadName The name of the Thread.
-     * @param matrix The result Matrix.
+     * @param matrix     The result Matrix.
      */
     private void notifyResultFound(String threadName, Matrix matrix) {
         for (IMatrixChangedListener listener : this.matrixChangedListeners) {
@@ -141,7 +141,7 @@ public class ThreadDataAggregator {
 
     /**
      * Registers a Matrix Changed Listener.
-     * 
+     *
      * @param listener The Matrix Changed listener.
      */
     public void registerMatrixChangedListener(IMatrixChangedListener listener) {

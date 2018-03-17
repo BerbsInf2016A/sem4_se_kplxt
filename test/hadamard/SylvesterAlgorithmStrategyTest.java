@@ -8,30 +8,6 @@ import java.util.concurrent.Executors;
 
 public class SylvesterAlgorithmStrategyTest {
 
-    /**
-     * A SylvesterAlgorithmStrategy for tests.
-     */
-    private class TestSylvesterAlgorithmStrategy extends SylvesterAlgorithmStrategy {
-
-        /**
-         * Set the aggregator.
-         *
-         * @param aggregator The aggregator to set.
-         */
-        public void setAggregator(ThreadDataAggregator aggregator){
-            this.threadDataAggregator = aggregator;
-        }
-
-        /**
-         * Create the executor pool.
-         */
-        private void createExecutorPool() {
-            executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
-        }
-    }
-
-
-
     @Test
     public void SylvesterAlgorithm_RunsForDimensionEightAndReturnsValidResult() {
         SylvesterAlgorithmStrategy sylvesterAlgorithmStrategy = new SylvesterAlgorithmStrategy();
@@ -45,13 +21,12 @@ public class SylvesterAlgorithmStrategyTest {
 
         Assert.assertTrue("Should be true.", testMatrixListener.isResultFound());
 
-        Matrix resultMatrix = (Matrix)testMatrixListener.getResultMatrices().stream().toArray()[0];
+        Matrix resultMatrix = (Matrix) testMatrixListener.getResultMatrices().stream().toArray()[0];
 
         Assert.assertTrue("Should be true", Helpers.isIdentity(resultMatrix.times(resultMatrix.transpose())));
 
         threadDataAggregator.reset();
     }
-
 
     @Test
     public void SylvesterAlgorithm_CanExecutorForDimension() {
@@ -151,7 +126,7 @@ public class SylvesterAlgorithmStrategyTest {
         Matrix Matrix = new Matrix(1);
 
 
-        for(int i=0; i<3; i++)
+        for (int i = 0; i < 3; i++)
             Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
         Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
@@ -166,7 +141,7 @@ public class SylvesterAlgorithmStrategyTest {
         Matrix Matrix = new Matrix(1);
 
 
-        for(int i=0; i<4; i++)
+        for (int i = 0; i < 4; i++)
             Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
 
@@ -182,10 +157,32 @@ public class SylvesterAlgorithmStrategyTest {
         Matrix Matrix = new Matrix(1);
 
 
-        for(int i=0; i<9; i++)
+        for (int i = 0; i < 9; i++)
             Matrix = testSylvesterAlgorithm.generateNextSizeMatrix(Matrix);
 
 
         Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
+    }
+
+    /**
+     * A SylvesterAlgorithmStrategy for tests.
+     */
+    private class TestSylvesterAlgorithmStrategy extends SylvesterAlgorithmStrategy {
+
+        /**
+         * Set the aggregator.
+         *
+         * @param aggregator The aggregator to set.
+         */
+        public void setAggregator(ThreadDataAggregator aggregator) {
+            this.threadDataAggregator = aggregator;
+        }
+
+        /**
+         * Create the executor pool.
+         */
+        private void createExecutorPool() {
+            executorPool = Executors.newFixedThreadPool(Configuration.instance.maximumNumberOfThreads);
+        }
     }
 }

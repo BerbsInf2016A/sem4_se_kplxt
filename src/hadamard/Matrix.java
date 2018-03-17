@@ -78,7 +78,7 @@ public class Matrix {
      * Sets a specific Column.
      *
      * @param column The Column.
-     * @param index The Index of the Column.
+     * @param index  The Index of the Column.
      */
     public void setColumn(BitSet column, int index) {
         this.columns[index] = column;
@@ -93,8 +93,8 @@ public class Matrix {
      * Sets an element in the Matrix.
      *
      * @param columnIndex The Column Index.
-     * @param rowIndex The Row Index.
-     * @param value The value.
+     * @param rowIndex    The Row Index.
+     * @param value       The value.
      */
     public void setElement(int columnIndex, int rowIndex, boolean value) {
         if (value)
@@ -141,7 +141,7 @@ public class Matrix {
 
     /**
      * Multiplies the Matrix with another Matrix.
-     * 
+     *
      * @param B The Matrix to multiply with.
      * @return The multiplication result.
      */
@@ -197,7 +197,7 @@ public class Matrix {
      * Calculates the sum of two Bit values in a Matrix.
      * 1 = 1, 0 = -1
      *
-     * @param firstMatrixValue The first value.
+     * @param firstMatrixValue  The first value.
      * @param secondMatrixValue The second value.
      * @return The sum of the two values.
      */

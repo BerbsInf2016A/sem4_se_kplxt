@@ -35,16 +35,16 @@ public class BacktrackingAlgorithmStrategyTest {
         TestMatrixListener listener = new TestMatrixListener();
         threadDataAggregator.registerMatrixChangedListener(listener);
 
-        try{
+        try {
             testee.run(threadDataAggregator);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             // Hide the exceptions: Threads can be interrupted and stuff like that.
         }
 
         Assert.assertEquals("The number of results should be equal to the number of configured threads",
                 listener.getResultMatrices().size(), Configuration.instance.maximumNumberOfThreads);
 
-        for (Matrix matrix : listener.getResultMatrices() ) {
+        for (Matrix matrix : listener.getResultMatrices()) {
             Assert.assertTrue("Result matrix should be a hadamard matrix", Helpers.isIdentity(matrix.times(matrix.transpose())));
         }
     }
@@ -60,16 +60,16 @@ public class BacktrackingAlgorithmStrategyTest {
         TestMatrixListener listener = new TestMatrixListener();
         threadDataAggregator.registerMatrixChangedListener(listener);
 
-        try{
+        try {
             testee.run(threadDataAggregator);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             // Hide the exceptions: Threads can be interrupted and stuff like that.
         }
 
         Assert.assertEquals("The number of results should be one",
                 listener.getResultMatrices().size(), 1);
 
-        for (Matrix matrix : listener.getResultMatrices() ) {
+        for (Matrix matrix : listener.getResultMatrices()) {
             Assert.assertTrue("Result matrix should be a hadamard matrix", Helpers.isIdentity(matrix.times(matrix.transpose())));
         }
     }
@@ -85,16 +85,16 @@ public class BacktrackingAlgorithmStrategyTest {
         TestMatrixListener listener = new TestMatrixListener();
         threadDataAggregator.registerMatrixChangedListener(listener);
 
-        try{
+        try {
             testee.run(threadDataAggregator);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             // Hide the exceptions: Threads can be interrupted and stuff like that.
         }
 
         Assert.assertEquals("The number of results should be one",
                 listener.getResultMatrices().size(), 1);
 
-        for (Matrix matrix : listener.getResultMatrices() ) {
+        for (Matrix matrix : listener.getResultMatrices()) {
             Assert.assertTrue("Result matrix should be a hadamard matrix", Helpers.isIdentity(matrix.times(matrix.transpose())));
         }
     }

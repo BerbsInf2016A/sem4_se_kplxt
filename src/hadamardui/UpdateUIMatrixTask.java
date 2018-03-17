@@ -31,9 +31,9 @@ public class UpdateUIMatrixTask implements Runnable {
     /**
      * Constructor for the UpdateUIMatrixTask.
      *
-     * @param threadName Name of the thread. Used to identify the tab.
-     * @param changedMatrix The changed matrix to set.
-     * @param tabs The tabs to select the tab to update from.
+     * @param threadName     Name of the thread. Used to identify the tab.
+     * @param changedMatrix  The changed matrix to set.
+     * @param tabs           The tabs to select the tab to update from.
      * @param matrixIsResult True, if the matrix is a result, false if not.
      */
     public UpdateUIMatrixTask(String threadName, Matrix changedMatrix, ObservableList<Tab> tabs, boolean matrixIsResult) {

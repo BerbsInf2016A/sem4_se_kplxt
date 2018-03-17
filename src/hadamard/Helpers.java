@@ -51,8 +51,8 @@ public class Helpers {
     /**
      * Checks if two columns are Orthogonal to each other.
      *
-     * @param firstColumn The first column.
-     * @param secondColumn The second column.
+     * @param firstColumn       The first column.
+     * @param secondColumn      The second column.
      * @param targetColumnIndex The target column index.
      * @return Boolean indicating if the two columns are orthogonal.
      */
@@ -77,14 +77,14 @@ public class Helpers {
      * Concatenates two BitSets to one.
      * The two Sets need to be equal in length.
      *
-     * @param set1 The first BitSet.
-     * @param set2 The second BitSet.
+     * @param set1      The first BitSet.
+     * @param set2      The second BitSet.
      * @param dimension The dimension of one BitSet.
      * @return The concatenated BitSet.
      */
     public static BitSet concatenateSets(BitSet set1, BitSet set2, int dimension) {
         BitSet newSet = (BitSet) set1.clone();
-        for (int i= dimension; i< 2* dimension; i++)
+        for (int i = dimension; i < 2 * dimension; i++)
             newSet.set(i, set2.get(i - dimension));
 
         return newSet;

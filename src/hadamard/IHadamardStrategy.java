@@ -10,6 +10,7 @@ public interface IHadamardStrategy {
      * @param threadDataAggregator The Thread Data Aggregator.
      */
     void run(ThreadDataAggregator threadDataAggregator);
+
     /**
      * Checks if the Algorithm can run for a given dimension.
      *
