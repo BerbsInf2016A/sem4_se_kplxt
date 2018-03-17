@@ -162,38 +162,6 @@ public class Matrix {
     }
 
     /**
-     * Checks if the Matrix is an identity Matrix.
-     * TODO: Can be removed if not neaded, but it should be faster that the Helpers one.
-     *
-     * @return Boolean indicating if the Matrix is an identity Matrix.
-     */
-    public boolean isIdentity() {
-        Matrix transposedMatrix = this.transpose();
-
-        int matrix[][] = new int[this.getDimension()][this.getDimension()];
-
-        boolean flag = true;
-
-        for (int rowIndex = 0; rowIndex < this.dimension; rowIndex++) {
-            for (int columnIndex = 0; columnIndex < this.getDimension(); columnIndex++) {
-                for (int index = 0; index < this.getDimension(); index++) {
-                    boolean firstMatrixValue = this.getColumns()[index].get(rowIndex);
-                    boolean secondMatrixValue = transposedMatrix.getColumns()[columnIndex].get(index);
-                    matrix[columnIndex][rowIndex] += calculateSum(firstMatrixValue, secondMatrixValue);
-                }
-                if ((rowIndex == columnIndex && matrix[rowIndex][columnIndex] != matrix[0][0]) || (rowIndex != columnIndex && matrix[rowIndex][columnIndex] != 0)) {
-                    flag = false;
-                    break;
-                }
-            }
-            if (!flag)
-                return false;
-        }
-
-        return true;
-    }
-
-    /**
      * Calculates the sum of two Bit values in a Matrix.
      * 1 = 1, 0 = -1
      *
