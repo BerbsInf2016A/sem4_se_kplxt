@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 
 public class ThreadDataAggregatorTest {
 
@@ -86,24 +88,40 @@ public class ThreadDataAggregatorTest {
 
     @Test
     public void ThreadDataAggregator_ThreadAlreadyFoundResult() {
-        Assert.assertTrue(false);
+        ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
+        Matrix testMatrix = new Matrix(1);
+
+        String resultThreadName = "ResultThread1";
+
+        String updateThreadName = "UpdateThread1";
+
+        threadDataAggregator.setResult(resultThreadName, testMatrix);
+        threadDataAggregator.updateMatrix(updateThreadName, testMatrix);
+
+        Assert.assertTrue("Should be true.", threadDataAggregator.threadsWithResults.contains(resultThreadName));
+        Assert.assertFalse("Should be false.", threadDataAggregator.threadsWithResults.contains(updateThreadName));
     }
 
     @Test
     public void ThreadDataAggregator_Reset() {
-        Assert.assertTrue(false);
-    }
+        ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
+        TestAlgorithmStateChangedListener testAlgorithmStateChangedListener = new TestAlgorithmStateChangedListener();
 
-    private class TestAlgorithmStateChangedListener implements IAlgorithmStateChangedListener {
-        private String state;
+        threadDataAggregator.registerStateChangedListener(testAlgorithmStateChangedListener);
 
-        public String getState() {
-            return state;
-        }
+        threadDataAggregator.abortAllThreads.set(true);
+        threadDataAggregator.resultFound.set(true);
+        threadDataAggregator.setAlgorithmState(AlgorithmState.Running);
 
-        public void stateChanged(String newState) {
-            this.state = newState;
-        }
+        Assert.assertTrue("Should be true.", threadDataAggregator.abortAllThreads.get());
+        Assert.assertTrue("Should be true.", threadDataAggregator.resultFound.get());
+        Assert.assertTrue("Should be true.", testAlgorithmStateChangedListener.getState().equals(AlgorithmState.Running));
+
+        threadDataAggregator.reset();
+
+        Assert.assertFalse("Should be false.", threadDataAggregator.abortAllThreads.get());
+        Assert.assertFalse("Should be false.", threadDataAggregator.resultFound.get());
+        Assert.assertTrue("Should be true.", testAlgorithmStateChangedListener.getState().equals(AlgorithmState.Waiting));
     }
 
     private class TestMatrixListener implements IMatrixChangedListener {
