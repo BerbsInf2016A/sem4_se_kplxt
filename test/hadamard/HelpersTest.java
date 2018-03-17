@@ -12,7 +12,7 @@ import java.util.BitSet;
 public class HelpersTest {
 
     /**
-     * Tests the Helpers function comparing two BitSet for their Orthogonality.
+     * Tests the helpers function comparing two BitSet for their Orthogonality.
      */
     @Test
     public void Helpers_IsOrthogonal() {
@@ -28,7 +28,7 @@ public class HelpersTest {
     }
 
     /**
-     * Tests the Helpers function for converting a BigInteger value to a BitSet representation.
+     * Tests the helpers function for converting a BigInteger value to a BitSet representation.
      */
     @Test
     public void Helpers_ConvertTo() {
@@ -41,7 +41,7 @@ public class HelpersTest {
     }
 
     /**
-     * Tests the Helpers function for checking if a matrix is an identity matrix.
+     * Tests the helpers function for checking if a matrix is an identity matrix.
      */
     @Test
     public void Helpers_IsIdentity() {
@@ -59,7 +59,7 @@ public class HelpersTest {
     }
 
     /**
-     * Tests the Helpers function for concatenating two BitSets into one.
+     * Tests the helpers function for concatenating two BitSets into one.
      */
     @Test
     public void Helpers_ConcatenateSets() {

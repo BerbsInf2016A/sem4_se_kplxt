@@ -6,10 +6,16 @@ import org.junit.Test;
 import java.util.BitSet;
 import java.util.concurrent.Executors;
 
+/**
+ * Class for the sylvester algorithm strategy tests.
+ */
 public class SylvesterAlgorithmStrategyTest {
 
+    /**
+     * Tests if the sylvester algorithm runs for a matrix dimension eight and returns a valid result.
+     */
     @Test
-    public void SylvesterAlgorithm_RunsForDimensionEightAndReturnsValidResult() {
+    public void SylvesterAlgorithmStrategy_RunsForDimensionEightAndReturnsValidResult() {
         SylvesterAlgorithmStrategy sylvesterAlgorithmStrategy = new SylvesterAlgorithmStrategy();
         Configuration.instance.dimension = 8;
         TestMatrixListener testMatrixListener = new TestMatrixListener();
@@ -28,8 +34,11 @@ public class SylvesterAlgorithmStrategyTest {
         threadDataAggregator.reset();
     }
 
+    /**
+     * Test the sylvester algorithm function if it can run for a certain dimension.
+     */
     @Test
-    public void SylvesterAlgorithm_CanExecutorForDimension() {
+    public void SylvesterAlgorithmStrategy_CanExecutorForDimension() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
 
@@ -46,8 +55,11 @@ public class SylvesterAlgorithmStrategyTest {
         Assert.assertFalse("Should be false!", testSylvesterAlgorithm.canExecuteForDimension(12323));
     }
 
+    /**
+     * Tests if the sylvester algorithm function for generation matrices returns a valid matrix.
+     */
     @Test
-    public void SylvesterAlgorithm_Matrix_Two() {
+    public void SylvesterAlgorithmStrategy_Matrix_Two() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
         testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
@@ -71,8 +83,11 @@ public class SylvesterAlgorithmStrategyTest {
         Assert.assertTrue("Should be true.", expectedMatrix.equals(secondMatrix));
     }
 
+    /**
+     * Tests if the sylvester algorithm function for generation matrices returns a valid matrix.
+     */
     @Test
-    public void SylvesterAlgorithm_Matrix_Four() {
+    public void SylvesterAlgorithmStrategy_Matrix_Four() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
         testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
@@ -117,8 +132,11 @@ public class SylvesterAlgorithmStrategyTest {
         Assert.assertTrue("Should be true.", Helpers.isIdentity(fourthMatrix.times(fourthMatrix.transpose())));
     }
 
+    /**
+     * Tests if the sylvester algorithm works for a matrix with the size of eight.
+     */
     @Test
-    public void SylvesterAlgorithm_Matrix_EightIsHadamard() {
+    public void SylvesterAlgorithmStrategy_Matrix_EightIsHadamard() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
         testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
@@ -132,8 +150,11 @@ public class SylvesterAlgorithmStrategyTest {
         Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }
 
+    /**
+     * Tests if the sylvester algorithm works for a matrix with the size of sixteen.
+     */
     @Test
-    public void SylvesterAlgorithm_Matrix_SixteenIsHadamard() {
+    public void SylvesterAlgorithmStrategy_Matrix_SixteenIsHadamard() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
         testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());
@@ -148,8 +169,12 @@ public class SylvesterAlgorithmStrategyTest {
         Assert.assertTrue("Should be true.", Helpers.isIdentity(Matrix.times(Matrix.transpose())));
     }
 
+    /**
+     * Tests if the sylvester algorithm works for a matrix with the size of 512.
+     * This test takes a while because of the validation at the end.
+     */
     @Test
-    public void SylvesterAlgorithm_Matrix_512IsHadamard() {
+    public void SylvesterAlgorithmStrategy_Matrix_512IsHadamard() {
         TestSylvesterAlgorithmStrategy testSylvesterAlgorithm = new TestSylvesterAlgorithmStrategy();
         testSylvesterAlgorithm.createExecutorPool();
         testSylvesterAlgorithm.setAggregator(new ThreadDataAggregator());

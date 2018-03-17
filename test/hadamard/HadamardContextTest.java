@@ -3,10 +3,14 @@ package hadamard;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.concurrent.CancellationException;
-
+/**
+ * Class for the hadamard context tests.
+ */
 public class HadamardContextTest {
 
+    /**
+     * Tests if the hadamard context executes the strategy correctly and if it finds a result at the end.
+     */
     @Test
     public void HadamardContext_ExecuteStrategy() {
         BacktrackingAlgorithmStrategy backtrackingAlgorithmStrategy = new BacktrackingAlgorithmStrategy();
@@ -33,6 +37,9 @@ public class HadamardContextTest {
         Assert.assertTrue("Should be true.", testAlgorithmStateChangedListener.getState().equals(AlgorithmState.ResultFound));
     }
 
+    /**
+     * Tests the hadamard context function if the selected strategy can run for a certain dimension.
+     */
     @Test
     public void HadamardContext_CanExecuteForDimension() {
         BacktrackingAlgorithmStrategy backtrackingAlgorithmStrategy = new BacktrackingAlgorithmStrategy();
