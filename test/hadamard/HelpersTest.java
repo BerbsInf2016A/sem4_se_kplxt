@@ -6,8 +6,14 @@ import org.junit.Test;
 import java.math.BigInteger;
 import java.util.BitSet;
 
+/**
+ * Class for the helpers tests.
+ */
 public class HelpersTest {
 
+    /**
+     * Tests the Helpers function comparing two BitSet for their Orthogonality.
+     */
     @Test
     public void Helpers_IsOrthogonal() {
         BitSet firstColumn = Helpers.convertTo(BigInteger.valueOf(9));
@@ -21,6 +27,9 @@ public class HelpersTest {
         Assert.assertFalse("Should be false.", Helpers.isOrthogonal(firstColumn, secondColumn, 2));
     }
 
+    /**
+     * Tests the Helpers function for converting a BigInteger value to a BitSet representation.
+     */
     @Test
     public void Helpers_ConvertTo() {
         BitSet bitset = Helpers.convertTo(BigInteger.valueOf(9));
@@ -31,6 +40,9 @@ public class HelpersTest {
         Assert.assertEquals("Should be the same.", true, bitset.get(3));
     }
 
+    /**
+     * Tests the Helpers function for checking if a matrix is an identity matrix.
+     */
     @Test
     public void Helpers_IsIdentity() {
         int[][] testMatrix = {{4, 0, 0, 0}, {0, 4, 0, 0}, {0, 0, 4, 0}, {0, 0, 0, 4}};
@@ -46,6 +58,9 @@ public class HelpersTest {
         Assert.assertFalse("Should be false.", Helpers.isIdentity(testMatrix));
     }
 
+    /**
+     * Tests the Helpers function for concatenating two BitSets into one.
+     */
     @Test
     public void Helpers_ConcatenateSets() {
         BitSet firstPart = new BitSet();

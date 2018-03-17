@@ -7,8 +7,14 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.BitSet;
 
+/**
+ * Class for the matrix tests.
+ */
 public class MatrixTest {
 
+    /**
+     * Tests the matrix constructor for cloning the matrix.
+     */
     @Test
     public void Matrix_CloneConstructor() {
         Matrix testMatrix = new Matrix(4);
@@ -22,6 +28,9 @@ public class MatrixTest {
         Assert.assertTrue("Should be true.", newMatrix.equals(testMatrix));
     }
 
+    /**
+     * Tests the matrix function for transposition.
+     */
     @Test
     public void Matrix_Transpose() {
         Matrix testMatrix = new Matrix(4);
@@ -41,6 +50,9 @@ public class MatrixTest {
         Assert.assertTrue("Should be true.", transposedMatrix.equals(expectedResult));
     }
 
+    /**
+     * Tests the matrix function for comparing it with another matrix.
+     */
     @Test
     public void Matrix_Equals() {
         Matrix testMatrix = new Matrix(4);
@@ -58,6 +70,9 @@ public class MatrixTest {
         Assert.assertTrue("Should be true.", testMatrix.equals(expectedResult));
     }
 
+    /**
+     * Tests the matrix function for multiplication with another matrix.
+     */
     @Test
     public void Matrix_Times() {
         Matrix testMatrix1 = new Matrix(4);
