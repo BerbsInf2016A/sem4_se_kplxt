@@ -5,8 +5,11 @@ import org.junit.Test;
 
 public class BacktrackingAlgorithmStrategyTest {
 
+    /**
+     * Tests for the canExecuteForDimension function.
+     */
     @Test
-    public void BacktrackingAlgorithm_CanExecutorForDimension() {
+    public void BacktrackingAlgorithm_CanExecuteForDimension() {
         BacktrackingAlgorithmStrategy testBacktrackingAlgorithmStrategy = new BacktrackingAlgorithmStrategy();
 
         Assert.assertTrue("Should be true!", testBacktrackingAlgorithmStrategy.canExecuteForDimension(32));
@@ -24,6 +27,9 @@ public class BacktrackingAlgorithmStrategyTest {
         Assert.assertFalse("Should be false!", testBacktrackingAlgorithmStrategy.canExecuteForDimension(12323));
     }
 
+    /**
+     * Test for the backtracking algorithm. The number of results should be equal to the number of used threads.
+     */
     @Test
     public void Backtracking_DimensionEight_NumberOfResultsEqualsToNumberOfThreads() {
         ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
@@ -49,6 +55,9 @@ public class BacktrackingAlgorithmStrategyTest {
         }
     }
 
+    /**
+     * Test for the backtracking algorithm. There should be only one result for a dimension of eight.
+     */
     @Test
     public void Backtracking_DimensionEight_NumberOfResultsEqualsOne() {
         ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
@@ -74,6 +83,9 @@ public class BacktrackingAlgorithmStrategyTest {
         }
     }
 
+    /**
+     * Test for the backtracking algorithm. There should be only one result for a dimension of one.
+     */
     @Test
     public void Backtracking_DimensionOne_NumberOfResultsEqualsOne() {
         ThreadDataAggregator threadDataAggregator = new ThreadDataAggregator();
